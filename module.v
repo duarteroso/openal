@@ -1,7 +1,6 @@
 module vopenal
 
 import duarteroso.vsemver
-import novuloj.vopenal.al
 import novuloj.vopenal.alc
 
 // Linux
