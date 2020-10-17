@@ -1,7 +1,9 @@
 module alc
 
 // Forward declarations
-[typedef] struct C.ALCdevice { }
+[typedef]
+struct C.ALCdevice {
+}
 
 fn C.alcOpenDevice(devicename charptr) &C.ALCdevice
 

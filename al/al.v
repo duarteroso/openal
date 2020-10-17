@@ -141,7 +141,7 @@ pub fn is_extension_present(ext string) bool {
 	return ok != 0
 }
 
-// get_proc_addr returns the process address 
+// get_proc_addr returns the process address
 pub fn get_proc_addr(fname string) voidptr {
 	addr := C.alGetProcAddress(fname.str)
 	check_error()

@@ -1,7 +1,9 @@
 module alc
 
 // Forward declarations
-[typedef] struct C.ALCcontext { }
+[typedef]
+struct C.ALCcontext {
+}
 
 fn C.alcCreateContext(device &C.ALCdevice, attrlist voidptr) &C.ALCcontext
 

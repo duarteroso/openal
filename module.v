@@ -6,14 +6,12 @@ import novuloj.vopenal.alc
 
 // Linux
 #flag linux -lopenal
-
 // Includes
 #include <AL/al.h>
 #include <AL/alc.h>
-
 // load_module loads OpenAL module
 // Used to force the compiler to include the C pragmas
-pub fn load_module() {	
+pub fn load_module() {
 }
 
 // unload_module unloads OpenAL module
@@ -41,7 +39,7 @@ pub fn openal_version() vsemver.SemVer {
 
 // openalc_version returns the ALC semantic version
 pub fn alc_version() vsemver.SemVer {
-	return vsemver.SemVer {
+	return vsemver.SemVer{
 		major: alc.alc_major_version
 		minor: alc.alc_minor_version
 		patch: 0

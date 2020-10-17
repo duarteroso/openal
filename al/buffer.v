@@ -138,7 +138,7 @@ pub fn (b &Buffer) bufferf(param int, value f32) {
 	check_error()
 }
 
-// buffer3f sets a buffer parameter value as vector of floats 
+// buffer3f sets a buffer parameter value as vector of floats
 pub fn (b &Buffer) buffer3f(param int, v1 f32, v2 f32, v3 f32) {
 	C.alBuffer3f(b.id, param, v1, v2, v3)
 	check_error()
