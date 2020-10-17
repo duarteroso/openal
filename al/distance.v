@@ -20,12 +20,12 @@ pub enum DistanceModel {
 // distance_model sets the distance model
 pub fn distance_model(model DistanceModel) {
 	value := match model {
-		.inverse_distance { inverse_distance }
-		.inverse_distance_clamped { inverse_distance_clamped }
-		.linear_distance { linear_distance }
-		.linear_ditance_clamped { linear_distance_clamped }
-		.exponent_distance { exponent_distance }
-		.exponent_distance_clamped { exponent_distance_clamped }
+		.inverse_distance { al_inverse_distance }
+		.inverse_distance_clamped { al_inverse_distance_clamped }
+		.linear_distance { al_linear_distance }
+		.linear_ditance_clamped { al_linear_distance_clamped }
+		.exponent_distance { al_exponent_distance }
+		.exponent_distance_clamped { al_exponent_distance_clamped }
 	}
 	C.alDistanceModel(value)
 	check_error()

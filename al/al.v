@@ -43,7 +43,7 @@ pub fn get_error() Error {
 // check_error checks and panics on error
 pub fn check_error() {
 	err := get_error()
-	if err.code != no_error {
+	if err.code != al_no_error {
 		panic(err.str())
 	}
 }

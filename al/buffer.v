@@ -82,51 +82,51 @@ pub fn (b &Buffer) is_valid() bool {
 
 // get_frequency returns the frequency of the buffer
 pub fn (b &Buffer) get_frequency() int {
-	return b.get_bufferi(frequency)
+	return b.get_bufferi(al_frequency)
 }
 
 // set_frequency sets the frequency of the buffer
 pub fn (b &Buffer) set_frequency(value int) {
-	b.bufferi(frequency, value)
+	b.bufferi(al_frequency, value)
 }
 
 // get_bits returns the bits of the buffer
 pub fn (b &Buffer) get_bits() int {
-	return b.get_bufferi(bits)
+	return b.get_bufferi(al_bits)
 }
 
 // set_bits sets the bits of the buffer
 pub fn (b &Buffer) set_bits(value int) {
-	b.bufferi(bits, value)
+	b.bufferi(al_bits, value)
 }
 
 // get_channels returns the number channels of the buffer
 pub fn (b &Buffer) get_channels() int {
-	return b.get_bufferi(channels)
+	return b.get_bufferi(al_channels)
 }
 
 // set_channels sets the number of channels of the buffer
 pub fn (b &Buffer) set_channels(value int) {
-	b.bufferi(channels, value)
+	b.bufferi(al_channels, value)
 }
 
 // get_size returns the size of the buffer
 pub fn (b &Buffer) get_size() int {
-	return b.get_bufferi(size)
+	return b.get_bufferi(al_size)
 }
 
 // set_size sets the size of the buffer
 pub fn (b &Buffer) set_size(value int) {
-	b.bufferi(size, value)
+	b.bufferi(al_size, value)
 }
 
 // set_data sets the data on the buffer
 pub fn (b &Buffer) set_data(format BufferFormat, data []byte) {
 	value := match format {
-		.mono8 { format_mono8 }
-		.mono16 { format_mono16 }
-		.stereo8 { format_stereo8 }
-		.stereo16 { format_stereo16 }
+		.mono8 { al_format_mono8 }
+		.mono16 { al_format_mono16 }
+		.stereo8 { al_format_stereo8 }
+		.stereo16 { al_format_stereo16 }
 	}
 	C.alBufferData(b.id, value, data.data, data.len, b.get_frequency())
 	check_error()

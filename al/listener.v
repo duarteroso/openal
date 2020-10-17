@@ -31,42 +31,42 @@ pub struct Listener {
 
 // get_gain returns the gain of the listener
 pub fn (l &Listener) get_gain() f32 {
-	return get_listenerf(gain)
+	return get_listenerf(al_gain)
 }
 
 // set_gain sets the gain of the listener
 pub fn (l &Listener) set_gain(value f32) {
-	listenerf(gain, value)
+	listenerf(al_gain, value)
 }
 
 // get_position returns the position of the listener
 pub fn (l &Listener) get_position() (f32, f32, f32) {
-	return get_listener3f(position)
+	return get_listener3f(al_position)
 }
 
 // set_position sets the position of the listener
 pub fn (l &Listener) set_position(x f32, y f32, z f32) {
-	listener3f(position, x, y, z)
+	listener3f(al_position, x, y, z)
 }
 
 // get_velocity returns the velocity of the listener
 pub fn (l &Listener) get_velocity() (f32, f32, f32) {
-	return get_listener3f(velocity)
+	return get_listener3f(al_velocity)
 }
 
 // set_velocity sets the velocity of the listener
 pub fn (l &Listener) set_velocity(x f32, y f32, z f32) {
-	listener3f(velocity, x, y, z)
+	listener3f(al_velocity, x, y, z)
 }
 
 // get_orientation returns the orientation of the listener
 pub fn (l &Listener) get_orientation() []f32 {
-	return get_listenerfv(orientation)
+	return get_listenerfv(al_orientation)
 }
 
 // set_orientation sets the orientation of the listener
 pub fn (l &Listener) set_orientation(value []f32) {
-	listenerfv(orientation, value)
+	listenerfv(al_orientation, value)
 }
 
 // listenerf sets a listener parameter value as float

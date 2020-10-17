@@ -59,7 +59,6 @@ pub fn (c &Context) suspend() {
 pub fn (c &Context) destroy() {
 	C.alcDestroyContext(c.data)
 	check_error(c.device)
-	c.data = &C.ALCcontext(0)
 }
 
 // get_device returns device linked to context

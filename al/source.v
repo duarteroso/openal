@@ -123,7 +123,7 @@ pub fn (s &Source) is_valid() bool {
 
 // is_relative returns true if source position is relative to listener
 pub fn (s &Source) is_relative() bool {
-	return s.get_sourcei(source_relative) == al_true
+	return s.get_sourcei(al_source_relative) == al_true
 }
 
 // loop sets source to a looping state
@@ -134,7 +134,7 @@ pub fn (s &Source) loop(loop bool) {
 
 // get_type returns a source type
 pub fn (s &Source) get_type() SourceType {
-	value := s.get_sourcei(source_type)
+	value := s.get_sourcei(al_source_type)
 	return match value {
 		al_source_static { SourceType.statik }
 		al_source_streaming { SourceType.streaming }
@@ -144,7 +144,7 @@ pub fn (s &Source) get_type() SourceType {
 
 // get_state returns a source state
 pub fn (s &Source) get_state() SourceState {
-	value := s.get_sourcei(source_state)
+	value := s.get_sourcei(al_source_state)
 	return match value {
 		al_initial { SourceState.initial }
 		al_playing { SourceState.playing }
