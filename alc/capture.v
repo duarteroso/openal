@@ -1,7 +1,7 @@
 module alc
 
 // Forward declarations
-fn C.alcCaptureOpenDevice(devicename charptr, frequency u32, format, buffersize int) &C.ALCdevice
+fn C.alcCaptureOpenDevice(devicename charptr, frequency u32, format int, buffersize int) &C.ALCdevice
 
 fn C.alcCaptureCloseDevice(device &C.ALCdevice) byte
 
@@ -18,7 +18,7 @@ mut:
 }
 
 // open_device opens the capture device
-pub fn (mut c CaptureDevice) open_device(name string, frequency u32, format, buffersize int) {
+pub fn (mut c CaptureDevice) open_device(name string, frequency u32, format int, buffersize int) {
 	c.data = C.alcCaptureOpenDevice(name.str, frequency, format, buffersize)
 	check_error(&C.ALCdevice(0))
 }

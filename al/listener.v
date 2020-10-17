@@ -3,25 +3,25 @@ module al
 // Forward declaration
 fn C.alListenerf(param int, value f32)
 
-fn C.alListener3f(param int, v1, v2, v3 f32)
+fn C.alListener3f(param int, v1 f32, v2 f32, v3 f32)
 
 fn C.alListenerfv(param int, value voidptr)
 
-fn C.alListeneri(param, value int)
+fn C.alListeneri(param int, value int)
 
-fn C.alListener3i(param, v1, v2, v3 int)
+fn C.alListener3i(param int, v1 int, v2 int, v3 int)
 
 fn C.alListeneriv(param int, value voidptr)
 
 fn C.alGetListenerf(param int, value &f32)
 
-fn C.alGetListener3f(param int, v1, v2, v3 &f32)
+fn C.alGetListener3f(param int, v1 &f32, v2 &f32, v3 &f32)
 
 fn C.alGetListenerfv(param int, value voidptr)
 
 fn C.alGetListeneri(param int, value &int)
 
-fn C.alGetListener3i(param int, v1, v2, v3 &int)
+fn C.alGetListener3i(param int, v1 &int, v2 &int, v3 &int)
 
 fn C.alGetListeneriv(param int, value voidptr)
 
@@ -45,7 +45,7 @@ pub fn (l &Listener) get_position() (f32, f32, f32) {
 }
 
 // set_position sets the position of the listener
-pub fn (l &Listener) set_position(x, y, z f32) {
+pub fn (l &Listener) set_position(x f32, y f32, z f32) {
 	listener3f(position, x, y, z)
 }
 
@@ -55,7 +55,7 @@ pub fn (l &Listener) get_velocity() (f32, f32, f32) {
 }
 
 // set_velocity sets the velocity of the listener
-pub fn (l &Listener) set_velocity(x, y, z f32) {
+pub fn (l &Listener) set_velocity(x f32, y f32, z f32) {
 	listener3f(velocity, x, y, z)
 }
 
@@ -76,7 +76,7 @@ pub fn listenerf(param int, value f32) {
 }
 
 // listener3f sets a listener parameter value as vector of floats
-pub fn listener3f(param int, v1, v2, v3 f32) {
+pub fn listener3f(param int, v1 f32, v2 f32, v3 f32) {
 	C.alListener3f(param, v1, v2, v3)
 	check_error()
 }
@@ -88,13 +88,13 @@ pub fn listenerfv(param int, values []f32) {
 }
 
 // listeneri sets a listener parameter value as integer
-pub fn listeneri(param, value int) {
+pub fn listeneri(param int, value int) {
 	C.alListeneri(param, value)
 	check_error()
 }
 
 // listener3i sets a listener parameter value as vector of integers
-pub fn listener3i(param, v1, v2, v3 int) {
+pub fn listener3i(param int, v1 int, v2 int, v3 int) {
 	C.alListener3i(param, v1, v2, v3)
 	check_error()
 }

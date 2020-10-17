@@ -7,29 +7,29 @@ fn C.alDeleteBuffers(sze int, buffer voidptr)
 
 fn C.alIsBuffer(buffer u32) int
 
-fn C.alBufferData(buffer u32, format int, data voidptr, size, freq int)
+fn C.alBufferData(buffer u32, format int, data voidptr, size int, freq int)
 
 fn C.alBufferf(buffer u32, param int, value f32)
 
-fn C.alBuffer3f(buffer u32, param int, v1, v2, v3 f32)
+fn C.alBuffer3f(buffer u32, param int, v1 f32, v2 f32, v3 f32)
 
 fn C.alBufferfv(buffer u32, param int, values voidptr)
 
-fn C.alBufferi(buffer u32, param, value int)
+fn C.alBufferi(buffer u32, param int, value int)
 
-fn C.alBuffer3i(buffer u32, param, v1, v2, v3 int)
+fn C.alBuffer3i(buffer u32, param int, v1 int, v2 int, v3 int)
 
 fn C.alBufferiv(buffer u32, param int, values voidptr)
 
 fn C.alGetBufferf(buffer u32, param int, value &f32)
 
-fn C.alGetBuffer3f(bufer u32, param int, v1, v2, v3 &f32)
+fn C.alGetBuffer3f(bufer u32, param int, v1 &f32, v2 &f32, v3 &f32)
 
 fn C.alGetBufferfv(buffer u32, param int, values voidptr)
 
 fn C.alGetBufferi(buffer u32, param int, value &int)
 
-fn C.alGetBuffer3i(buffer u32, param int, v1, v2, v3 &int)
+fn C.alGetBuffer3i(buffer u32, param int, v1 &int, v2 &int, v3 &int)
 
 fn C.alGetBufferiv(buffer u32, param int, values voidptr)
 
@@ -139,7 +139,7 @@ pub fn (b &Buffer) bufferf(param int, value f32) {
 }
 
 // buffer3f sets a buffer parameter value as vector of floats 
-pub fn (b &Buffer) buffer3f(param int, v1, v2, v3 f32) {
+pub fn (b &Buffer) buffer3f(param int, v1 f32, v2 f32, v3 f32) {
 	C.alBuffer3f(b.id, param, v1, v2, v3)
 	check_error()
 }
@@ -151,13 +151,13 @@ pub fn (b &Buffer) bufferfv(param int, values []f32) {
 }
 
 // bufferi sets a buffer parameter value as integer
-pub fn (b &Buffer) bufferi(param, value int) {
+pub fn (b &Buffer) bufferi(param int, value int) {
 	C.alBufferi(b.id, param, value)
 	check_error()
 }
 
 // buffer3i sets a buffer parameter value as vector of integers
-pub fn (b &Buffer) buffer3i(param, v1, v2, v3 int) {
+pub fn (b &Buffer) buffer3i(param int, v1 int, v2 int, v3 int) {
 	C.alBuffer3i(b.id, param, v1, v2, v3)
 	check_error()
 }

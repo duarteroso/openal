@@ -9,25 +9,25 @@ fn C.alIsSource(source u32) int
 
 fn C.alSourcef(source u32, param int, value f32)
 
-fn C.alSource3f(source u32, param int, v1, v2, v3 f32)
+fn C.alSource3f(source u32, param int, v1 f32, v2 f32, v3 f32)
 
 fn C.alSourcefv(source u32, param int, values voidptr)
 
-fn C.alSourcei(source u32, param, value int)
+fn C.alSourcei(source u32, param int, value int)
 
-fn C.alSource3i(source u32, param, v1, v2, v3 int)
+fn C.alSource3i(source u32, param int, v1 int, v2 int, v3 int)
 
 fn C.alSourceiv(source u32, param int, values voidptr)
 
 fn C.alGetSourcef(source u32, param int, value &f32)
 
-fn C.alGetSource3f(sourece u32, param int, v1, v2, v3 &f32)
+fn C.alGetSource3f(sourece u32, param int, v1 &f32, v2 &f32, v3 &f32)
 
 fn C.alGetSourcefv(source u32, param int, values voidptr)
 
 fn C.alGetSourcei(source u32, param int, value &int)
 
-fn C.alGetSource3i(source u32, param int, v1, v2, v3 &int)
+fn C.alGetSource3i(source u32, param int, v1 &int, v2 &int, v3 &int)
 
 fn C.alGetSourceiv(source u32, param int, values voidptr)
 
@@ -59,7 +59,7 @@ mut:
 
 // SourceType defines the types of a source
 pub enum SourceType {
-	static
+	statik
 	streaming
 	undetermined
 }
@@ -136,7 +136,7 @@ pub fn (s &Source) loop(loop bool) {
 pub fn (s &Source) get_type() SourceType {
 	value := s.get_sourcei(source_type)
 	return match value {
-		al_source_static { SourceType.static }
+		al_source_static { SourceType.statik }
 		al_source_streaming { SourceType.streaming }
 		else { SourceType.undetermined }
 	}
@@ -212,7 +212,7 @@ pub fn (s &Source) get_gain_bounds() (f32, f32) {
 }
 
 // set_gain_bounds sets the min/max gain of the source
-pub fn (s &Source) set_gain_bounds(min, max f32) {
+pub fn (s &Source) set_gain_bounds(min f32, max f32) {
 	s.sourcef(al_min_gain, min)
 	s.sourcef(al_max_gain, max)
 }
@@ -283,7 +283,7 @@ pub fn (s &Source) get_position() (f32, f32, f32) {
 }
 
 // set_position sets the position of the source
-pub fn (s &Source) set_position(v1, v2, v3 f32) {
+pub fn (s &Source) set_position(v1 f32, v2 f32, v3 f32) {
 	s.source3f(al_position, v1, v2, v3)
 }
 
@@ -293,7 +293,7 @@ pub fn (s &Source) get_velocity() (f32, f32, f32) {
 }
 
 // set_velocity sets the velocity of the source
-pub fn (s &Source) set_velocity(v1, v2, v3 f32) {
+pub fn (s &Source) set_velocity(v1 f32, v2 f32, v3 f32) {
 	s.source3f(al_velocity, v1, v2, v3)
 }
 
@@ -303,7 +303,7 @@ pub fn (s &Source) get_direction() (f32, f32, f32) {
 }
 
 // set_direction sets the direction of the source
-pub fn (s &Source) set_direction(v1, v2, v3 f32) {
+pub fn (s &Source) set_direction(v1 f32, v2 f32, v3 f32) {
 	s.source3f(al_direction, v1, v2, v3)
 }
 
@@ -314,7 +314,7 @@ pub fn (s &Source) sourcef(param int, value f32) {
 }
 
 // source3f sets a source parameter value as vector of floats
-pub fn (s &Source) source3f(param int, v1, v2, v3 f32) {
+pub fn (s &Source) source3f(param int, v1 f32, v2 f32, v3 f32) {
 	C.alSource3f(s.id, param, v1, v2, v3)
 	check_error()
 }
@@ -326,13 +326,13 @@ pub fn (s &Source) sourcefv(param int, values []f32) {
 }
 
 // sourcei sets a source parameter value as integer
-pub fn (s &Source) sourcei(param, value int) {
+pub fn (s &Source) sourcei(param int, value int) {
 	C.alSourcei(s.id, param, value)
 	check_error()
 }
 
 // source3i sets a source parameter value as vector of integers
-pub fn (s &Source) source3i(param, v1, v2, v3 int) {
+pub fn (s &Source) source3i(param int, v1 int, v2 int, v3 int) {
 	C.alSource3i(s.id, param, v1, v2, v3)
 	check_error()
 }

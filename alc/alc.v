@@ -7,7 +7,7 @@ fn C.alcGetCurrentContext() &C.ALCcontext
 
 fn C.alcGetString(device &C.ALCdevice, param int) charptr
 
-fn C.alcGetIntegerv(device &C.ALCdevice, param, size int, values voidptr)
+fn C.alcGetIntegerv(device &C.ALCdevice, param int, size int, values voidptr)
 
 // get_error returns the pending ALC error
 pub fn get_error(device &C.ALCdevice) Error {

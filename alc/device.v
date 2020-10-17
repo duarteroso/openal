@@ -72,7 +72,7 @@ pub fn (d &Device) get_string(param int) string {
 }
 
 // get_integers returns a device parameters as vector of strings
-pub fn (d &Device) get_integers(param, size int) []int {
+pub fn (d &Device) get_integers(param int, size int) []int {
 	values := []int{len: size}
 	C.alcGetIntegerv(d.data, param, size, &values.data)
 	check_error(d.data)
