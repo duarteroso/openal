@@ -1,6 +1,6 @@
 Module {
 	name: 'vopenal',
-	description: 'OpenAL wrapping in V',
-	version: '1.0.0',
+	description: 'OpenAL wrapper in V',
+	version: '0.2.0',
 	dependencies: [duarteroso.vsemver]
 }
