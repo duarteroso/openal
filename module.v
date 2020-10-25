@@ -1,6 +1,7 @@
 module vopenal
 
 import duarteroso.vsemver
+import novuloj.vopenal.al
 import novuloj.vopenal.alc
 
 // Linux
@@ -27,11 +28,11 @@ pub fn module_version() vsemver.SemVer {
 	}
 }
 
-// openal_version returns the AL semantic version
-pub fn openal_version() vsemver.SemVer {
+// al_version returns the AL semantic version
+pub fn al_version() vsemver.SemVer {
 	return vsemver.SemVer{
-		major: 1
-		minor: 1
+		major: al.al_major_version
+		minor: al.al_minor_version
 		patch: 0
 	}
 }
