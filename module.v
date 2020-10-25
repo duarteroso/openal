@@ -21,7 +21,7 @@ pub fn unload_module() {
 pub fn module_version() vsemver.SemVer {
 	return vsemver.SemVer{
 		major: 0
-		minor: 2
+		minor: 3
 		patch: 0
 		stage: .alpha
 	}
