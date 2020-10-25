@@ -39,14 +39,6 @@ mut:
 	id u32
 }
 
-// BufferFormat defines the different buffer data types
-pub enum BufferFormat {
-	mono8
-	mono16
-	stereo8
-	stereo16
-}
-
 // create_buffers creates multiple instances of Buffer
 pub fn create_buffers(n int) []Buffer {
 	values := []u32{len: n}
@@ -85,19 +77,9 @@ pub fn (b &Buffer) get_frequency() int {
 	return b.get_bufferi(al_frequency)
 }
 
-// set_frequency sets the frequency of the buffer
-pub fn (b &Buffer) set_frequency(value int) {
-	b.bufferi(al_frequency, value)
-}
-
 // get_bits returns the bits of the buffer
 pub fn (b &Buffer) get_bits() int {
 	return b.get_bufferi(al_bits)
-}
-
-// set_bits sets the bits of the buffer
-pub fn (b &Buffer) set_bits(value int) {
-	b.bufferi(al_bits, value)
 }
 
 // get_channels returns the number channels of the buffer
@@ -105,30 +87,14 @@ pub fn (b &Buffer) get_channels() int {
 	return b.get_bufferi(al_channels)
 }
 
-// set_channels sets the number of channels of the buffer
-pub fn (b &Buffer) set_channels(value int) {
-	b.bufferi(al_channels, value)
-}
-
 // get_size returns the size of the buffer
 pub fn (b &Buffer) get_size() int {
 	return b.get_bufferi(al_size)
 }
 
-// set_size sets the size of the buffer
-pub fn (b &Buffer) set_size(value int) {
-	b.bufferi(al_size, value)
-}
-
 // set_data sets the data on the buffer
-pub fn (b &Buffer) set_data(format BufferFormat, data []byte) {
-	value := match format {
-		.mono8 { al_format_mono8 }
-		.mono16 { al_format_mono16 }
-		.stereo8 { al_format_stereo8 }
-		.stereo16 { al_format_stereo16 }
-	}
-	C.alBufferData(b.id, value, data.data, data.len, b.get_frequency())
+pub fn (b &Buffer) set_data(format int, data voidptr, size int, frequency f32) {
+	C.alBufferData(b.id, format, data, size, frequency)
 	check_error()
 }
 
