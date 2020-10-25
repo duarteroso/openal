@@ -19,7 +19,8 @@ pub fn has_error() bool {
 // check_error checks and panics on error
 pub fn check_error() {
 	if has_error() {
-		panic(get_error().str())
+		err := get_error()
+		panic(err.str())
 	}
 }
 
@@ -30,14 +31,16 @@ pub fn get_error() Error {
 
 // get_error_string returns the pending ALUT error as a string
 pub fn get_error_string() string {
-	return tos3(C.alutGetErrorString())
+	code := C.alutGetError()
+	return tos3(C.alutGetErrorString(code))
 }
 
 // new_error creates a new Error
 fn new_error() Error {
+	code := C.alutGetError()
 	return Error{
-		code: C.alutGetError()
-		msg: tos3(C.alutGetErrorString())
+		code: code
+		msg: tos3(C.alutGetErrorString(code))
 	}
 }
 

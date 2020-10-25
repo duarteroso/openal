@@ -23,7 +23,8 @@ pub fn get_error() Error {
 // check_error checks and panics on errors
 pub fn check_error() {
 	if has_error() {
-		panic(get_error().str())
+		err := get_error()
+		panic(err.str())
 	}
 }
 

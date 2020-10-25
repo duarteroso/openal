@@ -13,7 +13,7 @@ pub fn load_memory_from_file(buffer al.Buffer, path string) {
 	format := int(0)
 	size := int(0)
 	frequency := f32(0)
-	data := C.alutLoadMemoryFromFile(path.str, &format, &size, &frequency)
+	data := C.alutLoadMemoryFromFile(charptr(path.str), &format, &size, &frequency)
 	check_error()
 	// Set buffer data
 	buffer.set_data(format, data, size, frequency)

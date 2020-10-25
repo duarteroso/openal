@@ -18,7 +18,8 @@ pub fn has_error() bool {
 // check_error checks and panics on error
 pub fn check_error() {
 	if has_error() {
-		panic(get_error().str())
+		err := get_error()
+		panic(err.str())
 	}
 }
 

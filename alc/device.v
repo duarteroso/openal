@@ -101,6 +101,7 @@ pub fn (d &Device) get_error() Error {
 // check_error checks and panics on errors
 pub fn (d &Device) check_error() {
 	if d.has_error() {
-		panic(d.get_error().str())
+		err := d.get_error()
+		panic(err.str())
 	}
 }
