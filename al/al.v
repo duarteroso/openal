@@ -1,8 +1,6 @@
 module al
 
 // Forward declaration
-fn C.alGetError() int
-
 fn C.alEnable(capability int)
 
 fn C.alDisable(capability int)
@@ -32,21 +30,6 @@ fn C.alIsExtensionPresent(extname charptr) byte
 fn C.alGetProcAddress(fname charptr) voidptr
 
 fn C.alGetEnumValue(ename charptr) int
-
-// get_error returns the pending AL error
-pub fn get_error() Error {
-	c := C.alGetError()
-	mut err := new_error(c)
-	return err
-}
-
-// check_error checks and panics on error
-pub fn check_error() {
-	err := get_error()
-	if err.code != al_no_error {
-		panic(err.str())
-	}
-}
 
 // enable an OpenAL capability
 pub fn enable(capability int) {

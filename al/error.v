@@ -1,5 +1,8 @@
 module al
 
+// Forward declaration
+fn C.alGetError() int
+
 // Error defines a code and message for a particular error
 pub struct Error {
 pub mut:
@@ -7,10 +10,29 @@ pub mut:
 	msg  string
 }
 
+// has_error returns true if tehre is a pending AL error
+pub fn has_error() bool {
+	return C.alGetError() != al_no_error
+}
+
+// check_error checks and panics on error
+pub fn check_error() {
+	if has_error() {
+		panic(get_error().str())
+	}
+}
+
+// get_error returns the pending AL error
+pub fn get_error() Error {
+	c := C.alGetError()
+	return new_error(c)
+}
+
 // new_error creates a new Error
-pub fn new_error(code int) Error {
-	mut err := Error{}
-	err.code = code
+fn new_error(code int) Error {
+	mut err := Error{
+		code: code
+	}
 	err.msg = err.code_msg()
 	return err
 }

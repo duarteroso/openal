@@ -21,7 +21,7 @@ fn C.alcGetContextsDevice(context &C.ALCcontext) &C.ALCdevice
 pub struct Context {
 mut:
 	data   &C.ALCcontext = &C.ALCcontext(0)
-	device &C.ALCdevice = &C.ALCdevice(0)
+	device &Device = &Device(0)
 }
 
 // new_context creates an instance of Context
@@ -34,38 +34,38 @@ pub fn new_context(data &C.ALCcontext) &Context {
 // create context
 pub fn (mut c Context) create(d &Device) {
 	c.data = C.alcCreateContext(d.get_data(), voidptr(0))
-	check_error(d.get_data())
-	c.device = d.get_data()
+	c.device.check_error()
+	c.device = d
 }
 
 // make_current marks a context as current
 pub fn (c &Context) make_current() bool {
 	ok := C.alcMakeContextCurrent(c.data)
-	check_error(c.device)
+	c.device.check_error()
 	return ok != 0
 }
 
 // process context
 pub fn (c &Context) process() {
 	C.alcProcessContext(c.data)
-	check_error(c.device)
+	c.device.check_error()
 }
 
 // suspend context
 pub fn (c &Context) suspend() {
 	C.alcSuspendContext(c.data)
-	check_error(c.device)
+	c.device.check_error()
 }
 
 // destroy context
 pub fn (c &Context) destroy() {
 	C.alcDestroyContext(c.data)
-	check_error(c.device)
+	c.device.check_error()
 }
 
 // get_device returns device linked to context
 pub fn (c &Context) get_device() &Device {
 	device := C.alcGetContextsDevice(c.data)
-	check_error(&C.ALCdevice(0))
+	check_error()
 	return new_device(device)
 }

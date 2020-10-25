@@ -7,10 +7,31 @@ pub mut:
 	msg  string
 }
 
+// has_error returns true if there is a pending ALC error
+pub fn has_error() bool {
+	d := Device{}
+	return C.alcGetError(d.data) != alc_no_error
+}
+
+// get_error returns the pending ALC error
+pub fn get_error() Error {
+	d := Device{}
+	c := C.alcGetError(d.data)
+	return new_error(c)
+}
+
+// check_error checks and panics on errors
+pub fn check_error() {
+	if has_error() {
+		panic(get_error().str())
+	}
+}
+
 // create_error creates a new Error
-pub fn new_error(code int) Error {
-	mut err := Error{}
-	err.code = code
+fn new_error(code int) Error {
+	mut err := Error{
+		code: code
+	}
 	err.msg = err.code_msg()
 	return err
 }

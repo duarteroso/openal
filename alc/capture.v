@@ -14,38 +14,39 @@ fn C.alcCaptureSamples(device &C.ALCdevice, buffer voidptr, samples int)
 // CaptureDevice wraps functionality around OpenALC capture device
 pub struct CaptureDevice {
 mut:
-	data &C.ALCdevice = &C.ALCdevice(0)
+	device &Device = &Device(0)
 }
 
 // open_device opens the capture device
 pub fn (mut c CaptureDevice) open_device(name string, frequency u32, format int, buffersize int) {
-	c.data = C.alcCaptureOpenDevice(name.str, frequency, format, buffersize)
-	check_error(&C.ALCdevice(0))
+	data := C.alcCaptureOpenDevice(name.str, frequency, format, buffersize)
+	c.device = new_device(data)
+	check_error()
 }
 
 // close_device closes capture devce
 pub fn (c &CaptureDevice) close_device() bool {
-	ok := C.alcCaptureCloseDevice(c.data)
-	check_error(c.data)
+	ok := C.alcCaptureCloseDevice(c.device)
+	c.device.check_error()
 	return ok == alc_true
 }
 
 // start capture
 pub fn (c &CaptureDevice) start() {
-	C.alcCaptureStart(c.data)
-	check_error(c.data)
+	C.alcCaptureStart(c.device)
+	c.device.check_error()
 }
 
 // stop capture
 pub fn (c &CaptureDevice) stop() {
-	C.alcCaptureStop(c.data)
-	check_error(c.data)
+	C.alcCaptureStop(c.device)
+	c.device.check_error()
 }
 
 // samples of the capture
 pub fn (c &CaptureDevice) samples(samples int) []byte {
 	buffer := []byte{len: samples}
-	C.alcCaptureSamples(c.data, buffer.data, samples)
-	check_error(c.data)
+	C.alcCaptureSamples(c.device, buffer.data, samples)
+	c.device.check_error()
 	return buffer
 }
