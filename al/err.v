@@ -3,8 +3,8 @@ module al
 // Forward declaration
 fn C.alGetError() int
 
-// Error defines a code and message for a particular error
-pub struct Error {
+// Err defines an error code and message for a particular error
+pub struct Err {
 pub mut:
 	code int
 	msg  string
@@ -24,14 +24,14 @@ pub fn check_error() {
 }
 
 // get_error returns the pending AL error
-pub fn get_error() Error {
+pub fn get_error() Err {
 	c := C.alGetError()
 	return new_error(c)
 }
 
-// new_error creates a new Error
-fn new_error(code int) Error {
-	mut err := Error{
+// new_error creates a new Err
+fn new_error(code int) Err {
+	mut err := Err{
 		code: code
 	}
 	err.msg = err.code_msg()
@@ -39,7 +39,7 @@ fn new_error(code int) Error {
 }
 
 // code_str returns an error code as string
-pub fn (err &Error) code_str() string {
+pub fn (err &Err) code_str() string {
 	return match err.code {
 		al_invalid_name { 'AL_INVALID_NAME' }
 		al_invalid_enum { 'AL_INVALID_ENUM' }
@@ -51,7 +51,7 @@ pub fn (err &Error) code_str() string {
 }
 
 // code_msg returns an error code as a human readable string
-pub fn (err &Error) code_msg() string {
+pub fn (err &Err) code_msg() string {
 	return match err.code {
 		al_invalid_name { 'A bad name (ID) was passed to an OpenAL function' }
 		al_invalid_enum { 'An invalid enum value was passed to an OpenAL function' }
@@ -63,6 +63,6 @@ pub fn (err &Error) code_msg() string {
 }
 
 // str converts error to string
-pub fn (err &Error) str() string {
+pub fn (err &Err) str() string {
 	return '$err.code_str() - $err.code_msg()'
 }

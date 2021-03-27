@@ -4,8 +4,8 @@ module alut
 fn C.alutGetError() int
 fn C.alutGetErrorString(error int) charptr
 
-// Error defines a code and message for a particular error
-pub struct Error {
+// Err defines a code and message for a particular error
+pub struct Err {
 pub mut:
 	code int
 	msg  string
@@ -25,27 +25,27 @@ pub fn check_error() {
 }
 
 // get_error returns the pending ALUT error
-pub fn get_error() Error {
+pub fn get_error() Err {
 	return new_error()
 }
 
 // get_error_string returns the pending ALUT error as a string
 pub fn get_error_string() string {
 	code := C.alutGetError()
-	return tos3(C.alutGetErrorString(code))
+	return unsafe { tos3(C.alutGetErrorString(code)) }
 }
 
-// new_error creates a new Error
-fn new_error() Error {
+// new_error creates a new Err
+fn new_error() Err {
 	code := C.alutGetError()
-	return Error{
+	return Err{
 		code: code
-		msg: tos3(C.alutGetErrorString(code))
+		msg: unsafe { tos3(C.alutGetErrorString(code)) }
 	}
 }
 
 // code_str returns an error code as string
-pub fn (err &Error) code_str() string {
+pub fn (err &Err) code_str() string {
 	return match err.code {
 		alut_error_out_of_memory { 'ALUT_ERROR_OUT_OF_MEMORY' }
 		alut_error_invalid_enum { 'ALUT_ERROR_INVALID_ENUM' }
@@ -67,11 +67,11 @@ pub fn (err &Error) code_str() string {
 		alut_error_corrupt_or_truncated_data { 'ALUT_ERROR_CORRUPT_OR_TRUNCATED_DATA' }
 		else { 'ALUT_ERROR_NO_ERROR' }
 	}
-}   
-    
+}
+
 // code_msg returns an error code as a human readable string
 [deprecated]
-pub fn (err &Error) code_msg() string {
+pub fn (err &Err) code_msg() string {
 	return match err.code {
 		alut_error_out_of_memory { 'ALUT ran out of memory.' }
 		alut_error_invalid_enum { 'ALUT was given an invalid enumeration token.' }
@@ -95,6 +95,6 @@ pub fn (err &Error) code_msg() string {
 	}
 }
 
-pub fn (err &Error) str() string {
+pub fn (err &Err) str() string {
 	return '$err.code_str() - $err.msg'
 }

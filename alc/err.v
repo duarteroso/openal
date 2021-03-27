@@ -1,7 +1,7 @@
 module alc
 
-// Error defines a code and message for a particular error
-pub struct Error {
+// Err defines a code and message for a particular error
+pub struct Err {
 pub mut:
 	code int
 	msg  string
@@ -14,7 +14,7 @@ pub fn has_error() bool {
 }
 
 // get_error returns the pending ALC error
-pub fn get_error() Error {
+pub fn get_error() Err {
 	d := Device{}
 	c := C.alcGetError(d.data)
 	return new_error(c)
@@ -28,9 +28,9 @@ pub fn check_error() {
 	}
 }
 
-// create_error creates a new Error
-fn new_error(code int) Error {
-	mut err := Error{
+// create_error creates a new Err
+fn new_error(code int) Err {
+	mut err := Err{
 		code: code
 	}
 	err.msg = err.code_msg()
@@ -38,7 +38,7 @@ fn new_error(code int) Error {
 }
 
 // code_str returns an error code as string
-pub fn (err &Error) code_str() string {
+pub fn (err &Err) code_str() string {
 	return match err.code {
 		alc_invalid_device { 'ALC_INVALID_DEVICE' }
 		alc_invalid_context { 'ALC_INVALID_CONTEXT' }
@@ -50,7 +50,7 @@ pub fn (err &Error) code_str() string {
 }
 
 // code_msg returns an error code as a human readable string
-pub fn (err &Error) code_msg() string {
+pub fn (err &Err) code_msg() string {
 	return match err.code {
 		alc_invalid_device { 'A bad device was passed to an OpenAL function' }
 		alc_invalid_context { 'A bad context was passed to an OpenAL function' }
@@ -62,6 +62,6 @@ pub fn (err &Error) code_msg() string {
 }
 
 // str converts error to string
-pub fn (err &Error) str() string {
+pub fn (err &Err) str() string {
 	return '$err.code_str() - $err.code_msg()'
 }

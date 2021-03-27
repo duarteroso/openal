@@ -26,27 +26,27 @@ pub fn (mut c CaptureDevice) open_device(name string, frequency u32, format int,
 
 // close_device closes capture devce
 pub fn (c &CaptureDevice) close_device() bool {
-	ok := C.alcCaptureCloseDevice(c.device)
+	ok := C.alcCaptureCloseDevice(c.device.data)
 	c.device.check_error()
 	return ok == alc_true
 }
 
 // start capture
 pub fn (c &CaptureDevice) start() {
-	C.alcCaptureStart(c.device)
+	C.alcCaptureStart(c.device.data)
 	c.device.check_error()
 }
 
 // stop capture
 pub fn (c &CaptureDevice) stop() {
-	C.alcCaptureStop(c.device)
+	C.alcCaptureStop(c.device.data)
 	c.device.check_error()
 }
 
 // samples of the capture
 pub fn (c &CaptureDevice) samples(samples int) []byte {
 	buffer := []byte{len: samples}
-	C.alcCaptureSamples(c.device, buffer.data, samples)
+	C.alcCaptureSamples(c.device.data, buffer.data, samples)
 	c.device.check_error()
 	return buffer
 }

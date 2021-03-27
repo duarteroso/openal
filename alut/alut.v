@@ -30,8 +30,8 @@ fn init_without_context() bool {
 	return res == al.al_true
 }
 
-// exit shutsdown ALUT. Returns true if successful
-pub fn exit() bool {
+// shutdown ALUT. Returns true if successful
+pub fn shutdown() bool {
 	res := C.alutExit()
 	check_error()
 	return res == al.al_true
@@ -42,7 +42,7 @@ pub fn exit() bool {
 pub fn get_mime_types(loader int) string {
 	data := C.alutGetMIMETypes(loader)
 	check_error()
-	return tos3(data)
+	return unsafe { tos3(data) }
 }
 
 // get_major_version returns ALUT major version

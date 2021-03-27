@@ -21,7 +21,7 @@ fn C.alcGetContextsDevice(context &C.ALCcontext) &C.ALCdevice
 pub struct Context {
 mut:
 	data   &C.ALCcontext = &C.ALCcontext(0)
-	device &Device = &Device(0)
+	device &Device       = &Device(0)
 }
 
 // new_context creates an instance of Context

@@ -102,7 +102,7 @@ pub fn release_sources(s []Source) {
 // generate source
 pub fn (mut s Source) generate() {
 	values := [1]u32{}
-	C.alGenSources(1, values)
+	C.alGenSources(1, &values[0])
 	check_error()
 	s.id = values[0]
 }

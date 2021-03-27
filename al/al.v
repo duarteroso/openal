@@ -114,7 +114,7 @@ pub fn get_integerv(param int) []int {
 pub fn get_string(param int) string {
 	s := C.alGetString(param)
 	check_error()
-	return tos3(s)
+	return unsafe { tos3(s) }
 }
 
 // is_extension_present checks wether an extension is present

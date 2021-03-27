@@ -36,7 +36,9 @@ pub fn new_device(data &C.ALCdevice) &Device {
 
 // open device
 pub fn (mut d Device) open() bool {
-	d.data = C.alcOpenDevice(charptr(0))
+	d.data = C.alcOpenDevice((0))
+	d.check_error()
+	check_error()
 	return d.data != &C.ALCdevice(0)
 }
 
@@ -76,7 +78,7 @@ pub fn (d &Device) get_enum_value(name string) int {
 pub fn (d &Device) get_string(param int) string {
 	s := C.alcGetString(d.data, param)
 	d.check_error()
-	return tos3(s)
+	return unsafe { tos3(s) }
 }
 
 // get_integers returns a device parameters as vector of strings
@@ -93,7 +95,7 @@ pub fn (d &Device) has_error() bool {
 }
 
 // get_error returns the pending ALC error
-pub fn (d &Device) get_error() Error {
+pub fn (d &Device) get_error() Err {
 	c := C.alcGetError(d.data)
 	return new_error(c)
 }
