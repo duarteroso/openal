@@ -20,22 +20,25 @@ fn C.alcGetIntegerv(device &C.ALCdevice, param ALCenum, size ALCsizei, values AL
 // Device wraps functionality around OpenALC device
 pub struct Device {
 mut:
-	data &C.ALCdevice = &C.ALCdevice(0)
+	data &C.ALCdevice = voidptr(0)
 }
 
 // new_device creates an instance of Device
-pub fn new_device(data &C.ALCdevice) &Device {
-	return &Device{
+pub fn new_device() &Device {
+	return new_device_from_data(voidptr(0))
+}
+
+// new_device creates an instance of Device from data
+pub fn new_device_from_data(data &C.ALCdevice) &Device {
+	return &Device {
 		data: data
 	}
 }
 
 // open device
 pub fn (mut d Device) open() bool {
-	d.data = C.alcOpenDevice((0))
-	d.check_error()
-	check_error()
-	return d.data != &C.ALCdevice(0)
+	d.data = C.alcOpenDevice(voidptr(0))
+	return !isnil(d.data)
 }
 
 // close device

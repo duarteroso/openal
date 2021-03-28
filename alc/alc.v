@@ -7,7 +7,7 @@ fn C.alcGetCurrentContext() &C.ALCcontext
 pub fn get_current_context() &Context {
 	ptr := C.alcGetCurrentContext()
 	check_error()
-	return new_context(ptr)
+	return new_context_from_data(ptr)
 }
 
 // remove_current_context removes the current context
