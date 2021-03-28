@@ -1,11 +1,8 @@
 module al
 
-// Forward declaration
-fn C.alDistanceModel(value int)
-
-fn C.alDopplerFactor(value f32)
-
-fn C.alSpeedOfSound(value f32)
+fn C.alDistanceModel(value ALenum)
+fn C.alDopplerFactor(value ALfloat)
+fn C.alSpeedOfSound(value ALfloat)
 
 // Distance model formulae
 pub enum DistanceModel {

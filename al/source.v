@@ -1,55 +1,34 @@
 module al
 
-// Forward declaration
-fn C.alGenSources(size int, sources voidptr)
+fn C.alGenSources(size ALsizei, sources ALuintptr)
+fn C.alDeleteSources(size ALsizei, sources ALuintptr)
 
-fn C.alDeleteSources(size int, sources voidptr)
+fn C.alIsSource(source ALuint) ALboolean
 
-fn C.alIsSource(source u32) int
+fn C.alSourcef(source ALuint, param ALenum, value ALfloat)
+fn C.alSource3f(source ALuint, param ALenum, value1 ALfloat, value2 ALfloat, value3 ALfloat)
+fn C.alSourcefv(source ALuint, param ALenum, values ALfloatptr)
+fn C.alSourcei(source ALuint, param ALenum, value ALint)
+fn C.alSource3i(source ALuint, param ALenum, value1 ALint, value2 ALint, value3 ALint)
+fn C.alSourceiv(source ALuint, param ALenum, values ALintptr)
 
-fn C.alSourcef(source u32, param int, value f32)
+fn C.alGetSourcef(source ALuint, param ALenum, value &ALfloat)
+fn C.alGetSource3f(sourece ALuint, param ALenum, value1 &ALfloat, value2 &ALfloat, value3 &ALfloat)
+fn C.alGetSourcefv(source ALuint, param ALenum, values ALfloatptr)
+fn C.alGetSourcei(source ALuint, param ALenum, value &ALint)
+fn C.alGetSource3i(source ALuint, param ALenum, value1 &ALint, value2 &ALint, value3 &ALint)
+fn C.alGetSourceiv(source ALuint, param ALenum, values ALintptr)
 
-fn C.alSource3f(source u32, param int, v1 f32, v2 f32, v3 f32)
-
-fn C.alSourcefv(source u32, param int, values voidptr)
-
-fn C.alSourcei(source u32, param int, value int)
-
-fn C.alSource3i(source u32, param int, v1 int, v2 int, v3 int)
-
-fn C.alSourceiv(source u32, param int, values voidptr)
-
-fn C.alGetSourcef(source u32, param int, value &f32)
-
-fn C.alGetSource3f(sourece u32, param int, v1 &f32, v2 &f32, v3 &f32)
-
-fn C.alGetSourcefv(source u32, param int, values voidptr)
-
-fn C.alGetSourcei(source u32, param int, value &int)
-
-fn C.alGetSource3i(source u32, param int, v1 &int, v2 &int, v3 &int)
-
-fn C.alGetSourceiv(source u32, param int, values voidptr)
-
-fn C.alSourcePlay(source u32)
-
-fn C.alSourcePlayv(n int, sources voidptr)
-
-fn C.alSourcePause(source u32)
-
-fn C.alSourcePausev(n int, values voidptr)
-
-fn C.alSourceStop(source u32)
-
-fn C.alSourceStopv(n int, sources voidptr)
-
-fn C.alSourceRewind(source u32)
-
-fn C.alSourceRewindv(n int, sources voidptr)
-
-fn C.alSourceQueueBuffers(source u32, n int, buffers voidptr)
-
-fn C.alSourceUnqueueBufers(source u32, n int, buffers voidptr)
+fn C.alSourcePlay(source ALuint)
+fn C.alSourcePlayv(n ALsizei, sources ALuintptr)
+fn C.alSourcePause(source ALuint)
+fn C.alSourcePausev(n ALsizei, values ALuintptr)
+fn C.alSourceStop(source ALuint)
+fn C.alSourceStopv(n ALsizei, sources ALuintptr)
+fn C.alSourceRewind(source ALuint)
+fn C.alSourceRewindv(n ALsizei, sources ALuintptr)
+fn C.alSourceQueueBuffers(source ALuint, n ALsizei, buffers ALuintptr)
+fn C.alSourceUnqueueBufers(source ALuint, n ALsizei, buffers ALuintptr)
 
 // Source wraps functionality around an OpenAL source
 pub struct Source {
@@ -76,7 +55,7 @@ pub enum SourceState {
 // generate_sources generates multiple instances of Source
 pub fn generate_sources(n int) []Source {
 	values := []u32{len: n}
-	C.alGenSources(n, &values)
+	C.alGenSources(n, &values.data)
 	check_error()
 	//
 	mut sources := []Source{len: n}

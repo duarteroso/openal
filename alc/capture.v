@@ -1,15 +1,10 @@
 module alc
 
-// Forward declarations
-fn C.alcCaptureOpenDevice(devicename charptr, frequency u32, format int, buffersize int) &C.ALCdevice
-
-fn C.alcCaptureCloseDevice(device &C.ALCdevice) byte
-
+fn C.alcCaptureOpenDevice(devicename ALcharptr, frequency ALCuint, format ALCenum, buffersize ALCsizei) &C.ALCdevice
+fn C.alcCaptureCloseDevice(device &C.ALCdevice) ALCboolean
 fn C.alcCaptureStart(device &C.ALCdevice)
-
 fn C.alcCaptureStop(device &C.ALCdevice)
-
-fn C.alcCaptureSamples(device &C.ALCdevice, buffer voidptr, samples int)
+fn C.alcCaptureSamples(device &C.ALCdevice, buffer voidptr, samples ALCsizei)
 
 // CaptureDevice wraps functionality around OpenALC capture device
 pub struct CaptureDevice {

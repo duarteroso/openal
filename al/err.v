@@ -1,7 +1,7 @@
 module al
 
 // Forward declaration
-fn C.alGetError() int
+fn C.alGetError() ALenum
 
 // Err defines an error code and message for a particular error
 pub struct Err {
@@ -10,7 +10,7 @@ pub mut:
 	msg  string
 }
 
-// has_error returns true if tehre is a pending AL error
+// has_error returns true if there is a pending AL error
 pub fn has_error() bool {
 	return C.alGetError() != al_no_error
 }

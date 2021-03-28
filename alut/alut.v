@@ -1,6 +1,10 @@
 module alut
 
-import novuloj.vopenal.al
+import al
+
+#flag linux -I/usr/include/AL
+#flag linux -L/usr/lib64
+#flag linux -lalut
 
 // Forward declaration
 fn C.alutInit(argcp voidptr, argv &charptr) byte
@@ -16,10 +20,10 @@ fn C.alutSleep(duration f32) byte
 
 // init initializes ALUT.
 // Returns true if successful.
-fn init() bool {
+fn init() {
 	res := C.alutInit(voidptr(0), &charptr(0))
 	check_error()
-	return res == al.al_true
+	assert res == al.al_true
 }
 
 // init_without_context initializes ALUT without context.
