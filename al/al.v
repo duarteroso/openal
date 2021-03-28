@@ -14,7 +14,7 @@ fn C.alGetFloatv(param ALenum, data ALfloatptr)
 fn C.alGetDoublev(param ALenum, data ALdoubleptr)
 fn C.alGetBoolean(param ALenum) ALboolean
 fn C.alGetInteger(param ALenum) ALint
-fn C.alGetFloat(param ALenum) ALfloatptr
+fn C.alGetFloat(param ALenum) ALfloat
 fn C.alGetDouble(param ALenum) ALdouble
 fn C.alIsExtensionPresent(extname ALcharptr) ALboolean
 fn C.alGetProcAddress(fname ALcharptr) voidptr

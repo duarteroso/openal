@@ -10,23 +10,13 @@ pub mut:
 	msg  string
 }
 
-// has_error returns true if there is a pending AL error
-pub fn has_error() bool {
-	return C.alGetError() != al_no_error
-}
-
 // check_error checks and panics on error
 pub fn check_error() {
-	if has_error() {
-		err := get_error()
+	code := C.alGetError()
+	if code != al_no_error {
+		err := new_error(code)
 		panic(err.str())
 	}
-}
-
-// get_error returns the pending AL error
-pub fn get_error() Err {
-	c := C.alGetError()
-	return new_error(c)
 }
 
 // new_error creates a new Err

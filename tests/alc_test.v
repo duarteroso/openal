@@ -1,9 +1,20 @@
 module tests
 
-import time
 import alc
 
-fn test_context() {
+fn test_alc_basic() {
+	mut device := alc.new_device()
+	assert device.open()
+	//
+	mut context := alc.new_context()
+	assert context.create(device)
+	assert context.make_current()
+	//
+	context.destroy()
+	assert device.close()
+}
+
+fn test_alc_full() {
 	mut device := alc.new_device()
 	assert device.open()
 	//
@@ -18,7 +29,7 @@ fn test_context() {
 	//
 	assert context.make_current()
 	//
-	current_context := alc.get_current_context()
+	_ := alc.get_current_context()
 	//
 	context.process()
 	context.suspend()
