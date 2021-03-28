@@ -1,29 +1,17 @@
 module al
 
-// Forward declaration
-fn C.alListenerf(param int, value f32)
-
-fn C.alListener3f(param int, v1 f32, v2 f32, v3 f32)
-
-fn C.alListenerfv(param int, value voidptr)
-
-fn C.alListeneri(param int, value int)
-
-fn C.alListener3i(param int, v1 int, v2 int, v3 int)
-
-fn C.alListeneriv(param int, value voidptr)
-
-fn C.alGetListenerf(param int, value &f32)
-
-fn C.alGetListener3f(param int, v1 &f32, v2 &f32, v3 &f32)
-
-fn C.alGetListenerfv(param int, value voidptr)
-
-fn C.alGetListeneri(param int, value &int)
-
-fn C.alGetListener3i(param int, v1 &int, v2 &int, v3 &int)
-
-fn C.alGetListeneriv(param int, value voidptr)
+fn C.alListenerf(param ALenum, value ALfloat)
+fn C.alListener3f(param ALenum, value1 ALfloat, value2 ALfloat, value3 ALfloat)
+fn C.alListenerfv(param ALenum, value ALfloatptr)
+fn C.alListeneri(param ALenum, value ALintptr)
+fn C.alListener3i(param ALenum, value1 ALint, value2 ALint, value3 ALint)
+fn C.alListeneriv(param ALenum, value ALintptr)
+fn C.alGetListenerf(param ALenum, value &ALfloat)
+fn C.alGetListener3f(param ALenum, value1 &ALfloat, value2 &ALfloat, value3 &ALfloat)
+fn C.alGetListenerfv(param ALenum, value ALfloatptr)
+fn C.alGetListeneri(param ALenum, value &ALintptr)
+fn C.alGetListener3i(param ALenum, value1 &ALint, value2 &ALint, value3 &ALint)
+fn C.alGetListeneriv(param ALenum, value ALintptr)
 
 // Listener wraps functionality around an OpenAL listener
 pub struct Listener {
@@ -126,7 +114,7 @@ pub fn get_listener3f(param int) (f32, f32, f32) {
 // get_listenerfv returns a listener parameter value as vector of floats
 pub fn get_listenerfv(param int) []f32 {
 	values := []f32{}
-	C.alGetListenerfv(param, &values)
+	C.alGetListenerfv(param, &values.data)
 	check_error()
 	return values
 }
@@ -152,7 +140,7 @@ pub fn get_listener3i(param int) (int, int, int) {
 // get_listeneriv returns a listener parameter value as vector of integers
 pub fn get_listeneriv(param int) []int {
 	values := []int{}
-	C.alGetListeneriv(param, &values)
+	C.alGetListeneriv(param, &values.data)
 	check_error()
 	return values
 }

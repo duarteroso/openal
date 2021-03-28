@@ -1,6 +1,6 @@
 module alut
 
-import novuloj.vopenal.al
+import al
 
 // Forward declaration
 fn C.alutCreateBufferFromFile(fileName charptr) u32

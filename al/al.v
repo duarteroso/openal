@@ -1,35 +1,24 @@
 module al
 
-// Forward declaration
-fn C.alEnable(capability int)
+#flag linux -I/usr/include/AL
+#flag linux -L/usr/lib64
+#flag linux -lopenal
 
-fn C.alDisable(capability int)
-
-fn C.alIsEnabled(capability int) byte
-
-fn C.alGetBoolean(param int) byte
-
-fn C.alGetDouble(param int) f64
-
-fn C.alGetFloat(param int) f32
-
-fn C.alGetInteger(param int) int
-
-fn C.alGetBooleanv(param int, data voidptr)
-
-fn C.alGetDoublev(param int, data voidptr)
-
-fn C.alGetFloatv(param int, data voidptr)
-
-fn C.alGetIntegerv(param int, data voidptr)
-
-fn C.alGetString(param int) charptr
-
-fn C.alIsExtensionPresent(extname charptr) byte
-
-fn C.alGetProcAddress(fname charptr) voidptr
-
-fn C.alGetEnumValue(ename charptr) int
+fn C.alEnable(capability ALenum)
+fn C.alDisable(capability ALenum)
+fn C.alIsEnabled(capability ALenum) ALboolean
+fn C.alGetString(param ALenum) ALcharptr
+fn C.alGetBooleanv(param ALenum, data ALbooleanptr)
+fn C.alGetIntegerv(param ALenum, data ALintptr)
+fn C.alGetFloatv(param ALenum, data ALfloatptr)
+fn C.alGetDoublev(param ALenum, data ALdoubleptr)
+fn C.alGetBoolean(param ALenum) ALboolean
+fn C.alGetInteger(param ALenum) ALint
+fn C.alGetFloat(param ALenum) ALfloatptr
+fn C.alGetDouble(param ALenum) ALdouble
+fn C.alIsExtensionPresent(extname ALcharptr) ALboolean
+fn C.alGetProcAddress(fname ALcharptr) voidptr
+fn C.alGetEnumValue(ename ALcharptr) ALenum
 
 // enable an OpenAL capability
 pub fn enable(capability int) {

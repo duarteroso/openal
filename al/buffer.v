@@ -1,37 +1,25 @@
 module al
 
-// Forward declaration
-fn C.alGenBuffers(size int, buffers voidptr)
+fn C.alGenBuffers(n ALsizei, buffers ALuintptr)
+fn C.alDeleteBuffers(n ALsizei, buffers ALuintptr)
 
-fn C.alDeleteBuffers(sze int, buffer voidptr)
+fn C.alIsBuffer(buffer ALuint) ALboolean
 
-fn C.alIsBuffer(buffer u32) int
+fn C.alBufferData(buffer ALuint, format ALenum, data voidptr, size ALsizei, freq ALsizei)
 
-fn C.alBufferData(buffer u32, format int, data voidptr, size int, freq int)
+fn C.alBufferf(buffer ALuint, param ALenum, value ALfloat)
+fn C.alBuffer3f(buffer ALuint, param ALenum, value1 ALfloat, value2 ALfloat, value3 ALfloat)
+fn C.alBufferfv(buffer ALuint, param ALenum, values ALfloatptr)
+fn C.alBufferi(buffer ALuint, param ALenum, value ALint)
+fn C.alBuffer3i(buffer ALuint, param ALenum, value1 ALint, value2 ALint, value3 ALint)
+fn C.alBufferiv(buffer ALuint, param ALenum, values ALintptr)
 
-fn C.alBufferf(buffer u32, param int, value f32)
-
-fn C.alBuffer3f(buffer u32, param int, v1 f32, v2 f32, v3 f32)
-
-fn C.alBufferfv(buffer u32, param int, values voidptr)
-
-fn C.alBufferi(buffer u32, param int, value int)
-
-fn C.alBuffer3i(buffer u32, param int, v1 int, v2 int, v3 int)
-
-fn C.alBufferiv(buffer u32, param int, values voidptr)
-
-fn C.alGetBufferf(buffer u32, param int, value &f32)
-
-fn C.alGetBuffer3f(bufer u32, param int, v1 &f32, v2 &f32, v3 &f32)
-
-fn C.alGetBufferfv(buffer u32, param int, values voidptr)
-
-fn C.alGetBufferi(buffer u32, param int, value &int)
-
-fn C.alGetBuffer3i(buffer u32, param int, v1 &int, v2 &int, v3 &int)
-
-fn C.alGetBufferiv(buffer u32, param int, values voidptr)
+fn C.alGetBufferf(buffer ALuint, param ALenum, value &ALfloat)
+fn C.alGetBuffer3f(bufer ALuint, param ALenum, value1 &ALfloat, value2 &ALfloat, value3 &ALfloat)
+fn C.alGetBufferfv(buffer ALuint, param ALenum, values ALfloatptr)
+fn C.alGetBufferi(buffer ALuint, param ALenum, value &ALint)
+fn C.alGetBuffer3i(buffer ALuint, param ALenum, value1 &ALint, value2 &ALint, value3 &ALint)
+fn C.alGetBufferiv(buffer ALuint, param ALenum, values ALintptr)
 
 // Buffer wraps the functionality of an OpenAL buffer
 pub struct Buffer {
@@ -42,7 +30,7 @@ mut:
 // create_buffers creates multiple instances of Buffer
 pub fn create_buffers(n int) []Buffer {
 	values := []u32{len: n}
-	C.alGenBuffers(n, &values)
+	C.alGenBuffers(n, &values.data)
 	check_error()
 	//
 	mut buffers := []Buffer{len: n}
@@ -155,7 +143,7 @@ pub fn (b &Buffer) get_buffer3f(param int) (f32, f32, f32) {
 // get_bufferfv returns a buffer parameter value as vector of floats
 pub fn (b &Buffer) get_bufferfv(param int) []f32 {
 	mut values := []f32{}
-	C.alGetBufferfv(b.id, param, &values)
+	C.alGetBufferfv(b.id, param, &values.data)
 	check_error()
 	return values
 }
@@ -181,7 +169,7 @@ pub fn (b &Buffer) get_buffer3i(param int) (int, int, int) {
 // get_bufferiv returns a buffer parameter value as vector of integers
 pub fn (b &Buffer) get_bufferiv(param int) []int {
 	mut values := []int{}
-	C.alGetBufferiv(b.id, param, &values)
+	C.alGetBufferiv(b.id, param, &values.data)
 	check_error()
 	return values
 }

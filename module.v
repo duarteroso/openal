@@ -1,9 +1,9 @@
 module vopenal
 
 import duarteroso.vsemver
-import novuloj.vopenal.al
-import novuloj.vopenal.alc
-import novuloj.vopenal.alut
+import al
+import alc
+import alut
 
 // Linux
 #flag linux -lopenal

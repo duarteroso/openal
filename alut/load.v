@@ -1,6 +1,6 @@
 module alut
 
-import novuloj.vopenal.al
+import al
 
 // Forward declaration
 fn C.alutLoadMemoryFromFile(fileName charptr, format &int, size &int, frequency &f32) voidptr

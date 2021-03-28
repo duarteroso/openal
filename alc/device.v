@@ -5,21 +5,17 @@ module alc
 struct C.ALCdevice {
 }
 
-fn C.alcOpenDevice(devicename charptr) &C.ALCdevice
+fn C.alcOpenDevice(devicename ALCcharptr) &C.ALCdevice
+fn C.alcCloseDevice(device &C.ALCdevice) ALCboolean
 
-fn C.alcCloseDevice(device voidptr) byte
+fn C.alcGetError(device &C.ALCdevice) ALCenum
 
-fn C.alcIsExtensionPresent(device &C.ALCdevice, extname charptr) byte
+fn C.alcIsExtensionPresent(device &C.ALCdevice, extname ALCcharptr) ALCboolean
+fn C.alcGetProcAddress(device &C.ALCdevice, funcname ALCcharptr) voidptr
+fn C.alcGetEnumValue(device &C.ALCdevice, enumname ALCcharptr) ALCenum
 
-fn C.alcGetProcAddress(device &C.ALCdevice, funcname charptr) voidptr
-
-fn C.alcGetEnumValue(device &C.ALCdevice, enumname charptr) int
-
-fn C.alcGetString(device &C.ALCdevice, param int) charptr
-
-fn C.alcGetIntegerv(device &C.ALCdevice, param int, size int, values voidptr)
-
-fn C.alcGetError(device &C.ALCdevice) int
+fn C.alcGetString(device &C.ALCdevice, param ALCenum) ALCcharptr
+fn C.alcGetIntegerv(device &C.ALCdevice, param ALCenum, size ALCsizei, values ALCintptr)
 
 // Device wraps functionality around OpenALC device
 pub struct Device {
