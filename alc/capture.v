@@ -9,7 +9,7 @@ fn C.alcCaptureSamples(device &C.ALCdevice, buffer voidptr, samples ALCsizei)
 // CaptureDevice wraps functionality around OpenALC capture device
 pub struct CaptureDevice {
 mut:
-	device &Device = voidptr(0)
+	device &Device = &Device(0)
 }
 
 // open_device opens the capture device
