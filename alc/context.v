@@ -24,48 +24,53 @@ pub fn new_context() &Context {
 }
 
 // new_context_from_data creates an instance of Context from data
-pub fn new_context_from_data(data &C.ALCcontext) &Context {
-	return &Context {
-		data: data
+pub fn new_context_from_data(context &C.ALCcontext) &Context {
+	return &Context{
+		data: context
 	}
 }
 
 // create context
 pub fn (mut c Context) create(d &Device) bool {
-	c.data = C.alcCreateContext(d.get_data(), voidptr(0))
-	d.check_error()
 	c.device = d
+	c.data = C.alcCreateContext(d.get_data(), voidptr(0))
+	c.check_error()
 	return !isnil(c.data)
 }
 
 // make_current marks a context as current
 pub fn (c &Context) make_current() bool {
 	ok := C.alcMakeContextCurrent(c.data)
-	c.device.check_error()
-	return ok != 0
+	c.check_error()
+	return ok == alc_true
 }
 
 // process context
 pub fn (c &Context) process() {
 	C.alcProcessContext(c.data)
-	check_error()
+	c.check_error()
 }
 
 // suspend context
 pub fn (c &Context) suspend() {
 	C.alcSuspendContext(c.data)
-	check_error()
+	c.check_error()
 }
 
 // destroy context
 pub fn (c &Context) destroy() {
 	C.alcDestroyContext(c.data)
-	check_error()
+	c.check_error()
 }
 
 // get_device returns device linked to context
 pub fn (c &Context) get_device() &Device {
 	data := C.alcGetContextsDevice(c.data)
-	check_error()
+	c.check_error()
 	return new_device_from_data(data)
+}
+
+// check_error checks if device context has an error
+fn (c &Context) check_error() {
+	c.device.check_error()
 }
