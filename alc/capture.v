@@ -1,6 +1,6 @@
 module alc
 
-fn C.alcCaptureOpenDevice(devicename ALcharptr, frequency ALCuint, format ALCenum, buffersize ALCsizei) &C.ALCdevice
+fn C.alcCaptureOpenDevice(devicename ALCcharptr, frequency ALCuint, format ALCenum, buffersize ALCsizei) &C.ALCdevice
 fn C.alcCaptureCloseDevice(device &C.ALCdevice) ALCboolean
 fn C.alcCaptureStart(device &C.ALCdevice)
 fn C.alcCaptureStop(device &C.ALCdevice)
@@ -9,13 +9,13 @@ fn C.alcCaptureSamples(device &C.ALCdevice, buffer voidptr, samples ALCsizei)
 // CaptureDevice wraps functionality around OpenALC capture device
 pub struct CaptureDevice {
 mut:
-	device &Device = &Device(0)
+	device &Device = voidptr(0)
 }
 
 // open_device opens the capture device
 pub fn (mut c CaptureDevice) open_device(name string, frequency u32, format int, buffersize int) {
 	data := C.alcCaptureOpenDevice(name.str, frequency, format, buffersize)
-	c.device = new_device(data)
+	c.device = new_device_from_data(data)
 	check_error()
 }
 
