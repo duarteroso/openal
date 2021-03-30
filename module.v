@@ -5,13 +5,6 @@ import al
 import alc
 import alut
 
-// Linux
-#flag linux -lopenal
-#flag linux -lalut
-// Includes
-#include <AL/al.h>
-#include <AL/alc.h>
-#include <AL/alut.h>
 // load_module loads OpenAL module
 // Used to force the compiler to include the C pragmas
 pub fn load_module() {
@@ -25,9 +18,9 @@ pub fn unload_module() {
 pub fn module_version() vsemver.SemVer {
 	return vsemver.SemVer{
 		major: 0
-		minor: 3
+		minor: 4
 		patch: 0
-		stage: .alpha
+		stage: .beta
 	}
 }
 
@@ -45,15 +38,6 @@ pub fn alc_version() vsemver.SemVer {
 	return vsemver.SemVer{
 		major: alc.alc_major_version
 		minor: alc.alc_minor_version
-		patch: 0
-	}
-}
-
-// alut_version returns the ALUT semantic version
-pub fn alut_version() vsemver.SemVer {
-	return vsemver.SemVer{
-		major: alut.alut_api_major_version
-		minor: alut.alut_api_minor_version
 		patch: 0
 	}
 }
