@@ -48,7 +48,7 @@ pub const (
 pub const (
 	alc_ext_capture                     = 1
 	alc_capture_device_specifier        = 0x310
-	alc_capture_default_devie_specifier = 0x311
+	alc_capture_default_device_specifier = 0x311
 	alc_capture_samples                 = 0x312
 )
 

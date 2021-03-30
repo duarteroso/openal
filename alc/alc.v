@@ -1,6 +1,5 @@
 module alc
 
-// Forward declarations
 fn C.alcGetCurrentContext() &C.ALCcontext
 
 // get_current_context returns the current context

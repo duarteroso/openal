@@ -4,42 +4,29 @@ module alc
 pub struct Err {
 pub mut:
 	code int
-	msg  string
 }
 
-// has_error returns true if there is a pending ALC error
-pub fn has_error() bool {
-	d := Device{}
-	return C.alcGetError(d.data) != alc_no_error
-}
-
-// get_error returns the pending ALC error
-pub fn get_error() Err {
-	d := Device{}
-	c := C.alcGetError(d.data)
-	return new_error(c)
+// new_error creates an instance of Err
+fn new_error(code int) Err {
+	return Err {
+		code: code
+	}
 }
 
 // check_error checks and panics on errors
-pub fn check_error() {
-	if has_error() {
-		err := get_error()
-		panic(err.str())
+pub fn check_error(d &Device) {
+	code := C.alcGetError(d.data)
+	if code == alc_no_error {
+		return
 	}
+	//
+	err := new_error(code)
+	panic(err.str())
 }
 
-// create_error creates a new Err
-fn new_error(code int) Err {
-	mut err := Err{
-		code: code
-	}
-	err.msg = err.code_msg()
-	return err
-}
-
-// code_str returns an error code as string
-pub fn (err &Err) code_str() string {
-	return match err.code {
+// code_as_string returns an error code as string
+fn code_as_string(code int) string {
+	return match code {
 		alc_invalid_device { 'ALC_INVALID_DEVICE' }
 		alc_invalid_context { 'ALC_INVALID_CONTEXT' }
 		alc_invalid_enum { 'ALC_INVALID_ENUM' }
@@ -49,9 +36,9 @@ pub fn (err &Err) code_str() string {
 	}
 }
 
-// code_msg returns an error code as a human readable string
-pub fn (err &Err) code_msg() string {
-	return match err.code {
+// message_from_code returns an error code as a human readable string
+fn message_from_code(code int) string {
+	return match code {
 		alc_invalid_device { 'A bad device was passed to an OpenAL function' }
 		alc_invalid_context { 'A bad context was passed to an OpenAL function' }
 		alc_invalid_enum { 'An unknown enum was passed to an OpenAL function' }
@@ -61,7 +48,7 @@ pub fn (err &Err) code_msg() string {
 	}
 }
 
-// str converts error to string
+// str formats the error into a string
 pub fn (err &Err) str() string {
-	return '$err.code_str() - $err.code_msg()'
+	return '${code_as_string(err.code)} - ${message_from_code(err.code)}'
 }

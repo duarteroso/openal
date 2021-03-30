@@ -52,10 +52,15 @@ pub enum SourceState {
 	undetermined
 }
 
+// new_source returns a new instance of Source
+pub fn new_source() Source {
+	return Source{}
+}
+
 // generate_sources generates multiple instances of Source
 pub fn generate_sources(n int) []Source {
-	values := []u32{len: n}
-	C.alGenSources(n, &values.data)
+	mut values := []u32{len: n}
+	C.alGenSources(n, &ALuint(values.data))
 	check_error()
 	//
 	mut sources := []Source{len: n}
@@ -74,14 +79,14 @@ pub fn release_sources(s []Source) {
 	for i in 0 .. s.len {
 		values[i] = s[i].id
 	}
-	C.alDeleteSources(s.len, values.data)
+	C.alDeleteSources(s.len, &ALuint(values.data))
 	check_error()
 }
 
 // generate source
 pub fn (mut s Source) generate() {
-	values := [1]u32{}
-	C.alGenSources(1, &values[0])
+	mut values := []u32{len: 1}
+	C.alGenSources(values.len, &ALuint(values.data))
 	check_error()
 	s.id = values[0]
 }
@@ -89,15 +94,15 @@ pub fn (mut s Source) generate() {
 // release source
 pub fn (s &Source) release() {
 	values := [s.id]
-	C.alDeleteSources(1, values.data)
+	C.alDeleteSources(values.len, &ALuint(values.data))
 	check_error()
 }
 
 // is_valid returns true if source is valid
 pub fn (s &Source) is_valid() bool {
-	ok := C.alIsSource(s.id) == al_true
+	ok := C.alIsSource(s.id)
 	check_error()
-	return ok
+	return ok == al_true
 }
 
 // is_relative returns true if source position is relative to listener
@@ -111,12 +116,18 @@ pub fn (s &Source) loop(loop bool) {
 	s.sourcei(al_looping, value)
 }
 
+// is_looping returns true if source is set to loop
+pub fn (s &Source) is_looping() bool {
+	return s.get_sourcei(al_looping) == al_true
+}
+
 // get_type returns a source type
 pub fn (s &Source) get_type() SourceType {
 	value := s.get_sourcei(al_source_type)
 	return match value {
 		al_source_static { SourceType.statik }
 		al_source_streaming { SourceType.streaming }
+		al_source_undetermined { SourceType.undetermined }
 		else { SourceType.undetermined }
 	}
 }
@@ -124,8 +135,9 @@ pub fn (s &Source) get_type() SourceType {
 // get_state returns a source state
 pub fn (s &Source) get_state() SourceState {
 	value := s.get_sourcei(al_source_state)
+	println(value)
 	return match value {
-		al_initial { SourceState.initial }
+		al_initial { al.SourceState.initial }
 		al_playing { SourceState.playing }
 		al_paused { SourceState.paused }
 		al_stopped { SourceState.stopped }

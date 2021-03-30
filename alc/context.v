@@ -66,11 +66,12 @@ pub fn (c &Context) destroy() {
 // get_device returns device linked to context
 pub fn (c &Context) get_device() &Device {
 	data := C.alcGetContextsDevice(c.data)
-	c.check_error()
-	return new_device_from_data(data)
+	device := new_device_from_data(data)
+	check_error(device)
+	return device
 }
 
 // check_error checks if device context has an error
 fn (c &Context) check_error() {
-	c.device.check_error()
+	check_error(c.device)
 }

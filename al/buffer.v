@@ -2,9 +2,7 @@ module al
 
 fn C.alGenBuffers(n ALsizei, buffers ALuintptr)
 fn C.alDeleteBuffers(n ALsizei, buffers ALuintptr)
-
 fn C.alIsBuffer(buffer ALuint) ALboolean
-
 fn C.alBufferData(buffer ALuint, format ALenum, data voidptr, size ALsizei, freq ALsizei)
 
 fn C.alBufferf(buffer ALuint, param ALenum, value ALfloat)
@@ -27,10 +25,15 @@ mut:
 	id u32
 }
 
+// new_buffer returns an instance of Buffer
+pub fn new_buffer() Buffer {
+	return Buffer{}
+}
+
 // create_buffers creates multiple instances of Buffer
 pub fn create_buffers(n int) []Buffer {
-	values := []u32{len: n}
-	C.alGenBuffers(n, &values.data)
+	mut values := []u32{len: n, init: 0}
+	C.alGenBuffers(n, &ALuint(values.data))
 	check_error()
 	//
 	mut buffers := []Buffer{len: n}
@@ -45,19 +48,39 @@ pub fn create_buffers(n int) []Buffer {
 
 // release_buffers deletes multiple instances of Buffer
 pub fn release_buffers(b []Buffer) {
-	mut values := []u32{len: b.len}
+	mut values := []u32{len: b.len, init: 0}
 	for i in 0 .. b.len {
 		values[i] = b[i].id
 	}
-	C.alDeleteBuffers(b.len, values.data)
+	C.alDeleteBuffers(b.len, &ALuint(values.data))
 	check_error()
 }
 
-// is_buffer validates if Buffer is valid
+// generate a buffer
+pub fn (mut b Buffer) generate() {
+	mut values := []u32{len: 1}
+	C.alGenBuffers(values.len, &ALuint(values.data))
+	check_error()
+	b.id = values[0]
+}
+
+// release buffer
+pub fn (b &Buffer) release() {
+	values := [b.id]
+	C.alDeleteBuffers(values.len, &ALuint(values.data))
+	check_error()
+}
+
+// is_valid validates Buffer
 pub fn (b &Buffer) is_valid() bool {
 	ok := C.alIsBuffer(b.id)
 	check_error()
-	return ok != 0
+	return ok == al_true
+}
+
+// get_id returns the id of the buffer
+pub fn (b &Buffer) get_id() u32 {
+	return b.id
 }
 
 // get_frequency returns the frequency of the buffer
@@ -92,13 +115,13 @@ pub fn (b &Buffer) bufferf(param int, value f32) {
 	check_error()
 }
 
-// buffer3f sets a buffer parameter value as vector of floats
-pub fn (b &Buffer) buffer3f(param int, v1 f32, v2 f32, v3 f32) {
-	C.alBuffer3f(b.id, param, v1, v2, v3)
+// buffer3f sets a buffer parameter value as a tuple of floats
+pub fn (b &Buffer) buffer3f(param int, value1 f32, value2 f32, value3 f32) {
+	C.alBuffer3f(b.id, param, value1, value2, value3)
 	check_error()
 }
 
-// bufferfv sets a buffer parameter value as vector of floats
+// bufferfv sets a buffer parameter value as a vector of floats
 pub fn (b &Buffer) bufferfv(param int, values []f32) {
 	C.alBufferfv(b.id, param, values.data)
 	check_error()
@@ -110,7 +133,7 @@ pub fn (b &Buffer) bufferi(param int, value int) {
 	check_error()
 }
 
-// buffer3i sets a buffer parameter value as vector of integers
+// buffer3i sets a buffer parameter value as a tuple of integers
 pub fn (b &Buffer) buffer3i(param int, v1 int, v2 int, v3 int) {
 	C.alBuffer3i(b.id, param, v1, v2, v3)
 	check_error()
@@ -130,7 +153,7 @@ pub fn (b &Buffer) get_bufferf(param int) f32 {
 	return value
 }
 
-// get_buffer3f returns a buffer parameter value as vector of floats
+// get_buffer3f returns a buffer parameter value as a tuple of floats
 pub fn (b &Buffer) get_buffer3f(param int) (f32, f32, f32) {
 	v1 := f32(0)
 	v2 := f32(0)
@@ -156,7 +179,7 @@ pub fn (b &Buffer) get_bufferi(param int) int {
 	return value
 }
 
-// get_buffer3i returns a buffer parameter value as vector of integers
+// get_buffer3i returns a buffer parameter value as a tuple of integers
 pub fn (b &Buffer) get_buffer3i(param int) (int, int, int) {
 	v1 := int(0)
 	v2 := int(0)
