@@ -2,7 +2,7 @@ module alc
 
 fn test_alc() {
 	mut device := new_device()
-	assert device.open()
+	assert device.open_default()
 	defer {
 		assert device.close()
 	}

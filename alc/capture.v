@@ -17,9 +17,14 @@ pub fn new_capture_device() &CaptureDevice {
 	return &CaptureDevice{}
 }
 
+// open_default opens the default audio device
+pub fn (mut c CaptureDevice) open_default(frequency u32, format int, buffer_size int) bool {
+	return c.open('', frequency, format, buffer_size)
+}
+
 // open_device opens the capture device
-pub fn (mut c CaptureDevice) open(name string, frequency u32, format int, buffersize int) bool {
-	data := C.alcCaptureOpenDevice(name.str, frequency, format, buffersize)
+pub fn (mut c CaptureDevice) open(name string, frequency u32, format int, buffer_size int) bool {
+	data := C.alcCaptureOpenDevice(name.str, frequency, format, buffer_size)
 	if isnil(data) {
 		return false
 	}

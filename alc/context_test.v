@@ -2,7 +2,7 @@ module alc
 
 fn test_context() {
 	mut device := new_device()
-	device.open()
+	device.open_default()
 	defer {
 		device.close()
 	}

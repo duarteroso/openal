@@ -3,7 +3,6 @@ module vopenal
 import duarteroso.vsemver
 import al
 import alc
-import alut
 
 // load_module loads OpenAL module
 // Used to force the compiler to include the C pragmas

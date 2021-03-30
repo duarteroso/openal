@@ -3,7 +3,7 @@ module alc
 // do_test is used to test functionality
 pub fn do_test(cb fn ()) {
 	mut device := new_device()
-	device.open()
+	device.open_default()
 	defer {
 		device.close()
 	}

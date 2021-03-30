@@ -1,6 +1,5 @@
 module alc
 
-// Forward declarations
 [typedef]
 struct C.ALCdevice {
 }
@@ -17,7 +16,7 @@ fn C.alcGetEnumValue(device &C.ALCdevice, enumname ALCcharptr) ALCenum
 fn C.alcGetString(device &C.ALCdevice, param ALCenum) ALCcharptr
 fn C.alcGetIntegerv(device &C.ALCdevice, param ALCenum, size ALCsizei, values ALCintptr)
 
-// Device wraps functionality around OpenALC device
+// Device wraps functionality around ALCdevice
 pub struct Device {
 mut:
 	data &C.ALCdevice = voidptr(0)
@@ -28,16 +27,21 @@ pub fn new_device() &Device {
 	return new_device_from_data(voidptr(0))
 }
 
-// new_device creates an instance of Device from data
+// new_device_from_data creates an instance of Device from data
 pub fn new_device_from_data(data &C.ALCdevice) &Device {
 	return &Device{
 		data: data
 	}
 }
 
-// open device
-pub fn (mut d Device) open() bool {
-	d.data = C.alcOpenDevice(voidptr(0))
+// open_default opens the default audio device
+pub fn (mut d Device) open_default() bool {
+	return d.open('')
+}
+
+// open audio device by name
+pub fn (mut d Device) open(name string) bool {
+	d.data = C.alcOpenDevice(name.str)
 	return !isnil(d.data)
 }
 

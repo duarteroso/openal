@@ -2,7 +2,7 @@ module al
 
 fn C.alGetError() ALenum
 
-// Err defines an error code and message for a particular error
+// Err defines an error code for a particular error
 pub struct Err {
 mut:
 	code int

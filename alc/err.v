@@ -1,6 +1,6 @@
 module alc
 
-// Err defines a code and message for a particular error
+// Err defines a code for a particular error
 pub struct Err {
 pub mut:
 	code int
