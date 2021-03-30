@@ -6,7 +6,9 @@ import al
 fn test_capture() {
 	mut device := new_capture_device()
 	assert device.open('', 60, al.al_format_mono16, 128)
-	defer { assert device.close() }
+	defer {
+		assert device.close()
+	}
 	//
 	device.start()
 	time.sleep(5 * time.second)

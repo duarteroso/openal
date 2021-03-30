@@ -1,15 +1,17 @@
 module alc
 
 fn test_device() {
-	mut device := alc.new_device()
+	mut device := new_device()
 	assert device.open()
 	assert device.close()
 }
 
 fn test_properties() {
-	mut device := alc.new_device()
+	mut device := new_device()
 	device.open()
-	defer { device.close() }
+	defer {
+		device.close()
+	}
 	//
 	device.get_data()
 	device.is_extension_present('abc')

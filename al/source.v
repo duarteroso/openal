@@ -137,7 +137,7 @@ pub fn (s &Source) get_state() SourceState {
 	value := s.get_sourcei(al_source_state)
 	println(value)
 	return match value {
-		al_initial { al.SourceState.initial }
+		al_initial { SourceState.initial }
 		al_playing { SourceState.playing }
 		al_paused { SourceState.paused }
 		al_stopped { SourceState.stopped }

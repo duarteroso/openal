@@ -39,7 +39,9 @@ fn test_source_properties() {
 fn source_properties() {
 	mut source := new_source()
 	source.generate()
-	defer { source.release() }
+	defer {
+		source.release()
+	}
 	//
 	source.sourcei(al_source_relative, al_true)
 	assert source.is_relative() == true
@@ -111,11 +113,15 @@ fn test_source_buffer() {
 fn source_buffer() {
 	mut buffer := new_buffer()
 	buffer.generate()
-	defer { buffer.release() }
+	defer {
+		buffer.release()
+	}
 	//
 	mut source := new_source()
 	source.generate()
-	defer { source.release() }
+	defer {
+		source.release()
+	}
 	//
 	id := int(buffer.get_id())
 	source.sourcei(al_buffer, id)

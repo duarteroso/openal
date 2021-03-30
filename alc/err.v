@@ -8,7 +8,7 @@ pub mut:
 
 // new_error creates an instance of Err
 fn new_error(code int) Err {
-	return Err {
+	return Err{
 		code: code
 	}
 }

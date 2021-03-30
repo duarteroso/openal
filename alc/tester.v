@@ -4,11 +4,15 @@ module alc
 pub fn do_test(cb fn ()) {
 	mut device := new_device()
 	device.open()
-	defer { device.close() }
+	defer {
+		device.close()
+	}
 	//
 	mut context := new_context()
 	context.create(device)
-	defer { context.destroy() }
+	defer {
+		context.destroy()
+	}
 	context.make_current()
 	//
 	cb()

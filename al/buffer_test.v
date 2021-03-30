@@ -1,6 +1,6 @@
 module al
 
-import vopenal.alc
+import alc
 
 fn test_buffer_creation() {
 	test := fn () {
@@ -36,7 +36,9 @@ fn test_buffer_getters() {
 	test := fn () {
 		mut buffer := new_buffer()
 		buffer.generate()
-		defer { buffer.release() }
+		defer {
+			buffer.release()
+		}
 		//
 		buffer.get_frequency()
 		buffer.get_bits()
@@ -51,7 +53,9 @@ fn test_buffer_attributes() {
 	test := fn () {
 		mut buffer := new_buffer()
 		buffer.generate()
-		defer { buffer.release() }
+		defer {
+			buffer.release()
+		}
 		//
 		buffer.get_bufferi(al_frequency)
 		buffer.get_bufferi(al_bits)
@@ -66,7 +70,9 @@ fn test_buffer_data() {
 	test := fn () {
 		mut buffer := new_buffer()
 		buffer.generate()
-		defer { buffer.release() }
+		defer {
+			buffer.release()
+		}
 		//
 		mono_data := []u32{len: 10, init: -1}
 		buffer.set_data(al_format_mono8, mono_data.data, mono_data.len, 60.0)
