@@ -28,7 +28,7 @@ fn C.alSourceStopv(n ALsizei, sources ALuintptr)
 fn C.alSourceRewind(source ALuint)
 fn C.alSourceRewindv(n ALsizei, sources ALuintptr)
 fn C.alSourceQueueBuffers(source ALuint, n ALsizei, buffers ALuintptr)
-fn C.alSourceUnqueueBufers(source ALuint, n ALsizei, buffers ALuintptr)
+fn C.alSourceUnqueueBuffers(source ALuint, n ALsizei, buffers ALuintptr)
 
 // Source wraps functionality around an OpenAL source
 pub struct Source {
@@ -75,12 +75,18 @@ pub fn generate_sources(n int) []Source {
 
 // release_sources deletes multiple instances of Source
 pub fn release_sources(s []Source) {
+	values := convert_source_array(s)
+	C.alDeleteSources(s.len, &ALuint(values.data))
+	check_error()
+}
+
+// convert_source_array transforms a Source array into an u32 array
+fn convert_source_array(s []Source) []u32 {
 	mut values := []u32{len: s.len}
 	for i in 0 .. s.len {
 		values[i] = s[i].id
 	}
-	C.alDeleteSources(s.len, &ALuint(values.data))
-	check_error()
+	return values
 }
 
 // generate source
@@ -103,6 +109,11 @@ pub fn (s &Source) is_valid() bool {
 	ok := C.alIsSource(s.id)
 	check_error()
 	return ok == al_true
+}
+
+// link_to_buffer links the buffer to the source
+pub fn (s &Source) link_to_buffer(b &Buffer) {
+	s.sourcei(al_buffer, int(b.get_id()))
 }
 
 // is_relative returns true if source position is relative to listener
@@ -135,7 +146,6 @@ pub fn (s &Source) get_type() SourceType {
 // get_state returns a source state
 pub fn (s &Source) get_state() SourceState {
 	value := s.get_sourcei(al_source_state)
-	println(value)
 	return match value {
 		al_initial { SourceState.initial }
 		al_playing { SourceState.playing }
@@ -384,4 +394,70 @@ fn (s &Source) get_sourceiv(param int) []int {
 	C.alGetSourceiv(s.id, param, &values.data)
 	check_error()
 	return values
+}
+
+// play the source
+pub fn (s &Source) play() {
+	C.alSourcePlay(s.id)
+	check_error()
+}
+
+// pause the source
+pub fn (s &Source) pause() {
+	C.alSourcePause(s.id)
+	check_error()
+}
+
+// stop the source
+pub fn (s &Source) stop() {
+	C.alSourceStop(s.id)
+	check_error()
+}
+
+// rewind the source
+pub fn (s &Source) rewind() {
+	C.alSourceRewind(s.id)
+	check_error()
+}
+
+// play_sources plays multiple sources at once
+pub fn play_sources(s []Source) {
+	values := convert_source_array(s)
+	C.alSourcePlayv(values.len, &ALuint(values.data))
+	check_error()
+}
+
+// pause_sources pauses multiple sources at once
+pub fn pause_sources(s []Source) {
+	values := convert_source_array(s)
+	C.alSourcePausev(values.len, &ALuint(values.data))
+	check_error()
+}
+
+// stop_sources stops multiple sources at once
+pub fn stop_sources(s []Source) {
+	values := convert_source_array(s)
+	C.alSourceStopv(values.len, &ALuint(values.data))
+	check_error()
+}
+
+// rewind_sources rewinds multiple sources at once
+pub fn rewind_sources(s []Source) {
+	values := convert_source_array(s)
+	C.alSourceRewindv(values.len, &ALuint(values.data))
+	check_error()
+}
+
+// queue_buffers adds buffer into the source's queue
+pub fn (s &Source) queue_buffers(b []Buffer) {
+	values := convert_buffer_array(b)
+	C.alSourceQueueBuffers(s.id, values.len, &ALuint(values.data))
+	check_error()
+}
+
+// unqueue_buffers removes buffers from the source's queue
+pub fn (s &Source) unqueue_buffers(b []Buffer) {
+	values := convert_buffer_array(b)
+	C.alSourceUnqueueBuffers(s.id, values.len, &ALuint(values.data))
+	check_error()
 }
