@@ -48,12 +48,19 @@ pub fn create_buffers(n int) []Buffer {
 
 // release_buffers deletes multiple instances of Buffer
 pub fn release_buffers(b []Buffer) {
-	mut values := []u32{len: b.len, init: 0}
+	values := convert_buffer_array(b)
+	C.alDeleteBuffers(b.len, &ALuint(values.data))
+	check_error()
+}
+
+// convert_buffer_array converts an array of Buffer into u32
+fn convert_buffer_array(b []Buffer) []u32 {
+	mut values := []u32{len: b.len}
 	for i in 0 .. b.len {
 		values[i] = b[i].id
 	}
-	C.alDeleteBuffers(b.len, &ALuint(values.data))
-	check_error()
+	//
+	return values
 }
 
 // generate a buffer

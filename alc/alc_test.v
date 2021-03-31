@@ -1,5 +1,15 @@
 module alc
 
+import duarteroso.vsemver
+
+fn test_alc_version() {
+	sv := alc_version()
+	assert sv.major == alc_major_version
+	assert sv.minor == alc_minor_version
+	assert sv.patch == 0
+	assert sv.stage == vsemver.Stage.release
+}
+
 fn test_alc() {
 	mut device := new_device()
 	assert device.open_default()
