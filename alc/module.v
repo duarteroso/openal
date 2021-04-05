@@ -1,13 +1,13 @@
 module alc
 
-import duarteroso.vsemver
+import duarteroso.semver
 
 // alc_version returns the ALC semantic version
-pub fn alc_version() vsemver.SemVer {
-	return vsemver.SemVer{
+pub fn alc_version() semver.SemVer {
+	return semver.SemVer{
 		major: alc_major_version
 		minor: alc_minor_version
 		patch: 0
-		stage: vsemver.Stage.release
+		stage: semver.Stage.release
 	}
 }

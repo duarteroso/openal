@@ -1,6 +1,6 @@
 module al
 
-import duarteroso.vsemver
+import duarteroso.semver
 import alc
 
 fn test_al_version() {
@@ -8,7 +8,7 @@ fn test_al_version() {
 	assert sv.major == al_major_version
 	assert sv.minor == al_minor_version
 	assert sv.patch == 0
-	assert sv.stage == vsemver.Stage.release
+	assert sv.stage == semver.Stage.release
 }
 
 fn test_type_getter() {

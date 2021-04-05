@@ -1,13 +1,13 @@
 module alc
 
-import duarteroso.vsemver
+import duarteroso.semver
 
 fn test_alc_version() {
 	sv := alc_version()
 	assert sv.major == alc_major_version
 	assert sv.minor == alc_minor_version
 	assert sv.patch == 0
-	assert sv.stage == vsemver.Stage.release
+	assert sv.stage == semver.Stage.release
 }
 
 fn test_alc() {
