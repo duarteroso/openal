@@ -17,7 +17,7 @@ fn test_source_creation() {
 
 fn test_batch_source_creation() {
 	test := fn () {
-		sources := generate_sources(3)
+		sources := new_sources(3)
 		assert sources.len == 3
 		for source in sources {
 			assert source.is_valid()
@@ -160,7 +160,7 @@ fn test_source_playback() {
 fn test_multiple_source_playback() {
 	test := fn () {
 		amount := 5
-		mut buffers := create_buffers(amount)
+		mut buffers := new_buffers(amount)
 		for mut buffer in buffers {
 			buffer.generate()
 		}
@@ -168,7 +168,7 @@ fn test_multiple_source_playback() {
 			release_buffers(buffers)
 		}
 		//
-		mut sources := generate_sources(amount)
+		mut sources := new_sources(amount)
 		for mut source in sources {
 			source.generate()
 		}

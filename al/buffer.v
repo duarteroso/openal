@@ -30,8 +30,8 @@ pub fn new_buffer() Buffer {
 	return Buffer{}
 }
 
-// create_buffers creates multiple instances of Buffer
-pub fn create_buffers(n int) []Buffer {
+// new_buffers creates multiple instances of Buffer
+pub fn new_buffers(n int) []Buffer {
 	mut values := []u32{len: n, init: 0}
 	C.alGenBuffers(n, &ALuint(values.data))
 	check_error()

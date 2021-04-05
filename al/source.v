@@ -57,8 +57,8 @@ pub fn new_source() Source {
 	return Source{}
 }
 
-// generate_sources generates multiple instances of Source
-pub fn generate_sources(n int) []Source {
+// new_sources generates multiple instances of Source
+pub fn new_sources(n int) []Source {
 	mut values := []u32{len: n}
 	C.alGenSources(n, &ALuint(values.data))
 	check_error()
