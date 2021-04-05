@@ -1,5 +1,15 @@
 ## vOpenAL
 
+### Index
+
+* [Description](#description)
+* [Documentation](#documentation)
+* [Install](#install)
+* [Authors](#authors)
+* [License](#license)
+* [Usage](#usage)
+
+
 ### Description
 OpenAL bindings for the V language.
 
