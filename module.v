@@ -1,14 +1,8 @@
 module vopenal
 
-fn init() {
-	//
-}
+import v.vmod
 
-// load_module loads OpenAL module
-// Used to force the compiler to include the C pragmas
-pub fn load_module() {
-}
-
-// unload_module unloads OpenAL module
-pub fn unload_module() {
+// manifest of module
+pub fn manifest() ?vmod.Manifest {
+	return vmod.decode(@VMOD_FILE)
 }
