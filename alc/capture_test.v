@@ -23,6 +23,6 @@ fn test_default_capture() {
 	device.close()
 	//
 	mut capture_device := new_capture_device()
-	assert capture_device.open(name, 60, al.al_format_mono16, 8)
+	assert capture_device.open_default(60, al.al_format_mono16, 8)
 	assert capture_device.close()
 }
