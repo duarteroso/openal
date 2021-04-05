@@ -24,7 +24,7 @@ pub fn (mut c CaptureDevice) open_default(frequency u32, format int, buffer_size
 
 // open_device opens the capture device
 pub fn (mut c CaptureDevice) open(name string, frequency u32, format int, buffer_size int) bool {
-	data := C.alcCaptureOpenDevice(name.str, frequency, format, buffer_size)
+	data := C.alcCaptureOpenDevice(ALCcharptr(name.str), frequency, format, buffer_size)
 	if isnil(data) {
 		return false
 	}

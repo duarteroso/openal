@@ -4,7 +4,7 @@ type ALboolean = byte
 type ALbooleanptr = voidptr
 
 type ALchar = byte
-type ALcharptr = charptr
+type ALcharptr = &char
 
 type ALbyte = i8
 type ALubyte = byte

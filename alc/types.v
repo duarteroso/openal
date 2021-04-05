@@ -3,7 +3,7 @@ module alc
 type ALCboolean = byte
 
 type ALCchar = byte
-type ALCcharptr = charptr
+type ALCcharptr = &char
 
 type ALCbyte = i8
 type ALCubyte = byte

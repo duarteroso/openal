@@ -107,21 +107,21 @@ pub fn get_string(param int) string {
 
 // is_extension_present checks wether an extension is present
 pub fn is_extension_present(ext string) bool {
-	ok := C.alIsExtensionPresent(ext.str)
+	ok := C.alIsExtensionPresent(ALcharptr(ext.str))
 	check_error()
 	return ok == al_true
 }
 
 // get_proc_addr returns the process address
 pub fn get_proc_addr(fname string) voidptr {
-	addr := C.alGetProcAddress(fname.str)
+	addr := C.alGetProcAddress(ALcharptr(fname.str))
 	check_error()
 	return addr
 }
 
 // get_enum_value returns an enumeration value
 pub fn get_enum_value(ename string) int {
-	value := C.alGetEnumValue(ename.str)
+	value := C.alGetEnumValue(ALcharptr(ename.str))
 	check_error()
 	return value
 }

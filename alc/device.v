@@ -41,7 +41,7 @@ pub fn (mut d Device) open_default() bool {
 
 // open audio device by name
 pub fn (mut d Device) open(name string) bool {
-	d.data = C.alcOpenDevice(name.str)
+	d.data = C.alcOpenDevice(ALCcharptr(name.str))
 	return !isnil(d.data)
 }
 
@@ -58,21 +58,21 @@ pub fn (d &Device) get_data() &C.ALCdevice {
 
 // is_extension_present checks if a certain extension is present
 pub fn (d &Device) is_extension_present(name string) bool {
-	ok := C.alcIsExtensionPresent(d.data, name.str)
+	ok := C.alcIsExtensionPresent(d.data, ALCcharptr(name.str))
 	check_error(d)
 	return ok == alc_true
 }
 
 // get_proc_addr returns the process address
 pub fn (d &Device) get_proc_addr(name string) voidptr {
-	ptr := C.alcGetProcAddress(d.data, name.str)
+	ptr := C.alcGetProcAddress(d.data, ALCcharptr(name.str))
 	check_error(d)
 	return ptr
 }
 
 // get_enum_value returns an enumeration value
 pub fn (d &Device) get_enum_value(name string) int {
-	value := C.alcGetEnumValue(d.data, name.str)
+	value := C.alcGetEnumValue(d.data, ALCcharptr(name.str))
 	check_error(d)
 	return value
 }
