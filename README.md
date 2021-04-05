@@ -1,6 +1,6 @@
-## vOpenAL
+# vOpenAL
 
-### Index
+## Index
 
 * [Description](#description)
 * [Documentation](#documentation)
@@ -8,31 +8,46 @@
 * [Authors](#authors)
 * [License](#license)
 * [Usage](#usage)
+    * [Import](#import)
+    * [Device](#device)
+    * [Context](#context)
+    * [Buffer](#buffer)
+    * [Source](#source)
 
+#
 
-### Description
+## Description
 OpenAL bindings for the V language.
 
-### Documentation
+## Documentation
 Please follow the official [OpenAL guide](https://www.openal.org/documentation/OpenAL_Programmers_Guide.pdf)
 
-### Install
+## Install
 `v install novuloj.vopenal`
 
-### Authors
+## Authors
 @duarteroso
 
-### License
+## License
 [2-clause BSD License](https://opensource.org/licenses/BSD-2-Clause)
 
-### Usage
+## Usage
 
-#### Device
+### Import
+
+Start using vOpenAL by importing the modules
+
+```v
+import novuloj.vopanal.al
+import novuloj.vopenal.alc
+```
+
+### Device
 
 Open an ALC device before calling the rest of the API
 
 ```v
-mut device := new_device()
+mut device := alc.new_device()
 device.open_default()
 ```
 
@@ -42,12 +57,12 @@ Close it after you are done
 device.close()
 ```
 
-#### Context
+### Context
 
 Create an ALC context before calling the rest of the API
 
 ```v
-mut context := new_context()
+mut context := alc.new_context()
 context.create(device)
 context.make_current()
 ```
@@ -58,15 +73,15 @@ Close it after you are done
 context.destroy()
 ```
 
-#### Buffer
+### Buffer
 
 You can generate a buffer or request a batch of buffers
 
 ```v
-mut buffer := new_buffer()
+mut buffer := al.new_buffer()
 buffer.generate()
 // or
-mut buffers := new_buffers(10)
+mut buffers := al.new_buffers(10)
 for mut buffer in buffers {
     buffer.generate()
 }
@@ -78,15 +93,15 @@ Release the buffer to free its resources
 buffer.release()
 ```
 
-#### Source
+### Source
 
 You can generate a source or request a batch of sources
 
 ```v
-mut source := new_source()
+mut source := al.new_source()
 source.generate()
 // or
-mut sources := new_sources(10)
+mut sources := al.new_sources(10)
 for mut source in sources {
     source.generate()
 }
@@ -101,8 +116,8 @@ source.release()
 A source needs to be associeted with a buffer which will contain the data to play
 
 ```v
-mut buffer := new_buffer()
-mut source := new_source()
+mut buffer := al.new_buffer()
+mut source := al.new_source()
 // ...
 source.link_to_buffer(buffer)
 ```
