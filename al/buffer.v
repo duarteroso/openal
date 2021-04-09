@@ -25,6 +25,14 @@ mut:
 	id u32
 }
 
+pub enum BufferFormat {
+	mono8
+	mono16
+	stereo8
+	stereo16
+	undefined
+}
+
 // new_buffer returns an instance of Buffer
 pub fn new_buffer() Buffer {
 	return Buffer{}
