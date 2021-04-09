@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="x-ua-compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>al | vdoc</title>
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+		<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+		<link rel="manifest" href="site.webmanifest">
+		<link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="theme-color" content="#ffffff">
+		
+		<link rel="stylesheet" href="doc.css" />
+		<link rel="stylesheet" href="normalize.css" />
+		<script src="dark-mode.js"></script>
+	</head>
+	<body>
+		<div id="page">
+			<header class="doc-nav hidden">
+				<div class="heading-container">
+					<div class="heading">
+						<div class="info">
+							<div class="module">vopenal</div>
+							<div class="toggle-version-container">
+								<span></span>
+								<div id="dark-mode-toggle" role="switch" aria-checked="false" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" class="light-icon" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" class="dark-icon" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24"><g><rect fill="none" height="24" width="24"/></g><g><g><g><path d="M11.1,12.08C8.77,7.57,10.6,3.6,11.63,2.01C6.27,2.2,1.98,6.59,1.98,12c0,0.14,0.02,0.28,0.02,0.42 C2.62,12.15,3.29,12,4,12c1.66,0,3.18,0.83,4.1,2.15C9.77,14.63,11,16.17,11,18c0,1.52-0.87,2.83-2.12,3.51 c0.98,0.32,2.03,0.5,3.11,0.5c3.5,0,6.58-1.8,8.37-4.52C18,17.72,13.38,16.52,11.1,12.08z"/></g><path d="M7,16l-0.18,0C6.4,14.84,5.3,14,4,14c-1.66,0-3,1.34-3,3s1.34,3,3,3c0.62,0,2.49,0,3,0c1.1,0,2-0.9,2-2 C9,16.9,8.1,16,7,16z"/></g></g></svg>
+</div>
+							</div>
+							<svg xmlns="http://www.w3.org/2000/svg" id="toggle-menu" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+
+						</div>
+						<input type="text" id="search" placeholder="Search... (beta)" autocomplete="off">
+					</div>
+				</div>
+				<nav class="search hidden"></nav>
+				<nav class="content hidden">
+					<ul>
+						<li class="open"><div class="menu-row"><a href="./.html"></a></div></li><li class="open active"><div class="menu-row"><a href="./al.html">al</a></div></li><li class="open"><div class="menu-row"><a href="./alc.html">alc</a></div></li>
+					</ul>
+				</nav>
+			</header>
+			<div class="doc-scrollview">
+				<div class="doc-container">
+					<div class="doc-content">
+						<section id="readme_al" class="doc-node">
+							<div class="title"><h1> al <a href="#readme_al">#</a></h1></div>
+
+</section>
+
+						<section id="Constants" class="doc-node const">
+							<div class="title"><h2>Constants <a href="#Constants">#</a></h2></div>
+
+</section>
+						<section id="" class="doc-node const">
+<pre class="signature"><code><span class="token keyword">const</span> <span class="token punctuation">(</span>
+	al_major_version <span class="token operator">=</span> <span class="token number">1</span>
+	al_minor_version <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token punctuation">)</span></code></pre>
+<p>Runtime AL version</p>
+
+</section>
+						<section id="" class="doc-node const">
+<pre class="signature"><code><span class="token keyword">const</span> <span class="token punctuation">(</span>
+	al_empty <span class="token operator">=</span> <span class="token number">0</span>
+	al_false <span class="token operator">=</span> <span class="token number">0</span>
+	al_true  <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token punctuation">)</span></code></pre>
+
+
+</section>
+						<section id="" class="doc-node const">
+<pre class="signature"><code><span class="token keyword">const</span> <span class="token punctuation">(</span>
+	al_source_relative  <span class="token operator">=</span> <span class="token number">0x202</span>
+	al_cone_inner_angle <span class="token operator">=</span> <span class="token number">0x1001</span>
+	al_cone_outer_angle <span class="token operator">=</span> <span class="token number">0x1002</span>
+	al_pitch            <span class="token operator">=</span> <span class="token number">0x1003</span>
+	al_position         <span class="token operator">=</span> <span class="token number">0x1004</span>
+	al_direction        <span class="token operator">=</span> <span class="token number">0x1005</span>
+	al_velocity         <span class="token operator">=</span> <span class="token number">0x1006</span>
+	al_looping          <span class="token operator">=</span> <span class="token number">0x1007</span>
+	al_buffer           <span class="token operator">=</span> <span class="token number">0x1009</span>
+	al_gain             <span class="token operator">=</span> <span class="token number">0x100A</span>
+	al_min_gain         <span class="token operator">=</span> <span class="token number">0x100D</span>
+	al_max_gain         <span class="token operator">=</span> <span class="token number">0x100E</span>
+	al_orientation      <span class="token operator">=</span> <span class="token number">0x100F</span>
+	al_source_state     <span class="token operator">=</span> <span class="token number">0x1010</span>
+<span class="token punctuation">)</span></code></pre>
+<p>Source parameter values</p>
+
+</section>
+						<section id="" class="doc-node const">
+<pre class="signature"><code><span class="token keyword">const</span> <span class="token punctuation">(</span>
+	al_initial <span class="token operator">=</span> <span class="token number">0x1011</span>
+	al_playing <span class="token operator">=</span> <span class="token number">0x1012</span>
+	al_paused  <span class="token operator">=</span> <span class="token number">0x1013</span>
+	al_stopped <span class="token operator">=</span> <span class="token number">0x1014</span>
+<span class="token punctuation">)</span></code></pre>
+<p>Source state values</p>
+
+</section>
+						<section id="" class="doc-node const">
+<pre class="signature"><code><span class="token keyword">const</span> <span class="token punctuation">(</span>
+	al_buffers_queued    <span class="token operator">=</span> <span class="token number">0x1015</span>
+	al_buffers_processed <span class="token operator">=</span> <span class="token number">0x1016</span>
+<span class="token punctuation">)</span></code></pre>
+<p>Buffer state</p>
+
+</section>
+						<section id="" class="doc-node const">
+<pre class="signature"><code><span class="token keyword">const</span> <span class="token punctuation">(</span>
+	al_reference_distance <span class="token operator">=</span> <span class="token number">0x1020</span>
+	al_rolloff_factor     <span class="token operator">=</span> <span class="token number">0x1021</span>
+	al_cone_outer_gain    <span class="token operator">=</span> <span class="token number">0x1022</span>
+	al_max_distance       <span class="token operator">=</span> <span class="token number">0x1023</span>
+	al_sec_offset         <span class="token operator">=</span> <span class="token number">0x1024</span>
+	al_sample_offset      <span class="token operator">=</span> <span class="token number">0x1025</span>
+	al_byte_offset        <span class="token operator">=</span> <span class="token number">0x1026</span>
+<span class="token punctuation">)</span></code></pre>
+<p>Source buffer position</p>
+
+</section>
+						<section id="" class="doc-node const">
+<pre class="signature"><code><span class="token keyword">const</span> <span class="token punctuation">(</span>
+	al_source_type         <span class="token operator">=</span> <span class="token number">0x1027</span>
+	al_source_static       <span class="token operator">=</span> <span class="token number">0x1028</span>
+	al_source_streaming    <span class="token operator">=</span> <span class="token number">0x1029</span>
+	al_source_undetermined <span class="token operator">=</span> <span class="token number">0x1030</span>
+<span class="token punctuation">)</span></code></pre>
+<p>Source type value</p>
+
+</section>
+						<section id="" class="doc-node const">
+<pre class="signature"><code><span class="token keyword">const</span> <span class="token punctuation">(</span>
+	al_format_mono8    <span class="token operator">=</span> <span class="token number">0x1100</span>
+	al_format_mono16   <span class="token operator">=</span> <span class="token number">0x1101</span>
+	al_format_stereo8  <span class="token operator">=</span> <span class="token number">0x1102</span>
+	al_format_stereo16 <span class="token operator">=</span> <span class="token number">0x1103</span>
+<span class="token punctuation">)</span></code></pre>
+<p>Buffer format specifier</p>
+
+</section>
+						<section id="" class="doc-node const">
+<pre class="signature"><code><span class="token keyword">const</span> <span class="token punctuation">(</span>
+	al_frequency <span class="token operator">=</span> <span class="token number">0x2001</span>
+	al_bits      <span class="token operator">=</span> <span class="token number">0x2002</span>
+	al_channels  <span class="token operator">=</span> <span class="token number">0x2003</span>
+	al_size      <span class="token operator">=</span> <span class="token number">0x2004</span>
+<span class="token punctuation">)</span></code></pre>
+<p>Buffer parameter values</p>
+
+</section>
+						<section id="" class="doc-node const">
+<pre class="signature"><code><span class="token keyword">const</span> <span class="token punctuation">(</span>
+	al_unused    <span class="token operator">=</span> <span class="token number">0x2010</span>
+	al_pending   <span class="token operator">=</span> <span class="token number">0x2011</span>
+	al_processed <span class="token operator">=</span> <span class="token number">0x2012</span>
+<span class="token punctuation">)</span></code></pre>
+<p>Buffer state</p>
+
+</section>
+						<section id="" class="doc-node const">
+<pre class="signature"><code><span class="token keyword">const</span> <span class="token punctuation">(</span>
+	al_no_error          <span class="token operator">=</span> <span class="token number">0</span>
+	al_invalid_name      <span class="token operator">=</span> <span class="token number">0xA001</span>
+	al_invalid_enum      <span class="token operator">=</span> <span class="token number">0xA002</span>
+	al_invalid_value     <span class="token operator">=</span> <span class="token number">0xA003</span>
+	al_invalid_operation <span class="token operator">=</span> <span class="token number">0xA004</span>
+	al_out_of_memory     <span class="token operator">=</span> <span class="token number">0xA005</span>
+<span class="token punctuation">)</span></code></pre>
+<p>AlError values</p>
+
+</section>
+						<section id="" class="doc-node const">
+<pre class="signature"><code><span class="token keyword">const</span> <span class="token punctuation">(</span>
+	al_vendor     <span class="token operator">=</span> <span class="token number">0xB001</span>
+	al_version    <span class="token operator">=</span> <span class="token number">0xB002</span>
+	al_renderer   <span class="token operator">=</span> <span class="token number">0xB003</span>
+	al_extensions <span class="token operator">=</span> <span class="token number">0xB004</span>
+<span class="token punctuation">)</span></code></pre>
+<p>Context values</p>
+
+</section>
+						<section id="" class="doc-node const">
+<pre class="signature"><code><span class="token keyword">const</span> <span class="token punctuation">(</span>
+	al_doppler_factor   <span class="token operator">=</span> <span class="token number">0xC000</span>
+	al_doppler_velocity <span class="token operator">=</span> <span class="token number">0xC001</span>
+	al_speed_of_sound   <span class="token operator">=</span> <span class="token number">0xC003</span>
+<span class="token punctuation">)</span></code></pre>
+<p>Doppler values</p>
+
+</section>
+						<section id="" class="doc-node const">
+<pre class="signature"><code><span class="token keyword">const</span> <span class="token punctuation">(</span>
+	al_distance_model            <span class="token operator">=</span> <span class="token number">0xD000</span>
+	al_inverse_distance          <span class="token operator">=</span> <span class="token number">0xD001</span>
+	al_inverse_distance_clamped  <span class="token operator">=</span> <span class="token number">0xD002</span>
+	al_linear_distance           <span class="token operator">=</span> <span class="token number">0xD003</span>
+	al_linear_distance_clamped   <span class="token operator">=</span> <span class="token number">0xD004</span>
+	al_exponent_distance         <span class="token operator">=</span> <span class="token number">0xD005</span>
+	al_exponent_distance_clamped <span class="token operator">=</span> <span class="token number">0xD006</span>
+<span class="token punctuation">)</span></code></pre>
+<p>Distance model values</p>
+
+</section>
+						<section id="al_version" class="doc-node">
+							<div class="title"><h2>fn al_version <a href="#al_version">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">al_version</span><span class="token punctuation">(</span><span class="token punctuation">)</span> semver<span class="token punctuation">.</span>SemVer</code></pre>
+<p>al_version returns the AL semantic version</p>
+
+</section>
+						<section id="check_error" class="doc-node">
+							<div class="title"><h2>fn check_error <a href="#check_error">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">check_error</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>check_error checks and panics on error</p>
+
+</section>
+						<section id="disable" class="doc-node">
+							<div class="title"><h2>fn disable <a href="#disable">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">disable</span><span class="token punctuation">(</span>capability <span class="token builtin">int</span><span class="token punctuation">)</span></code></pre>
+<p>disable an OpenAL capability</p>
+
+</section>
+						<section id="distance_model" class="doc-node">
+							<div class="title"><h2>fn distance_model <a href="#distance_model">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">distance_model</span><span class="token punctuation">(</span>model DistanceModel<span class="token punctuation">)</span></code></pre>
+<p>distance_model sets the distance model</p>
+
+</section>
+						<section id="doppler_factor" class="doc-node">
+							<div class="title"><h2>fn doppler_factor <a href="#doppler_factor">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">doppler_factor</span><span class="token punctuation">(</span>value <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>doppler_factor sets the doppler factor</p>
+
+</section>
+						<section id="enable" class="doc-node">
+							<div class="title"><h2>fn enable <a href="#enable">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">enable</span><span class="token punctuation">(</span>capability <span class="token builtin">int</span><span class="token punctuation">)</span></code></pre>
+
+
+</section>
+						<section id="get_boolean" class="doc-node">
+							<div class="title"><h2>fn get_boolean <a href="#get_boolean">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">get_boolean</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>get_boolean returns the boolean value of a parameter</p>
+
+</section>
+						<section id="get_booleanv" class="doc-node">
+							<div class="title"><h2>fn get_booleanv <a href="#get_booleanv">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">get_booleanv</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">bool</span></code></pre>
+<p>get_booleanv returns the boolean values of a parameter</p>
+
+</section>
+						<section id="get_double" class="doc-node">
+							<div class="title"><h2>fn get_double <a href="#get_double">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">get_double</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">f64</span></code></pre>
+<p>get_double returns the double value of a parameter</p>
+
+</section>
+						<section id="get_doublev" class="doc-node">
+							<div class="title"><h2>fn get_doublev <a href="#get_doublev">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">get_doublev</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">f64</span></code></pre>
+<p>get_doublev returns the double values of a parameter</p>
+
+</section>
+						<section id="get_enum_value" class="doc-node">
+							<div class="title"><h2>fn get_enum_value <a href="#get_enum_value">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">get_enum_value</span><span class="token punctuation">(</span>ename <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">int</span></code></pre>
+<p>get_enum_value returns an enumeration value</p>
+
+</section>
+						<section id="get_float" class="doc-node">
+							<div class="title"><h2>fn get_float <a href="#get_float">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">get_float</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">f32</span></code></pre>
+<p>get_float returns the float value of a parameter</p>
+
+</section>
+						<section id="get_floatv" class="doc-node">
+							<div class="title"><h2>fn get_floatv <a href="#get_floatv">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">get_floatv</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">f32</span></code></pre>
+<p>get_floatv returns the float values a parameter</p>
+
+</section>
+						<section id="get_integer" class="doc-node">
+							<div class="title"><h2>fn get_integer <a href="#get_integer">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">get_integer</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span></code></pre>
+<p>get_integer returns the integer value of a parameter</p>
+
+</section>
+						<section id="get_integerv" class="doc-node">
+							<div class="title"><h2>fn get_integerv <a href="#get_integerv">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">get_integerv</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span></code></pre>
+<p>get_integerv returns the integer values a parameter</p>
+
+</section>
+						<section id="get_proc_addr" class="doc-node">
+							<div class="title"><h2>fn get_proc_addr <a href="#get_proc_addr">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">get_proc_addr</span><span class="token punctuation">(</span>fname <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">voidptr</span></code></pre>
+<p>get_proc_addr returns the process address</p>
+
+</section>
+						<section id="get_string" class="doc-node">
+							<div class="title"><h2>fn get_string <a href="#get_string">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">get_string</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">string</span></code></pre>
+<p>get_string returns the string value a parameter</p>
+
+</section>
+						<section id="is_enabled" class="doc-node">
+							<div class="title"><h2>fn is_enabled <a href="#is_enabled">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">is_enabled</span><span class="token punctuation">(</span>capability <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>is_enabled checks if a capability is enabled</p>
+
+</section>
+						<section id="is_extension_present" class="doc-node">
+							<div class="title"><h2>fn is_extension_present <a href="#is_extension_present">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">is_extension_present</span><span class="token punctuation">(</span>ext <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>is_extension_present checks wether an extension is present</p>
+
+</section>
+						<section id="new_buffer" class="doc-node">
+							<div class="title"><h2>fn new_buffer <a href="#new_buffer">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">new_buffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Buffer</code></pre>
+<p>new_buffer returns an instance of Buffer</p>
+
+</section>
+						<section id="new_buffers" class="doc-node">
+							<div class="title"><h2>fn new_buffers <a href="#new_buffers">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">new_buffers</span><span class="token punctuation">(</span>n <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>Buffer</code></pre>
+<p>new_buffers creates multiple instances of Buffer</p>
+
+</section>
+						<section id="new_listener" class="doc-node">
+							<div class="title"><h2>fn new_listener <a href="#new_listener">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">new_listener</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Listener</code></pre>
+<p>new_listener returns an instance of Listener</p>
+
+</section>
+						<section id="new_source" class="doc-node">
+							<div class="title"><h2>fn new_source <a href="#new_source">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">new_source</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Source</code></pre>
+<p>new_source returns a new instance of Source</p>
+
+</section>
+						<section id="new_sources" class="doc-node">
+							<div class="title"><h2>fn new_sources <a href="#new_sources">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">new_sources</span><span class="token punctuation">(</span>n <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>Source</code></pre>
+<p>new_sources generates multiple instances of Source</p>
+
+</section>
+						<section id="pause_sources" class="doc-node">
+							<div class="title"><h2>fn pause_sources <a href="#pause_sources">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">pause_sources</span><span class="token punctuation">(</span>s <span class="token punctuation">[</span><span class="token punctuation">]</span>Source<span class="token punctuation">)</span></code></pre>
+<p>pause_sources pauses multiple sources at once</p>
+
+</section>
+						<section id="play_sources" class="doc-node">
+							<div class="title"><h2>fn play_sources <a href="#play_sources">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">play_sources</span><span class="token punctuation">(</span>s <span class="token punctuation">[</span><span class="token punctuation">]</span>Source<span class="token punctuation">)</span></code></pre>
+<p>play_sources plays multiple sources at once</p>
+
+</section>
+						<section id="release_buffers" class="doc-node">
+							<div class="title"><h2>fn release_buffers <a href="#release_buffers">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">release_buffers</span><span class="token punctuation">(</span>b <span class="token punctuation">[</span><span class="token punctuation">]</span>Buffer<span class="token punctuation">)</span></code></pre>
+<p>release_buffers deletes multiple instances of Buffer</p>
+
+</section>
+						<section id="release_sources" class="doc-node">
+							<div class="title"><h2>fn release_sources <a href="#release_sources">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">release_sources</span><span class="token punctuation">(</span>s <span class="token punctuation">[</span><span class="token punctuation">]</span>Source<span class="token punctuation">)</span></code></pre>
+<p>release_sources deletes multiple instances of Source</p>
+
+</section>
+						<section id="rewind_sources" class="doc-node">
+							<div class="title"><h2>fn rewind_sources <a href="#rewind_sources">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">rewind_sources</span><span class="token punctuation">(</span>s <span class="token punctuation">[</span><span class="token punctuation">]</span>Source<span class="token punctuation">)</span></code></pre>
+<p>rewind_sources rewinds multiple sources at once</p>
+
+</section>
+						<section id="speed_sound" class="doc-node">
+							<div class="title"><h2>fn speed_sound <a href="#speed_sound">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">speed_sound</span><span class="token punctuation">(</span>value <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>speed_sound sets the speed of sound</p>
+
+</section>
+						<section id="stop_sources" class="doc-node">
+							<div class="title"><h2>fn stop_sources <a href="#stop_sources">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">stop_sources</span><span class="token punctuation">(</span>s <span class="token punctuation">[</span><span class="token punctuation">]</span>Source<span class="token punctuation">)</span></code></pre>
+<p>stop_sources stops multiple sources at once</p>
+
+</section>
+						<section id="BufferFormat" class="doc-node">
+							<div class="title"><h2>enum BufferFormat <a href="#BufferFormat">#</a></h2></div><pre class="signature"><code><span class="token keyword">enum</span> <span class="token symbol">BufferFormat</span> <span class="token punctuation">{</span>
+	mono8
+	mono16
+	stereo8
+	stereo16
+	undefined
+<span class="token punctuation">}</span></code></pre>
+
+
+</section>
+						<section id="DistanceModel" class="doc-node">
+							<div class="title"><h2>enum DistanceModel <a href="#DistanceModel">#</a></h2></div><pre class="signature"><code><span class="token keyword">enum</span> <span class="token symbol">DistanceModel</span> <span class="token punctuation">{</span>
+	inverse_distance
+	inverse_distance_clamped
+	linear_distance
+	linear_ditance_clamped
+	exponent_distance
+	exponent_distance_clamped
+<span class="token punctuation">}</span></code></pre>
+
+
+</section>
+						<section id="SourceState" class="doc-node">
+							<div class="title"><h2>enum SourceState <a href="#SourceState">#</a></h2></div><pre class="signature"><code><span class="token keyword">enum</span> <span class="token symbol">SourceState</span> <span class="token punctuation">{</span>
+	initial
+	playing
+	paused
+	stopped
+	undetermined
+<span class="token punctuation">}</span></code></pre>
+<p>SourceState defines the states of a source</p>
+
+</section>
+						<section id="SourceType" class="doc-node">
+							<div class="title"><h2>enum SourceType <a href="#SourceType">#</a></h2></div><pre class="signature"><code><span class="token keyword">enum</span> <span class="token symbol">SourceType</span> <span class="token punctuation">{</span>
+	statik
+	streaming
+	undetermined
+<span class="token punctuation">}</span></code></pre>
+<p>SourceType defines the types of a source</p>
+
+</section>
+						<section id="Buffer" class="doc-node">
+							<div class="title"><h2>struct Buffer <a href="#Buffer">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">Buffer</span> <span class="token punctuation">{</span>
+<span class="token keyword">mut</span><span class="token punctuation">:</span>
+	id <span class="token builtin">u32</span>
+<span class="token punctuation">}</span></code></pre>
+
+
+</section>
+						<section id="Buffer.generate" class="doc-node">
+							<div class="title"><h2>fn (Buffer) generate <a href="#Buffer.generate">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Buffer<span class="token punctuation">)</span> <span class="token function">generate</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>generate a buffer</p>
+
+</section>
+						<section id="Buffer.release" class="doc-node">
+							<div class="title"><h2>fn (Buffer) release <a href="#Buffer.release">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span> <span class="token function">release</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>release buffer</p>
+
+</section>
+						<section id="Buffer.is_valid" class="doc-node">
+							<div class="title"><h2>fn (Buffer) is_valid <a href="#Buffer.is_valid">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span> <span class="token function">is_valid</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>is_valid validates Buffer</p>
+
+</section>
+						<section id="Buffer.get_id" class="doc-node">
+							<div class="title"><h2>fn (Buffer) get_id <a href="#Buffer.get_id">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span> <span class="token function">get_id</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">u32</span></code></pre>
+<p>get_id returns the id of the buffer</p>
+
+</section>
+						<section id="Buffer.get_frequency" class="doc-node">
+							<div class="title"><h2>fn (Buffer) get_frequency <a href="#Buffer.get_frequency">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span> <span class="token function">get_frequency</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span></code></pre>
+<p>get_frequency returns the frequency of the buffer</p>
+
+</section>
+						<section id="Buffer.get_bits" class="doc-node">
+							<div class="title"><h2>fn (Buffer) get_bits <a href="#Buffer.get_bits">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span> <span class="token function">get_bits</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span></code></pre>
+<p>get_bits returns the bits of the buffer</p>
+
+</section>
+						<section id="Buffer.get_channels" class="doc-node">
+							<div class="title"><h2>fn (Buffer) get_channels <a href="#Buffer.get_channels">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span> <span class="token function">get_channels</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span></code></pre>
+<p>get_channels returns the number channels of the buffer</p>
+
+</section>
+						<section id="Buffer.get_size" class="doc-node">
+							<div class="title"><h2>fn (Buffer) get_size <a href="#Buffer.get_size">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span> <span class="token function">get_size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span></code></pre>
+<p>get_size returns the size of the buffer</p>
+
+</section>
+						<section id="Buffer.set_data" class="doc-node">
+							<div class="title"><h2>fn (Buffer) set_data <a href="#Buffer.set_data">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span> <span class="token function">set_data</span><span class="token punctuation">(</span>format <span class="token builtin">int</span><span class="token punctuation">,</span> data <span class="token builtin">voidptr</span><span class="token punctuation">,</span> size <span class="token builtin">int</span><span class="token punctuation">,</span> frequency <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>set_data sets the data on the buffer</p>
+
+</section>
+						<section id="Buffer.bufferf" class="doc-node">
+							<div class="title"><h2>fn (Buffer) bufferf <a href="#Buffer.bufferf">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span> <span class="token function">bufferf</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">,</span> value <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>bufferf sets a buffer parameter value as float</p>
+
+</section>
+						<section id="Buffer.buffer3f" class="doc-node">
+							<div class="title"><h2>fn (Buffer) buffer3f <a href="#Buffer.buffer3f">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span> <span class="token function">buffer3f</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">,</span> value1 <span class="token builtin">f32</span><span class="token punctuation">,</span> value2 <span class="token builtin">f32</span><span class="token punctuation">,</span> value3 <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>buffer3f sets a buffer parameter value as a tuple of floats</p>
+
+</section>
+						<section id="Buffer.bufferfv" class="doc-node">
+							<div class="title"><h2>fn (Buffer) bufferfv <a href="#Buffer.bufferfv">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span> <span class="token function">bufferfv</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">,</span> values <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>bufferfv sets a buffer parameter value as a vector of floats</p>
+
+</section>
+						<section id="Buffer.bufferi" class="doc-node">
+							<div class="title"><h2>fn (Buffer) bufferi <a href="#Buffer.bufferi">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span> <span class="token function">bufferi</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">,</span> value <span class="token builtin">int</span><span class="token punctuation">)</span></code></pre>
+<p>bufferi sets a buffer parameter value as integer</p>
+
+</section>
+						<section id="Buffer.buffer3i" class="doc-node">
+							<div class="title"><h2>fn (Buffer) buffer3i <a href="#Buffer.buffer3i">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span> <span class="token function">buffer3i</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">,</span> v1 <span class="token builtin">int</span><span class="token punctuation">,</span> v2 <span class="token builtin">int</span><span class="token punctuation">,</span> v3 <span class="token builtin">int</span><span class="token punctuation">)</span></code></pre>
+<p>buffer3i sets a buffer parameter value as a tuple of integers</p>
+
+</section>
+						<section id="Buffer.bufferiv" class="doc-node">
+							<div class="title"><h2>fn (Buffer) bufferiv <a href="#Buffer.bufferiv">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span> <span class="token function">bufferiv</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">,</span> values <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span></code></pre>
+<p>bufferiv sets a buffer parameter value as vector of integers</p>
+
+</section>
+						<section id="Buffer.get_bufferf" class="doc-node">
+							<div class="title"><h2>fn (Buffer) get_bufferf <a href="#Buffer.get_bufferf">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span> <span class="token function">get_bufferf</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">f32</span></code></pre>
+<p>get_bufferf returns a buffer parameter value as float</p>
+
+</section>
+						<section id="Buffer.get_buffer3f" class="doc-node">
+							<div class="title"><h2>fn (Buffer) get_buffer3f <a href="#Buffer.get_buffer3f">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span> <span class="token function">get_buffer3f</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">f32</span><span class="token punctuation">,</span> <span class="token builtin">f32</span><span class="token punctuation">,</span> <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>get_buffer3f returns a buffer parameter value as a tuple of floats</p>
+
+</section>
+						<section id="Buffer.get_bufferfv" class="doc-node">
+							<div class="title"><h2>fn (Buffer) get_bufferfv <a href="#Buffer.get_bufferfv">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span> <span class="token function">get_bufferfv</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">f32</span></code></pre>
+<p>get_bufferfv returns a buffer parameter value as vector of floats</p>
+
+</section>
+						<section id="Buffer.get_bufferi" class="doc-node">
+							<div class="title"><h2>fn (Buffer) get_bufferi <a href="#Buffer.get_bufferi">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span> <span class="token function">get_bufferi</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span></code></pre>
+<p>get_bufferi returns a buffer parameter value as integer</p>
+
+</section>
+						<section id="Buffer.get_buffer3i" class="doc-node">
+							<div class="title"><h2>fn (Buffer) get_buffer3i <a href="#Buffer.get_buffer3i">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span> <span class="token function">get_buffer3i</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">)</span></code></pre>
+<p>get_buffer3i returns a buffer parameter value as a tuple of integers</p>
+
+</section>
+						<section id="Buffer.get_bufferiv" class="doc-node">
+							<div class="title"><h2>fn (Buffer) get_bufferiv <a href="#Buffer.get_bufferiv">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span> <span class="token function">get_bufferiv</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span></code></pre>
+<p>get_bufferiv returns a buffer parameter value as vector of integers</p>
+
+</section>
+						<section id="Err" class="doc-node">
+							<div class="title"><h2>struct Err <a href="#Err">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">Err</span> <span class="token punctuation">{</span>
+<span class="token keyword">mut</span><span class="token punctuation">:</span>
+	code <span class="token builtin">int</span>
+<span class="token punctuation">}</span></code></pre>
+
+
+</section>
+						<section id="Err.str" class="doc-node">
+							<div class="title"><h2>fn (Err) str <a href="#Err.str">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>err <span class="token operator">&</span>Err<span class="token punctuation">)</span> <span class="token function">str</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span></code></pre>
+<p>str formats the error into a string</p>
+
+</section>
+						<section id="Listener" class="doc-node">
+							<div class="title"><h2>struct Listener <a href="#Listener">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">Listener</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span></code></pre>
+
+
+</section>
+						<section id="Listener.get_gain" class="doc-node">
+							<div class="title"><h2>fn (Listener) get_gain <a href="#Listener.get_gain">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>l <span class="token operator">&</span>Listener<span class="token punctuation">)</span> <span class="token function">get_gain</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">f32</span></code></pre>
+<p>get_gain returns the gain of the listener</p>
+
+</section>
+						<section id="Listener.set_gain" class="doc-node">
+							<div class="title"><h2>fn (Listener) set_gain <a href="#Listener.set_gain">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>l <span class="token operator">&</span>Listener<span class="token punctuation">)</span> <span class="token function">set_gain</span><span class="token punctuation">(</span>value <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>set_gain sets the gain of the listener</p>
+
+</section>
+						<section id="Listener.get_position" class="doc-node">
+							<div class="title"><h2>fn (Listener) get_position <a href="#Listener.get_position">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>l <span class="token operator">&</span>Listener<span class="token punctuation">)</span> <span class="token function">get_position</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">f32</span><span class="token punctuation">,</span> <span class="token builtin">f32</span><span class="token punctuation">,</span> <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>get_position returns the position of the listener</p>
+
+</section>
+						<section id="Listener.set_position" class="doc-node">
+							<div class="title"><h2>fn (Listener) set_position <a href="#Listener.set_position">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>l <span class="token operator">&</span>Listener<span class="token punctuation">)</span> <span class="token function">set_position</span><span class="token punctuation">(</span>x <span class="token builtin">f32</span><span class="token punctuation">,</span> y <span class="token builtin">f32</span><span class="token punctuation">,</span> z <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>set_position sets the position of the listener</p>
+
+</section>
+						<section id="Listener.get_velocity" class="doc-node">
+							<div class="title"><h2>fn (Listener) get_velocity <a href="#Listener.get_velocity">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>l <span class="token operator">&</span>Listener<span class="token punctuation">)</span> <span class="token function">get_velocity</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">f32</span><span class="token punctuation">,</span> <span class="token builtin">f32</span><span class="token punctuation">,</span> <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>get_velocity returns the velocity of the listener</p>
+
+</section>
+						<section id="Listener.set_velocity" class="doc-node">
+							<div class="title"><h2>fn (Listener) set_velocity <a href="#Listener.set_velocity">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>l <span class="token operator">&</span>Listener<span class="token punctuation">)</span> <span class="token function">set_velocity</span><span class="token punctuation">(</span>x <span class="token builtin">f32</span><span class="token punctuation">,</span> y <span class="token builtin">f32</span><span class="token punctuation">,</span> z <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>set_velocity sets the velocity of the listener</p>
+
+</section>
+						<section id="Listener.get_orientation" class="doc-node">
+							<div class="title"><h2>fn (Listener) get_orientation <a href="#Listener.get_orientation">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>l <span class="token operator">&</span>Listener<span class="token punctuation">)</span> <span class="token function">get_orientation</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">f32</span></code></pre>
+<p>get_orientation returns the orientation of the listener</p>
+
+</section>
+						<section id="Listener.set_orientation" class="doc-node">
+							<div class="title"><h2>fn (Listener) set_orientation <a href="#Listener.set_orientation">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>l <span class="token operator">&</span>Listener<span class="token punctuation">)</span> <span class="token function">set_orientation</span><span class="token punctuation">(</span>value <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>set_orientation sets the orientation of the listener</p>
+
+</section>
+						<section id="Listener.listenerf" class="doc-node">
+							<div class="title"><h2>fn (Listener) listenerf <a href="#Listener.listenerf">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>l <span class="token operator">&</span>Listener<span class="token punctuation">)</span> <span class="token function">listenerf</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">,</span> value <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>listenerf sets a listener parameter value as float</p>
+
+</section>
+						<section id="Listener.listener3f" class="doc-node">
+							<div class="title"><h2>fn (Listener) listener3f <a href="#Listener.listener3f">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>l <span class="token operator">&</span>Listener<span class="token punctuation">)</span> <span class="token function">listener3f</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">,</span> v1 <span class="token builtin">f32</span><span class="token punctuation">,</span> v2 <span class="token builtin">f32</span><span class="token punctuation">,</span> v3 <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>listener3f sets a listener parameter value as vector of floats</p>
+
+</section>
+						<section id="Listener.listenerfv" class="doc-node">
+							<div class="title"><h2>fn (Listener) listenerfv <a href="#Listener.listenerfv">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>l <span class="token operator">&</span>Listener<span class="token punctuation">)</span> <span class="token function">listenerfv</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">,</span> values <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>listenefv sets a listener parameter value as vector of floats</p>
+
+</section>
+						<section id="Listener.listeneri" class="doc-node">
+							<div class="title"><h2>fn (Listener) listeneri <a href="#Listener.listeneri">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>l <span class="token operator">&</span>Listener<span class="token punctuation">)</span> <span class="token function">listeneri</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">,</span> value <span class="token builtin">int</span><span class="token punctuation">)</span></code></pre>
+<p>listeneri sets a listener parameter value as integer</p>
+
+</section>
+						<section id="Listener.listener3i" class="doc-node">
+							<div class="title"><h2>fn (Listener) listener3i <a href="#Listener.listener3i">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>l <span class="token operator">&</span>Listener<span class="token punctuation">)</span> <span class="token function">listener3i</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">,</span> v1 <span class="token builtin">int</span><span class="token punctuation">,</span> v2 <span class="token builtin">int</span><span class="token punctuation">,</span> v3 <span class="token builtin">int</span><span class="token punctuation">)</span></code></pre>
+<p>listener3i sets a listener parameter value as vector of integers</p>
+
+</section>
+						<section id="Listener.listeneriv" class="doc-node">
+							<div class="title"><h2>fn (Listener) listeneriv <a href="#Listener.listeneriv">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>l <span class="token operator">&</span>Listener<span class="token punctuation">)</span> <span class="token function">listeneriv</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">,</span> values <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span></code></pre>
+<p>listeneriv sets a listener parameter value as vector of integers</p>
+
+</section>
+						<section id="Listener.get_listenerf" class="doc-node">
+							<div class="title"><h2>fn (Listener) get_listenerf <a href="#Listener.get_listenerf">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>l <span class="token operator">&</span>Listener<span class="token punctuation">)</span> <span class="token function">get_listenerf</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">f32</span></code></pre>
+<p>get_listenerf returns a listener parameter value as float</p>
+
+</section>
+						<section id="Listener.get_listener3f" class="doc-node">
+							<div class="title"><h2>fn (Listener) get_listener3f <a href="#Listener.get_listener3f">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>l <span class="token operator">&</span>Listener<span class="token punctuation">)</span> <span class="token function">get_listener3f</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">f32</span><span class="token punctuation">,</span> <span class="token builtin">f32</span><span class="token punctuation">,</span> <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>get_listener3f returns a listener parameter value as vector of floats</p>
+
+</section>
+						<section id="Listener.get_listenerfv" class="doc-node">
+							<div class="title"><h2>fn (Listener) get_listenerfv <a href="#Listener.get_listenerfv">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>l <span class="token operator">&</span>Listener<span class="token punctuation">)</span> <span class="token function">get_listenerfv</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">f32</span></code></pre>
+<p>get_listenerfv returns a listener parameter value as vector of floats</p>
+
+</section>
+						<section id="Listener.get_listeneri" class="doc-node">
+							<div class="title"><h2>fn (Listener) get_listeneri <a href="#Listener.get_listeneri">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>l <span class="token operator">&</span>Listener<span class="token punctuation">)</span> <span class="token function">get_listeneri</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span></code></pre>
+<p>get_listeneri returns a listener parameter value as integer</p>
+
+</section>
+						<section id="Listener.get_listener3i" class="doc-node">
+							<div class="title"><h2>fn (Listener) get_listener3i <a href="#Listener.get_listener3i">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>l <span class="token operator">&</span>Listener<span class="token punctuation">)</span> <span class="token function">get_listener3i</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">)</span></code></pre>
+<p>get_listener3i returns a listener parameter value as vector of integers</p>
+
+</section>
+						<section id="Listener.get_listeneriv" class="doc-node">
+							<div class="title"><h2>fn (Listener) get_listeneriv <a href="#Listener.get_listeneriv">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>l <span class="token operator">&</span>Listener<span class="token punctuation">)</span> <span class="token function">get_listeneriv</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span></code></pre>
+<p>get_listeneriv returns a listener parameter value as vector of integers</p>
+
+</section>
+						<section id="Source" class="doc-node">
+							<div class="title"><h2>struct Source <a href="#Source">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">Source</span> <span class="token punctuation">{</span>
+<span class="token keyword">mut</span><span class="token punctuation">:</span>
+	id <span class="token builtin">u32</span>
+<span class="token punctuation">}</span></code></pre>
+
+
+</section>
+						<section id="Source.generate" class="doc-node">
+							<div class="title"><h2>fn (Source) generate <a href="#Source.generate">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s Source<span class="token punctuation">)</span> <span class="token function">generate</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>generate source</p>
+
+</section>
+						<section id="Source.release" class="doc-node">
+							<div class="title"><h2>fn (Source) release <a href="#Source.release">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">release</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>release source</p>
+
+</section>
+						<section id="Source.get_id" class="doc-node">
+							<div class="title"><h2>fn (Source) get_id <a href="#Source.get_id">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_id</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">u32</span></code></pre>
+<p>get_id returns the id of the source</p>
+
+</section>
+						<section id="Source.is_valid" class="doc-node">
+							<div class="title"><h2>fn (Source) is_valid <a href="#Source.is_valid">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">is_valid</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>is_valid returns true if source is valid</p>
+
+</section>
+						<section id="Source.link_to_buffer" class="doc-node">
+							<div class="title"><h2>fn (Source) link_to_buffer <a href="#Source.link_to_buffer">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">link_to_buffer</span><span class="token punctuation">(</span>b <span class="token operator">&</span>Buffer<span class="token punctuation">)</span></code></pre>
+<p>link_to_buffer links the buffer to the source</p>
+
+</section>
+						<section id="Source.is_relative" class="doc-node">
+							<div class="title"><h2>fn (Source) is_relative <a href="#Source.is_relative">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">is_relative</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>is_relative returns true if source position is relative to listener</p>
+
+</section>
+						<section id="Source.loop" class="doc-node">
+							<div class="title"><h2>fn (Source) loop <a href="#Source.loop">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">loop</span><span class="token punctuation">(</span>loop <span class="token builtin">bool</span><span class="token punctuation">)</span></code></pre>
+<p>loop sets source to a looping state</p>
+
+</section>
+						<section id="Source.is_looping" class="doc-node">
+							<div class="title"><h2>fn (Source) is_looping <a href="#Source.is_looping">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">is_looping</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>is_looping returns true if source is set to loop</p>
+
+</section>
+						<section id="Source.get_type" class="doc-node">
+							<div class="title"><h2>fn (Source) get_type <a href="#Source.get_type">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_type</span><span class="token punctuation">(</span><span class="token punctuation">)</span> SourceType</code></pre>
+<p>get_type returns a source type</p>
+
+</section>
+						<section id="Source.get_state" class="doc-node">
+							<div class="title"><h2>fn (Source) get_state <a href="#Source.get_state">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_state</span><span class="token punctuation">(</span><span class="token punctuation">)</span> SourceState</code></pre>
+<p>get_state returns a source state</p>
+
+</section>
+						<section id="Source.get_offset_time" class="doc-node">
+							<div class="title"><h2>fn (Source) get_offset_time <a href="#Source.get_offset_time">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_offset_time</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">f32</span></code></pre>
+<p>get_offset_time returns the playback position offset in seconds</p>
+
+</section>
+						<section id="Source.get_offset_sample" class="doc-node">
+							<div class="title"><h2>fn (Source) get_offset_sample <a href="#Source.get_offset_sample">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_offset_sample</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">f32</span></code></pre>
+<p>get_offset_sample returns the playback position offset in samples</p>
+
+</section>
+						<section id="Source.get_offset_byte" class="doc-node">
+							<div class="title"><h2>fn (Source) get_offset_byte <a href="#Source.get_offset_byte">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_offset_byte</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">f32</span></code></pre>
+<p>get_offset_byte returns the playback position offset in byte</p>
+
+</section>
+						<section id="Source.get_buffer_id" class="doc-node">
+							<div class="title"><h2>fn (Source) get_buffer_id <a href="#Source.get_buffer_id">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_buffer_id</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span></code></pre>
+<p>get_buffer_id returns the buffer id linked to the source</p>
+
+</section>
+						<section id="Source.get_buffers_queued" class="doc-node">
+							<div class="title"><h2>fn (Source) get_buffers_queued <a href="#Source.get_buffers_queued">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_buffers_queued</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span></code></pre>
+<p>get_buffers_queued returns the number of buffers queued in the source</p>
+
+</section>
+						<section id="Source.get_buffers_processed" class="doc-node">
+							<div class="title"><h2>fn (Source) get_buffers_processed <a href="#Source.get_buffers_processed">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_buffers_processed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span></code></pre>
+<p>get_buffers_processed returns the number of buffers in the queue that have been processed</p>
+
+</section>
+						<section id="Source.get_pitch" class="doc-node">
+							<div class="title"><h2>fn (Source) get_pitch <a href="#Source.get_pitch">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_pitch</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">f32</span></code></pre>
+<p>get_pitch retuns the pitch of the source</p>
+
+</section>
+						<section id="Source.set_pitch" class="doc-node">
+							<div class="title"><h2>fn (Source) set_pitch <a href="#Source.set_pitch">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">set_pitch</span><span class="token punctuation">(</span>value <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>set_pitch sets the pitch of the source</p>
+
+</section>
+						<section id="Source.get_gain" class="doc-node">
+							<div class="title"><h2>fn (Source) get_gain <a href="#Source.get_gain">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_gain</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">f32</span></code></pre>
+<p>get_gain returns the gain of the source</p>
+
+</section>
+						<section id="Source.set_gain" class="doc-node">
+							<div class="title"><h2>fn (Source) set_gain <a href="#Source.set_gain">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">set_gain</span><span class="token punctuation">(</span>value <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>set_gain sets the gain of the source</p>
+
+</section>
+						<section id="Source.get_gain_bounds" class="doc-node">
+							<div class="title"><h2>fn (Source) get_gain_bounds <a href="#Source.get_gain_bounds">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_gain_bounds</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">f32</span><span class="token punctuation">,</span> <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>get_gain_bounds returns the min/max gain of the source</p>
+
+</section>
+						<section id="Source.set_gain_bounds" class="doc-node">
+							<div class="title"><h2>fn (Source) set_gain_bounds <a href="#Source.set_gain_bounds">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">set_gain_bounds</span><span class="token punctuation">(</span>min <span class="token builtin">f32</span><span class="token punctuation">,</span> max <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>set_gain_bounds sets the min/max gain of the source</p>
+
+</section>
+						<section id="Source.get_max_distance" class="doc-node">
+							<div class="title"><h2>fn (Source) get_max_distance <a href="#Source.get_max_distance">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_max_distance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">f32</span></code></pre>
+<p>get_max_distance returns max distance of the source</p>
+
+</section>
+						<section id="Source.set_max_distance" class="doc-node">
+							<div class="title"><h2>fn (Source) set_max_distance <a href="#Source.set_max_distance">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">set_max_distance</span><span class="token punctuation">(</span>value <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>set_max_distance sets the max distance of the source</p>
+
+</section>
+						<section id="Source.get_rolloff" class="doc-node">
+							<div class="title"><h2>fn (Source) get_rolloff <a href="#Source.get_rolloff">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_rolloff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">f32</span></code></pre>
+<p>get_rolloff returns the rolloff factor of the source</p>
+
+</section>
+						<section id="Source.set_rolloff" class="doc-node">
+							<div class="title"><h2>fn (Source) set_rolloff <a href="#Source.set_rolloff">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">set_rolloff</span><span class="token punctuation">(</span>value <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>set_rolloff sets the rolloff factor of the source</p>
+
+</section>
+						<section id="Source.get_cone_outer_gain" class="doc-node">
+							<div class="title"><h2>fn (Source) get_cone_outer_gain <a href="#Source.get_cone_outer_gain">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_cone_outer_gain</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">f32</span></code></pre>
+<p>get_cone_outer_gain returns the cone outer gain of the source</p>
+
+</section>
+						<section id="Source.set_cone_outer_gain" class="doc-node">
+							<div class="title"><h2>fn (Source) set_cone_outer_gain <a href="#Source.set_cone_outer_gain">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">set_cone_outer_gain</span><span class="token punctuation">(</span>value <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>set_cone_outer_gain sets the cone outer gain of the source</p>
+
+</section>
+						<section id="Source.get_cone_inner_angle" class="doc-node">
+							<div class="title"><h2>fn (Source) get_cone_inner_angle <a href="#Source.get_cone_inner_angle">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_cone_inner_angle</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">f32</span></code></pre>
+<p>get_cone_inner_angle returns the cone inner angle of the source</p>
+
+</section>
+						<section id="Source.set_cone_inner_angle" class="doc-node">
+							<div class="title"><h2>fn (Source) set_cone_inner_angle <a href="#Source.set_cone_inner_angle">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">set_cone_inner_angle</span><span class="token punctuation">(</span>value <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>set_cone_inner_angle sets the cone inner angle of the source</p>
+
+</section>
+						<section id="Source.get_cone_outer_angle" class="doc-node">
+							<div class="title"><h2>fn (Source) get_cone_outer_angle <a href="#Source.get_cone_outer_angle">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_cone_outer_angle</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">f32</span></code></pre>
+<p>get_cone_outer_angle returns the cone outer angle of the source</p>
+
+</section>
+						<section id="Source.set_cone_outer_angle" class="doc-node">
+							<div class="title"><h2>fn (Source) set_cone_outer_angle <a href="#Source.set_cone_outer_angle">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">set_cone_outer_angle</span><span class="token punctuation">(</span>value <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>set_cone_outer_angle sets the cone outer angle of the source</p>
+
+</section>
+						<section id="Source.get_reference_distance" class="doc-node">
+							<div class="title"><h2>fn (Source) get_reference_distance <a href="#Source.get_reference_distance">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_reference_distance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">f32</span></code></pre>
+<p>get_reference_distance Get source reference distance</p>
+
+</section>
+						<section id="Source.set_reference_distance" class="doc-node">
+							<div class="title"><h2>fn (Source) set_reference_distance <a href="#Source.set_reference_distance">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">set_reference_distance</span><span class="token punctuation">(</span>value <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>set_reference_distance sets the reference distance of the source</p>
+
+</section>
+						<section id="Source.get_position" class="doc-node">
+							<div class="title"><h2>fn (Source) get_position <a href="#Source.get_position">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_position</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">f32</span><span class="token punctuation">,</span> <span class="token builtin">f32</span><span class="token punctuation">,</span> <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>get_position returns the position of the source</p>
+
+</section>
+						<section id="Source.set_position" class="doc-node">
+							<div class="title"><h2>fn (Source) set_position <a href="#Source.set_position">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">set_position</span><span class="token punctuation">(</span>v1 <span class="token builtin">f32</span><span class="token punctuation">,</span> v2 <span class="token builtin">f32</span><span class="token punctuation">,</span> v3 <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>set_position sets the position of the source</p>
+
+</section>
+						<section id="Source.get_velocity" class="doc-node">
+							<div class="title"><h2>fn (Source) get_velocity <a href="#Source.get_velocity">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_velocity</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">f32</span><span class="token punctuation">,</span> <span class="token builtin">f32</span><span class="token punctuation">,</span> <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>get_velocity returns the velocity of the source</p>
+
+</section>
+						<section id="Source.set_velocity" class="doc-node">
+							<div class="title"><h2>fn (Source) set_velocity <a href="#Source.set_velocity">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">set_velocity</span><span class="token punctuation">(</span>v1 <span class="token builtin">f32</span><span class="token punctuation">,</span> v2 <span class="token builtin">f32</span><span class="token punctuation">,</span> v3 <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>set_velocity sets the velocity of the source</p>
+
+</section>
+						<section id="Source.get_direction" class="doc-node">
+							<div class="title"><h2>fn (Source) get_direction <a href="#Source.get_direction">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">get_direction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">f32</span><span class="token punctuation">,</span> <span class="token builtin">f32</span><span class="token punctuation">,</span> <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>get_direction returns the direction of the source</p>
+
+</section>
+						<section id="Source.set_direction" class="doc-node">
+							<div class="title"><h2>fn (Source) set_direction <a href="#Source.set_direction">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">set_direction</span><span class="token punctuation">(</span>v1 <span class="token builtin">f32</span><span class="token punctuation">,</span> v2 <span class="token builtin">f32</span><span class="token punctuation">,</span> v3 <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>set_direction sets the direction of the source</p>
+
+</section>
+						<section id="Source.sourcef" class="doc-node">
+							<div class="title"><h2>fn (Source) sourcef <a href="#Source.sourcef">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">sourcef</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">,</span> value <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>sourcef sets a source parameter value as float</p>
+
+</section>
+						<section id="Source.source3f" class="doc-node">
+							<div class="title"><h2>fn (Source) source3f <a href="#Source.source3f">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">source3f</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">,</span> v1 <span class="token builtin">f32</span><span class="token punctuation">,</span> v2 <span class="token builtin">f32</span><span class="token punctuation">,</span> v3 <span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>source3f sets a source parameter value as vector of floats</p>
+
+</section>
+						<section id="Source.sourcefv" class="doc-node">
+							<div class="title"><h2>fn (Source) sourcefv <a href="#Source.sourcefv">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">sourcefv</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">,</span> values <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">f32</span><span class="token punctuation">)</span></code></pre>
+<p>sourcefv sets a source parameter value as vector of floats</p>
+
+</section>
+						<section id="Source.sourcei" class="doc-node">
+							<div class="title"><h2>fn (Source) sourcei <a href="#Source.sourcei">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">sourcei</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">,</span> value <span class="token builtin">int</span><span class="token punctuation">)</span></code></pre>
+<p>sourcei sets a source parameter value as integer</p>
+
+</section>
+						<section id="Source.source3i" class="doc-node">
+							<div class="title"><h2>fn (Source) source3i <a href="#Source.source3i">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">source3i</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">,</span> v1 <span class="token builtin">int</span><span class="token punctuation">,</span> v2 <span class="token builtin">int</span><span class="token punctuation">,</span> v3 <span class="token builtin">int</span><span class="token punctuation">)</span></code></pre>
+<p>source3i sets a source parameter value as vector of integers</p>
+
+</section>
+						<section id="Source.sourceiv" class="doc-node">
+							<div class="title"><h2>fn (Source) sourceiv <a href="#Source.sourceiv">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">sourceiv</span><span class="token punctuation">(</span>param <span class="token builtin">int</span><span class="token punctuation">,</span> values <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span></code></pre>
+<p>sourceiv sets a source parameter value as vector of integers</p>
+
+</section>
+						<section id="Source.play" class="doc-node">
+							<div class="title"><h2>fn (Source) play <a href="#Source.play">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>play the source</p>
+
+</section>
+						<section id="Source.pause" class="doc-node">
+							<div class="title"><h2>fn (Source) pause <a href="#Source.pause">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">pause</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>pause the source</p>
+
+</section>
+						<section id="Source.stop" class="doc-node">
+							<div class="title"><h2>fn (Source) stop <a href="#Source.stop">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>stop the source</p>
+
+</section>
+						<section id="Source.rewind" class="doc-node">
+							<div class="title"><h2>fn (Source) rewind <a href="#Source.rewind">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">rewind</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>rewind the source</p>
+
+</section>
+						<section id="Source.queue_buffers" class="doc-node">
+							<div class="title"><h2>fn (Source) queue_buffers <a href="#Source.queue_buffers">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">queue_buffers</span><span class="token punctuation">(</span>b <span class="token punctuation">[</span><span class="token punctuation">]</span>Buffer<span class="token punctuation">)</span></code></pre>
+<p>queue_buffers adds buffer into the source's queue</p>
+
+</section>
+						<section id="Source.unqueue_buffers" class="doc-node">
+							<div class="title"><h2>fn (Source) unqueue_buffers <a href="#Source.unqueue_buffers">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>Source<span class="token punctuation">)</span> <span class="token function">unqueue_buffers</span><span class="token punctuation">(</span>b <span class="token punctuation">[</span><span class="token punctuation">]</span>Buffer<span class="token punctuation">)</span></code></pre>
+<p>unqueue_buffers removes buffers from the source's queue</p>
+
+</section>
+
+						<div class="footer">
+							Powered by vdoc. Generated on: 9 Apr 2021 23:32:32
+						</div>
+					</div>
+					<div class="doc-toc"><ul><li class="open"><a href="#Constants">Constants</a></li>
+<li class="open"><a href="#al_version">fn al_version</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#check_error">fn check_error</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#disable">fn disable</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#distance_model">fn distance_model</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#doppler_factor">fn doppler_factor</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#enable">fn enable</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#get_boolean">fn get_boolean</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#get_booleanv">fn get_booleanv</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#get_double">fn get_double</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#get_doublev">fn get_doublev</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#get_enum_value">fn get_enum_value</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#get_float">fn get_float</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#get_floatv">fn get_floatv</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#get_integer">fn get_integer</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#get_integerv">fn get_integerv</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#get_proc_addr">fn get_proc_addr</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#get_string">fn get_string</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#is_enabled">fn is_enabled</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#is_extension_present">fn is_extension_present</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#new_buffer">fn new_buffer</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#new_buffers">fn new_buffers</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#new_listener">fn new_listener</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#new_source">fn new_source</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#new_sources">fn new_sources</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#pause_sources">fn pause_sources</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#play_sources">fn play_sources</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#release_buffers">fn release_buffers</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#release_sources">fn release_sources</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#rewind_sources">fn rewind_sources</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#speed_sound">fn speed_sound</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#stop_sources">fn stop_sources</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#BufferFormat">enum BufferFormat</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#DistanceModel">enum DistanceModel</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#SourceState">enum SourceState</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#SourceType">enum SourceType</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#Buffer">struct Buffer</a>        <ul>
+<li><a href="#Buffer.generate">fn generate</a></li>
+<li><a href="#Buffer.release">fn release</a></li>
+<li><a href="#Buffer.is_valid">fn is_valid</a></li>
+<li><a href="#Buffer.get_id">fn get_id</a></li>
+<li><a href="#Buffer.get_frequency">fn get_frequency</a></li>
+<li><a href="#Buffer.get_bits">fn get_bits</a></li>
+<li><a href="#Buffer.get_channels">fn get_channels</a></li>
+<li><a href="#Buffer.get_size">fn get_size</a></li>
+<li><a href="#Buffer.set_data">fn set_data</a></li>
+<li><a href="#Buffer.bufferf">fn bufferf</a></li>
+<li><a href="#Buffer.buffer3f">fn buffer3f</a></li>
+<li><a href="#Buffer.bufferfv">fn bufferfv</a></li>
+<li><a href="#Buffer.bufferi">fn bufferi</a></li>
+<li><a href="#Buffer.buffer3i">fn buffer3i</a></li>
+<li><a href="#Buffer.bufferiv">fn bufferiv</a></li>
+<li><a href="#Buffer.get_bufferf">fn get_bufferf</a></li>
+<li><a href="#Buffer.get_buffer3f">fn get_buffer3f</a></li>
+<li><a href="#Buffer.get_bufferfv">fn get_bufferfv</a></li>
+<li><a href="#Buffer.get_bufferi">fn get_bufferi</a></li>
+<li><a href="#Buffer.get_buffer3i">fn get_buffer3i</a></li>
+<li><a href="#Buffer.get_bufferiv">fn get_bufferiv</a></li>
+</ul>
+</li>
+<li class="open"><a href="#Err">struct Err</a>        <ul>
+<li><a href="#Err.str">fn str</a></li>
+</ul>
+</li>
+<li class="open"><a href="#Listener">struct Listener</a>        <ul>
+<li><a href="#Listener.get_gain">fn get_gain</a></li>
+<li><a href="#Listener.set_gain">fn set_gain</a></li>
+<li><a href="#Listener.get_position">fn get_position</a></li>
+<li><a href="#Listener.set_position">fn set_position</a></li>
+<li><a href="#Listener.get_velocity">fn get_velocity</a></li>
+<li><a href="#Listener.set_velocity">fn set_velocity</a></li>
+<li><a href="#Listener.get_orientation">fn get_orientation</a></li>
+<li><a href="#Listener.set_orientation">fn set_orientation</a></li>
+<li><a href="#Listener.listenerf">fn listenerf</a></li>
+<li><a href="#Listener.listener3f">fn listener3f</a></li>
+<li><a href="#Listener.listenerfv">fn listenerfv</a></li>
+<li><a href="#Listener.listeneri">fn listeneri</a></li>
+<li><a href="#Listener.listener3i">fn listener3i</a></li>
+<li><a href="#Listener.listeneriv">fn listeneriv</a></li>
+<li><a href="#Listener.get_listenerf">fn get_listenerf</a></li>
+<li><a href="#Listener.get_listener3f">fn get_listener3f</a></li>
+<li><a href="#Listener.get_listenerfv">fn get_listenerfv</a></li>
+<li><a href="#Listener.get_listeneri">fn get_listeneri</a></li>
+<li><a href="#Listener.get_listener3i">fn get_listener3i</a></li>
+<li><a href="#Listener.get_listeneriv">fn get_listeneriv</a></li>
+</ul>
+</li>
+<li class="open"><a href="#Source">struct Source</a>        <ul>
+<li><a href="#Source.generate">fn generate</a></li>
+<li><a href="#Source.release">fn release</a></li>
+<li><a href="#Source.get_id">fn get_id</a></li>
+<li><a href="#Source.is_valid">fn is_valid</a></li>
+<li><a href="#Source.link_to_buffer">fn link_to_buffer</a></li>
+<li><a href="#Source.is_relative">fn is_relative</a></li>
+<li><a href="#Source.loop">fn loop</a></li>
+<li><a href="#Source.is_looping">fn is_looping</a></li>
+<li><a href="#Source.get_type">fn get_type</a></li>
+<li><a href="#Source.get_state">fn get_state</a></li>
+<li><a href="#Source.get_offset_time">fn get_offset_time</a></li>
+<li><a href="#Source.get_offset_sample">fn get_offset_sample</a></li>
+<li><a href="#Source.get_offset_byte">fn get_offset_byte</a></li>
+<li><a href="#Source.get_buffer_id">fn get_buffer_id</a></li>
+<li><a href="#Source.get_buffers_queued">fn get_buffers_queued</a></li>
+<li><a href="#Source.get_buffers_processed">fn get_buffers_processed</a></li>
+<li><a href="#Source.get_pitch">fn get_pitch</a></li>
+<li><a href="#Source.set_pitch">fn set_pitch</a></li>
+<li><a href="#Source.get_gain">fn get_gain</a></li>
+<li><a href="#Source.set_gain">fn set_gain</a></li>
+<li><a href="#Source.get_gain_bounds">fn get_gain_bounds</a></li>
+<li><a href="#Source.set_gain_bounds">fn set_gain_bounds</a></li>
+<li><a href="#Source.get_max_distance">fn get_max_distance</a></li>
+<li><a href="#Source.set_max_distance">fn set_max_distance</a></li>
+<li><a href="#Source.get_rolloff">fn get_rolloff</a></li>
+<li><a href="#Source.set_rolloff">fn set_rolloff</a></li>
+<li><a href="#Source.get_cone_outer_gain">fn get_cone_outer_gain</a></li>
+<li><a href="#Source.set_cone_outer_gain">fn set_cone_outer_gain</a></li>
+<li><a href="#Source.get_cone_inner_angle">fn get_cone_inner_angle</a></li>
+<li><a href="#Source.set_cone_inner_angle">fn set_cone_inner_angle</a></li>
+<li><a href="#Source.get_cone_outer_angle">fn get_cone_outer_angle</a></li>
+<li><a href="#Source.set_cone_outer_angle">fn set_cone_outer_angle</a></li>
+<li><a href="#Source.get_reference_distance">fn get_reference_distance</a></li>
+<li><a href="#Source.set_reference_distance">fn set_reference_distance</a></li>
+<li><a href="#Source.get_position">fn get_position</a></li>
+<li><a href="#Source.set_position">fn set_position</a></li>
+<li><a href="#Source.get_velocity">fn get_velocity</a></li>
+<li><a href="#Source.set_velocity">fn set_velocity</a></li>
+<li><a href="#Source.get_direction">fn get_direction</a></li>
+<li><a href="#Source.set_direction">fn set_direction</a></li>
+<li><a href="#Source.sourcef">fn sourcef</a></li>
+<li><a href="#Source.source3f">fn source3f</a></li>
+<li><a href="#Source.sourcefv">fn sourcefv</a></li>
+<li><a href="#Source.sourcei">fn sourcei</a></li>
+<li><a href="#Source.source3i">fn source3i</a></li>
+<li><a href="#Source.sourceiv">fn sourceiv</a></li>
+<li><a href="#Source.play">fn play</a></li>
+<li><a href="#Source.pause">fn pause</a></li>
+<li><a href="#Source.stop">fn stop</a></li>
+<li><a href="#Source.rewind">fn rewind</a></li>
+<li><a href="#Source.queue_buffers">fn queue_buffers</a></li>
+<li><a href="#Source.unqueue_buffers">fn unqueue_buffers</a></li>
+</ul>
+</li>
+</ul></div>
+				</div>
+			</div>
+		</div>
+		<script src="doc.js"></script>
+		<script async src="search_index.js" type="text/javascript"></script>
+	</body>
+</html>
