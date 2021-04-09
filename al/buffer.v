@@ -33,7 +33,7 @@ pub fn new_buffer() Buffer {
 // new_buffers creates multiple instances of Buffer
 pub fn new_buffers(n int) []Buffer {
 	mut values := []u32{len: n, init: 0}
-	C.alGenBuffers(n, &ALuint(values.data))
+	C.alGenBuffers(n, ALuintptr(values.data))
 	check_error()
 	//
 	mut buffers := []Buffer{len: n}
@@ -49,7 +49,7 @@ pub fn new_buffers(n int) []Buffer {
 // release_buffers deletes multiple instances of Buffer
 pub fn release_buffers(b []Buffer) {
 	values := convert_buffer_array(b)
-	C.alDeleteBuffers(b.len, &ALuint(values.data))
+	C.alDeleteBuffers(b.len, ALuintptr(values.data))
 	check_error()
 }
 
@@ -66,7 +66,7 @@ fn convert_buffer_array(b []Buffer) []u32 {
 // generate a buffer
 pub fn (mut b Buffer) generate() {
 	mut values := []u32{len: 1}
-	C.alGenBuffers(values.len, &ALuint(values.data))
+	C.alGenBuffers(values.len, ALuintptr(values.data))
 	check_error()
 	b.id = values[0]
 }
@@ -74,7 +74,7 @@ pub fn (mut b Buffer) generate() {
 // release buffer
 pub fn (b &Buffer) release() {
 	values := [b.id]
-	C.alDeleteBuffers(values.len, &ALuint(values.data))
+	C.alDeleteBuffers(values.len, ALuintptr(values.data))
 	check_error()
 }
 

@@ -60,7 +60,7 @@ pub fn new_source() Source {
 // new_sources generates multiple instances of Source
 pub fn new_sources(n int) []Source {
 	mut values := []u32{len: n}
-	C.alGenSources(n, &ALuint(values.data))
+	C.alGenSources(n, ALuintptr(values.data))
 	check_error()
 	//
 	mut sources := []Source{len: n}
@@ -76,7 +76,7 @@ pub fn new_sources(n int) []Source {
 // release_sources deletes multiple instances of Source
 pub fn release_sources(s []Source) {
 	values := convert_source_array(s)
-	C.alDeleteSources(s.len, &ALuint(values.data))
+	C.alDeleteSources(s.len, ALuintptr(values.data))
 	check_error()
 }
 
@@ -92,7 +92,7 @@ fn convert_source_array(s []Source) []u32 {
 // generate source
 pub fn (mut s Source) generate() {
 	mut values := []u32{len: 1}
-	C.alGenSources(values.len, &ALuint(values.data))
+	C.alGenSources(values.len, ALuintptr(values.data))
 	check_error()
 	s.id = values[0]
 }
@@ -100,7 +100,7 @@ pub fn (mut s Source) generate() {
 // release source
 pub fn (s &Source) release() {
 	values := [s.id]
-	C.alDeleteSources(values.len, &ALuint(values.data))
+	C.alDeleteSources(values.len, ALuintptr(values.data))
 	check_error()
 }
 
@@ -423,41 +423,41 @@ pub fn (s &Source) rewind() {
 // play_sources plays multiple sources at once
 pub fn play_sources(s []Source) {
 	values := convert_source_array(s)
-	C.alSourcePlayv(values.len, &ALuint(values.data))
+	C.alSourcePlayv(values.len, ALuintptr(values.data))
 	check_error()
 }
 
 // pause_sources pauses multiple sources at once
 pub fn pause_sources(s []Source) {
 	values := convert_source_array(s)
-	C.alSourcePausev(values.len, &ALuint(values.data))
+	C.alSourcePausev(values.len, ALuintptr(values.data))
 	check_error()
 }
 
 // stop_sources stops multiple sources at once
 pub fn stop_sources(s []Source) {
 	values := convert_source_array(s)
-	C.alSourceStopv(values.len, &ALuint(values.data))
+	C.alSourceStopv(values.len, ALuintptr(values.data))
 	check_error()
 }
 
 // rewind_sources rewinds multiple sources at once
 pub fn rewind_sources(s []Source) {
 	values := convert_source_array(s)
-	C.alSourceRewindv(values.len, &ALuint(values.data))
+	C.alSourceRewindv(values.len, ALuintptr(values.data))
 	check_error()
 }
 
 // queue_buffers adds buffer into the source's queue
 pub fn (s &Source) queue_buffers(b []Buffer) {
 	values := convert_buffer_array(b)
-	C.alSourceQueueBuffers(s.id, values.len, &ALuint(values.data))
+	C.alSourceQueueBuffers(s.id, values.len, ALuintptr(values.data))
 	check_error()
 }
 
 // unqueue_buffers removes buffers from the source's queue
 pub fn (s &Source) unqueue_buffers(b []Buffer) {
 	values := convert_buffer_array(b)
-	C.alSourceUnqueueBuffers(s.id, values.len, &ALuint(values.data))
+	C.alSourceUnqueueBuffers(s.id, values.len, ALuintptr(values.data))
 	check_error()
 }

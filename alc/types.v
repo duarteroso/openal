@@ -12,7 +12,7 @@ type ALCshort = i16
 type ALCushort = u16
 
 type ALCint = int
-type ALCintptr = voidptr
+type ALCintptr = &int
 
 type ALCuint = u32
 

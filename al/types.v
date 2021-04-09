@@ -1,28 +1,31 @@
 module al
 
 type ALboolean = byte
-type ALbooleanptr = voidptr
+type ALbooleanptr = &byte
 
 type ALchar = byte
 type ALcharptr = &char
 
 type ALbyte = i8
+type ALbyteptr = &i8
+
 type ALubyte = byte
+type ALubyteptr = &byte
 
 type ALshort = i16
 type ALushort = u16
 
 type ALint = int
-type ALintptr = voidptr
+type ALintptr = &int
 
 type ALuint = u32
-type ALuintptr = voidptr
+type ALuintptr = &u32
 
 type ALsizei = int
 type ALenum = int
 
 type ALfloat = f32
-type ALfloatptr = voidptr
+type ALfloatptr = &f32
 
 type ALdouble = f64
-type ALdoubleptr = voidptr
+type ALdoubleptr = &f64
