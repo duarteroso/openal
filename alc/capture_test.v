@@ -19,7 +19,7 @@ fn test_capture() {
 fn test_default_capture() {
 	mut device := new_device()
 	device.open_default()
-	name := device.get_string(alc_capture_default_device_specifier)
+	_ := device.get_string(alc_capture_default_device_specifier)
 	device.close()
 	//
 	mut capture_device := new_capture_device()
