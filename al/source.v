@@ -104,6 +104,11 @@ pub fn (s &Source) release() {
 	check_error()
 }
 
+// get_id returns the id of the source
+pub fn (s &Source) get_id() u32 {
+	return s.id
+}
+
 // is_valid returns true if source is valid
 pub fn (s &Source) is_valid() bool {
 	ok := C.alIsSource(s.id)
