@@ -4,7 +4,7 @@ import duarteroso.semver
 import alc
 
 fn test_al_version() {
-	sv := al_version()
+	sv := version()
 	assert sv.major == al_major_version
 	assert sv.minor == al_minor_version
 	assert sv.patch == 0

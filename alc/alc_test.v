@@ -3,7 +3,7 @@ module alc
 import duarteroso.semver
 
 fn test_alc_version() {
-	sv := alc_version()
+	sv := version()
 	assert sv.major == alc_major_version
 	assert sv.minor == alc_minor_version
 	assert sv.patch == 0

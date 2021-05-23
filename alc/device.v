@@ -4,17 +4,17 @@ module alc
 struct C.ALCdevice {
 }
 
-fn C.alcOpenDevice(devicename ALCcharptr) &C.ALCdevice
+fn C.alcOpenDevice(devicename &ALCchar) &C.ALCdevice
 fn C.alcCloseDevice(device &C.ALCdevice) ALCboolean
 
 fn C.alcGetError(device &C.ALCdevice) ALCenum
 
-fn C.alcIsExtensionPresent(device &C.ALCdevice, extname ALCcharptr) ALCboolean
-fn C.alcGetProcAddress(device &C.ALCdevice, funcname ALCcharptr) voidptr
-fn C.alcGetEnumValue(device &C.ALCdevice, enumname ALCcharptr) ALCenum
+fn C.alcIsExtensionPresent(device &C.ALCdevice, extname &ALCchar) ALCboolean
+fn C.alcGetProcAddress(device &C.ALCdevice, funcname &ALCchar) voidptr
+fn C.alcGetEnumValue(device &C.ALCdevice, enumname &ALCchar) ALCenum
 
-fn C.alcGetString(device &C.ALCdevice, param ALCenum) ALCcharptr
-fn C.alcGetIntegerv(device &C.ALCdevice, param ALCenum, size ALCsizei, values ALCintptr)
+fn C.alcGetString(device &C.ALCdevice, param ALCenum) &ALCchar
+fn C.alcGetIntegerv(device &C.ALCdevice, param ALCenum, size ALCsizei, values &ALCint)
 
 // Device wraps functionality around ALCdevice
 pub struct Device {
@@ -41,7 +41,7 @@ pub fn (mut d Device) open_default() bool {
 
 // open audio device by name
 pub fn (mut d Device) open(name string) bool {
-	d.data = C.alcOpenDevice(ALCcharptr(name.str))
+	d.data = C.alcOpenDevice(name.str)
 	return !isnil(d.data)
 }
 
@@ -58,21 +58,21 @@ pub fn (d &Device) get_data() &C.ALCdevice {
 
 // is_extension_present checks if a certain extension is present
 pub fn (d &Device) is_extension_present(name string) bool {
-	ok := C.alcIsExtensionPresent(d.data, ALCcharptr(name.str))
+	ok := C.alcIsExtensionPresent(d.data, name.str)
 	check_error(d)
 	return ok == alc_true
 }
 
 // get_proc_addr returns the process address
 pub fn (d &Device) get_proc_addr(name string) voidptr {
-	ptr := C.alcGetProcAddress(d.data, ALCcharptr(name.str))
+	ptr := C.alcGetProcAddress(d.data, name.str)
 	check_error(d)
 	return ptr
 }
 
 // get_enum_value returns an enumeration value
 pub fn (d &Device) get_enum_value(name string) int {
-	value := C.alcGetEnumValue(d.data, ALCcharptr(name.str))
+	value := C.alcGetEnumValue(d.data, name.str)
 	check_error(d)
 	return value
 }
@@ -87,7 +87,7 @@ pub fn (d &Device) get_string(param int) string {
 // get_integers returns a device parameters as vector of strings
 pub fn (d &Device) get_integers(param int, size int) []int {
 	values := []int{len: size, init: 0}
-	C.alcGetIntegerv(d.data, param, size, ALCintptr(values.data))
+	C.alcGetIntegerv(d.data, param, size, &ALCint(values.data))
 	check_error(d)
 	return values
 }

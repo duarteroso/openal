@@ -7,7 +7,7 @@ pub const (
 )
 
 pub const (
-	al_empty = 0
+	al_none  = 0
 	al_false = 0
 	al_true  = 1
 )

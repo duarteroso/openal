@@ -5,19 +5,19 @@ fn C.alDisable(capability ALenum)
 fn C.alIsEnabled(capability ALenum) ALboolean
 
 fn C.alGetBooleanv(param ALenum, data ALbooleanptr)
-fn C.alGetIntegerv(param ALenum, data ALintptr)
+fn C.alGetIntegerv(param ALenum, data &ALint)
 fn C.alGetFloatv(param ALenum, data ALfloatptr)
 fn C.alGetDoublev(param ALenum, data ALdoubleptr)
 
-fn C.alGetString(param ALenum) ALcharptr
+fn C.alGetString(param ALenum) &char
 fn C.alGetBoolean(param ALenum) ALboolean
 fn C.alGetInteger(param ALenum) ALint
 fn C.alGetFloat(param ALenum) ALfloat
 fn C.alGetDouble(param ALenum) ALdouble
 
-fn C.alIsExtensionPresent(extname ALcharptr) ALboolean
-fn C.alGetProcAddress(fname ALcharptr) voidptr
-fn C.alGetEnumValue(ename ALcharptr) ALenum
+fn C.alIsExtensionPresent(extname &char) ALboolean
+fn C.alGetProcAddress(fname &char) voidptr
+fn C.alGetEnumValue(ename &char) ALenum
 
 // enable an OpenAL capability
 pub fn enable(capability int) {
@@ -107,21 +107,21 @@ pub fn get_string(param int) string {
 
 // is_extension_present checks wether an extension is present
 pub fn is_extension_present(ext string) bool {
-	ok := C.alIsExtensionPresent(ALcharptr(ext.str))
+	ok := C.alIsExtensionPresent(ext.str)
 	check_error()
 	return ok == al_true
 }
 
 // get_proc_addr returns the process address
 pub fn get_proc_addr(fname string) voidptr {
-	addr := C.alGetProcAddress(ALcharptr(fname.str))
+	addr := C.alGetProcAddress(fname.str)
 	check_error()
 	return addr
 }
 
 // get_enum_value returns an enumeration value
 pub fn get_enum_value(ename string) int {
-	value := C.alGetEnumValue(ALcharptr(ename.str))
+	value := C.alGetEnumValue(ename.str)
 	check_error()
 	return value
 }

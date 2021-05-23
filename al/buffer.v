@@ -1,7 +1,7 @@
 module al
 
-fn C.alGenBuffers(n ALsizei, buffers ALuintptr)
-fn C.alDeleteBuffers(n ALsizei, buffers ALuintptr)
+fn C.alGenBuffers(n ALsizei, buffers &ALuint)
+fn C.alDeleteBuffers(n ALsizei, buffers &ALuint)
 fn C.alIsBuffer(buffer ALuint) ALboolean
 fn C.alBufferData(buffer ALuint, format ALenum, data voidptr, size ALsizei, freq ALsizei)
 
@@ -10,14 +10,14 @@ fn C.alBuffer3f(buffer ALuint, param ALenum, value1 ALfloat, value2 ALfloat, val
 fn C.alBufferfv(buffer ALuint, param ALenum, values ALfloatptr)
 fn C.alBufferi(buffer ALuint, param ALenum, value ALint)
 fn C.alBuffer3i(buffer ALuint, param ALenum, value1 ALint, value2 ALint, value3 ALint)
-fn C.alBufferiv(buffer ALuint, param ALenum, values ALintptr)
+fn C.alBufferiv(buffer ALuint, param ALenum, values &ALint)
 
 fn C.alGetBufferf(buffer ALuint, param ALenum, value &ALfloat)
 fn C.alGetBuffer3f(bufer ALuint, param ALenum, value1 &ALfloat, value2 &ALfloat, value3 &ALfloat)
 fn C.alGetBufferfv(buffer ALuint, param ALenum, values ALfloatptr)
 fn C.alGetBufferi(buffer ALuint, param ALenum, value &ALint)
 fn C.alGetBuffer3i(buffer ALuint, param ALenum, value1 &ALint, value2 &ALint, value3 &ALint)
-fn C.alGetBufferiv(buffer ALuint, param ALenum, values ALintptr)
+fn C.alGetBufferiv(buffer ALuint, param ALenum, values &ALint)
 
 // Buffer wraps the functionality of an OpenAL buffer
 pub struct Buffer {
@@ -38,10 +38,22 @@ pub fn new_buffer() Buffer {
 	return Buffer{}
 }
 
+pub fn new_buffer_from_id(id u32) Buffer {
+	buffer := Buffer{
+		id: id
+	}
+	//
+	if buffer.is_valid() == false {
+		panic('buffer id $id not valid')
+	}
+	//
+	return buffer
+}
+
 // new_buffers creates multiple instances of Buffer
 pub fn new_buffers(n int) []Buffer {
 	mut values := []u32{len: n, init: 0}
-	C.alGenBuffers(n, ALuintptr(values.data))
+	C.alGenBuffers(n, &ALuint(values.data))
 	check_error()
 	//
 	mut buffers := []Buffer{len: n}
@@ -57,7 +69,7 @@ pub fn new_buffers(n int) []Buffer {
 // release_buffers deletes multiple instances of Buffer
 pub fn release_buffers(b []Buffer) {
 	values := convert_buffer_array(b)
-	C.alDeleteBuffers(b.len, ALuintptr(values.data))
+	C.alDeleteBuffers(b.len, &ALuint(values.data))
 	check_error()
 }
 
@@ -74,7 +86,7 @@ fn convert_buffer_array(b []Buffer) []u32 {
 // generate a buffer
 pub fn (mut b Buffer) generate() {
 	mut values := []u32{len: 1}
-	C.alGenBuffers(values.len, ALuintptr(values.data))
+	C.alGenBuffers(values.len, &ALuint(values.data))
 	check_error()
 	b.id = values[0]
 }
@@ -82,7 +94,7 @@ pub fn (mut b Buffer) generate() {
 // release buffer
 pub fn (b &Buffer) release() {
 	values := [b.id]
-	C.alDeleteBuffers(values.len, ALuintptr(values.data))
+	C.alDeleteBuffers(values.len, &ALuint(values.data))
 	check_error()
 }
 

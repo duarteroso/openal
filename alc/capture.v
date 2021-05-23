@@ -1,6 +1,6 @@
 module alc
 
-fn C.alcCaptureOpenDevice(devicename ALCcharptr, frequency ALCuint, format ALCenum, buffersize ALCsizei) &C.ALCdevice
+fn C.alcCaptureOpenDevice(devicename &ALCchar, frequency ALCuint, format ALCenum, buffersize ALCsizei) &C.ALCdevice
 fn C.alcCaptureCloseDevice(device &C.ALCdevice) ALCboolean
 fn C.alcCaptureStart(device &C.ALCdevice)
 fn C.alcCaptureStop(device &C.ALCdevice)
@@ -24,7 +24,7 @@ pub fn (mut c CaptureDevice) open_default(frequency u32, format int, buffer_size
 
 // open_device opens the capture device
 pub fn (mut c CaptureDevice) open(name string, frequency u32, format int, buffer_size int) bool {
-	data := C.alcCaptureOpenDevice(ALCcharptr(name.str), frequency, format, buffer_size)
+	data := C.alcCaptureOpenDevice(name.str, frequency, format, buffer_size)
 	if isnil(data) {
 		return false
 	}
