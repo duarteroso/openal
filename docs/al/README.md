@@ -1,8 +1,7 @@
-# module al
+# module vopenal.al
 
 ## Contents
 - [Constants](#Constants)
-- [al_version](#al_version)
 - [check_error](#check_error)
 - [disable](#disable)
 - [distance_model](#distance_model)
@@ -22,6 +21,7 @@
 - [is_enabled](#is_enabled)
 - [is_extension_present](#is_extension_present)
 - [new_buffer](#new_buffer)
+- [new_buffer_from_id](#new_buffer_from_id)
 - [new_buffers](#new_buffers)
 - [new_listener](#new_listener)
 - [new_source](#new_source)
@@ -33,6 +33,7 @@
 - [rewind_sources](#rewind_sources)
 - [speed_sound](#speed_sound)
 - [stop_sources](#stop_sources)
+- [version](#version)
 - [BufferFormat](#BufferFormat)
 - [DistanceModel](#DistanceModel)
 - [SourceState](#SourceState)
@@ -149,7 +150,7 @@ const (
 
 ```v
 const (
-	al_empty = 0
+	al_none  = 0
 	al_false = 0
 	al_true  = 1
 )
@@ -316,14 +317,6 @@ const (
 
 [[Return to contents]](#Contents)
 
-## al_version
-```v
-fn al_version() semver.SemVer
-```
- al_version returns the AL semantic version 
-
-[[Return to contents]](#Contents)
-
 ## check_error
 ```v
 fn check_error()
@@ -476,6 +469,14 @@ fn new_buffer() Buffer
 
 [[Return to contents]](#Contents)
 
+## new_buffer_from_id
+```v
+fn new_buffer_from_id(id u32) Buffer
+```
+
+
+[[Return to contents]](#Contents)
+
 ## new_buffers
 ```v
 fn new_buffers(n int) []Buffer
@@ -561,6 +562,14 @@ fn speed_sound(value f32)
 fn stop_sources(s []Source)
 ```
  stop_sources stops multiple sources at once 
+
+[[Return to contents]](#Contents)
+
+## version
+```v
+fn version() semver.SemVer
+```
+ version returns the AL semantic version 
 
 [[Return to contents]](#Contents)
 
@@ -1413,4 +1422,4 @@ fn (s &Source) unqueue_buffers(b []Buffer)
 
 [[Return to contents]](#Contents)
 
-#### Powered by vdoc. Generated on: 10 Apr 2021 10:47:34
+#### Powered by vdoc. Generated on: 3 Jun 2021 22:42:45

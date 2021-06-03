@@ -1,8 +1,7 @@
-# module alc
+# module vopenal.alc
 
 ## Contents
 - [Constants](#Constants)
-- [alc_version](#alc_version)
 - [check_error](#check_error)
 - [do_test](#do_test)
 - [get_current_context](#get_current_context)
@@ -12,6 +11,7 @@
 - [new_device](#new_device)
 - [new_device_from_data](#new_device_from_data)
 - [remove_current_context](#remove_current_context)
+- [version](#version)
 - [CaptureDevice](#CaptureDevice)
   - [open_default](#open_default)
   - [open](#open)
@@ -132,14 +132,6 @@ const (
 
 [[Return to contents]](#Contents)
 
-## alc_version
-```v
-fn alc_version() semver.SemVer
-```
- alc_version returns the ALC semantic version 
-
-[[Return to contents]](#Contents)
-
 ## check_error
 ```v
 fn check_error(d &Device)
@@ -209,6 +201,14 @@ fn new_device_from_data(data &C.ALCdevice) &Device
 fn remove_current_context() bool
 ```
  remove_current_context removes the current context 
+
+[[Return to contents]](#Contents)
+
+## version
+```v
+fn version() semver.SemVer
+```
+ version returns the ALC semantic version 
 
 [[Return to contents]](#Contents)
 
@@ -441,4 +441,4 @@ fn (err &Err) str() string
 
 [[Return to contents]](#Contents)
 
-#### Powered by vdoc. Generated on: 10 Apr 2021 10:47:34
+#### Powered by vdoc. Generated on: 3 Jun 2021 22:42:45

@@ -1,6 +1,6 @@
 module al
 
-import alc
+import duarteroso.vopenal.alc
 
 fn test_distance_model() {
 	test := fn () {

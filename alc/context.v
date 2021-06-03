@@ -25,14 +25,18 @@ pub fn new_context() &Context {
 
 // new_context_from_data creates an instance of Context from data
 pub fn new_context_from_data(context &C.ALCcontext) &Context {
-	return &Context{
-		data: context
+	unsafe {
+		return &Context{
+			data: context
+		}
 	}
 }
 
 // create context
 pub fn (mut c Context) create(d &Device) bool {
-	c.device = d
+	unsafe {
+		c.device = d
+	}
 	c.data = C.alcCreateContext(d.get_data(), voidptr(0))
 	c.check_error()
 	return !isnil(c.data)

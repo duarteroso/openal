@@ -1,7 +1,7 @@
 module al
 
 import duarteroso.semver
-import alc
+import duarteroso.vopenal.alc
 
 fn test_al_version() {
 	sv := version()

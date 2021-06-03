@@ -23,7 +23,7 @@ OpenAL bindings for the V language.
 Please follow the official [OpenAL guide](https://www.openal.org/documentation/OpenAL_Programmers_Guide.pdf)
 
 ## Install
-`v install novuloj.vopenal`
+`v install duarteroso.vopenal`
 
 ## Authors
 @duarteroso
@@ -38,8 +38,8 @@ Please follow the official [OpenAL guide](https://www.openal.org/documentation/O
 Start using vOpenAL by importing the modules
 
 ```v
-import novuloj.vopanal.al
-import novuloj.vopenal.alc
+import vopenal.al
+import vopenal.alc
 ```
 
 ### Device

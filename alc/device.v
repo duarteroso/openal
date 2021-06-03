@@ -29,8 +29,10 @@ pub fn new_device() &Device {
 
 // new_device_from_data creates an instance of Device from data
 pub fn new_device_from_data(data &C.ALCdevice) &Device {
-	return &Device{
-		data: data
+	unsafe {
+		return &Device{
+			data: data
+		}
 	}
 }
 

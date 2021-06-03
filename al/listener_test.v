@@ -1,6 +1,6 @@
 module al
 
-import alc
+import duarteroso.vopenal.alc
 
 fn test_listener_properties() {
 	test := fn () {

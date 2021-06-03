@@ -1,7 +1,7 @@
 module alc
 
 import time
-import al
+import duarteroso.vopenal.al
 
 fn test_capture() {
 	mut device := new_capture_device()

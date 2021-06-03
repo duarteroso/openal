@@ -1,10 +1,12 @@
 #!/bin/sh
 
-mkdir al/docs
-mkdir alc/docs
+rm -rf ../docs
+mkdir ../docs
+mkdir ../docs/al
+mkdir ../docs/alc
 
-v doc -f md -o al/docs/ novuloj.vopenal.al
-v doc -f md -o alc/docs/ novuloj.vopenal.alc
+v doc -f md -o ../docs/al duarteroso.vopenal.al
+v doc -f md -o ../docs/alc duarteroso.vopenal.alc
 
-mv al/docs/al.md al/docs/README.md
-mv alc/docs/alc.md alc/docs/README.md
+mv ../docs/al/*.md ../docs/al/README.md
+mv ../docs/alc/*.md ../docs/alc/README.md
