@@ -1,9 +1,9 @@
 Module {
 	name: 'vopenal'
-	version: '0.4.0'
-	description: 'V wrapper to OpenAL'
+	version: '1.0.0'
+	description: 'OpenAL V bindings'
 	dependencies: [duarteroso.semver]
-	license: 'BSD-2-Clause'
+	license: 'MIT'
 	repo_url: 'https://github.com/duarteroso/vopenal'
 	author: 'duarteroso'
 }
