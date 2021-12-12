@@ -352,7 +352,7 @@ mut:
 
 ## open_default
 ```v
-fn (mut d Device) open_default() bool
+fn (mut d Device) open(alc.default_device) bool
 ```
  open_default opens the default audio device 
 

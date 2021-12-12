@@ -16,6 +16,8 @@ fn C.alcGetEnumValue(device &C.ALCdevice, enumname &ALCchar) ALCenum
 fn C.alcGetString(device &C.ALCdevice, param ALCenum) &ALCchar
 fn C.alcGetIntegerv(device &C.ALCdevice, param ALCenum, size ALCsizei, values &ALCint)
 
+pub const default_device = ''
+
 // Device wraps functionality around ALCdevice
 pub struct Device {
 mut:
@@ -34,11 +36,6 @@ pub fn new_device_from_data(data &C.ALCdevice) &Device {
 			data: data
 		}
 	}
-}
-
-// open_default opens the default audio device
-pub fn (mut d Device) open_default() bool {
-	return d.open('')
 }
 
 // open audio device by name

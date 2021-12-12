@@ -48,7 +48,7 @@ Open an ALC device before calling the rest of the API
 
 ```v
 mut device := alc.new_device()
-device.open_default()
+device.open(alc.default_device)
 ```
 
 Close it after you are done

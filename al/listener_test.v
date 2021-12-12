@@ -19,8 +19,8 @@ fn test_listener_properties() {
 		vx, vy, vz := listener.get_velocity()
 		assert vx == value && vy == value && vz == value
 		//
-		look := [1.0, 2.0, 3.0]
-		up := [4.0, 5.0, 6.0]
+		look := [f32(1), 2, 3]
+		up := [f32(4), 5, 6]
 		mut orientation := []f32{len: 0}
 		orientation << look
 		orientation << up

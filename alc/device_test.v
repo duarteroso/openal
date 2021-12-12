@@ -2,13 +2,13 @@ module alc
 
 fn test_device() {
 	mut device := new_device()
-	assert device.open_default()
+	assert device.open(default_device)
 	assert device.close()
 }
 
 fn test_properties() {
 	mut device := new_device()
-	device.open_default()
+	device.open(default_device)
 	defer {
 		device.close()
 	}

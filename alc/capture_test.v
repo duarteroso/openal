@@ -18,7 +18,7 @@ fn test_capture() {
 
 fn test_default_capture() {
 	mut device := new_device()
-	device.open_default()
+	device.open(default_device)
 	_ := device.get_string(alc_capture_default_device_specifier)
 	device.close()
 	//

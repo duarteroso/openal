@@ -2,19 +2,16 @@ module alc
 
 fn test_context() {
 	mut device := new_device()
-	device.open_default()
+	device.open(default_device)
 	defer {
 		device.close()
 	}
 	//
-	mut context := new_context()
-	mut other_context := new_context()
-	//
-	assert context.create(device)
+	mut context := new_context_from_device(device)
 	defer {
 		context.destroy()
 	}
-	assert other_context.create(device)
+	mut other_context := new_context_from_device(device)
 	defer {
 		other_context.destroy()
 	}

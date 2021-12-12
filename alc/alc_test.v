@@ -12,19 +12,16 @@ fn test_alc_version() {
 
 fn test_alc() {
 	mut device := new_device()
-	assert device.open_default()
+	assert device.open(default_device)
 	defer {
 		assert device.close()
 	}
 	//
-	mut context := new_context()
-	mut other_context := new_context()
-	//
-	assert context.create(device)
+	mut context := new_context_from_device(device)
 	defer {
 		context.destroy()
 	}
-	assert other_context.create(device)
+	mut other_context := new_context_from_device(device)
 	defer {
 		other_context.destroy()
 	}

@@ -38,13 +38,13 @@ pub fn new_buffer() Buffer {
 	return Buffer{}
 }
 
-pub fn new_buffer_from_id(id u32) Buffer {
+pub fn new_buffer_from_id(id u32) ?Buffer {
 	buffer := Buffer{
 		id: id
 	}
 	//
 	if buffer.is_valid() == false {
-		panic('buffer id $id not valid')
+		return error('buffer id $id not valid')
 	}
 	//
 	return buffer

@@ -14,13 +14,12 @@ fn dummy_test() {
 
 fn concrete_test(cb fn ()) {
 	mut device := new_device()
-	device.open_default()
+	device.open(default_device)
 	defer {
 		device.close()
 	}
 	//
-	mut context := new_context()
-	context.create(device)
+	mut context := new_context_from_device(device)
 	defer {
 		context.destroy()
 	}
