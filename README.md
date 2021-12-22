@@ -20,6 +20,6 @@ Please follow the official [OpenAL guide](https://www.openal.org/documentation/O
 ### Import
 
 ```v
-import vopenal.al
-import vopenal.alc
+import duarteroso.vopenal.al
+import duarteroso.vopenal.alc
 ```
