@@ -1,4 +1,4 @@
-# vOpenAL
+# OpenAL
 
 ## Description
 OpenAL V bindings
@@ -7,7 +7,7 @@ OpenAL V bindings
 Please follow the official [OpenAL guide](https://www.openal.org/documentation/OpenAL_Programmers_Guide.pdf)
 
 ## Install
-`v install duarteroso.vopenal`
+`v install duarteroso.openal`
 
 ## Authors
 @duarteroso
@@ -20,6 +20,6 @@ Please follow the official [OpenAL guide](https://www.openal.org/documentation/O
 ### Import
 
 ```v
-import duarteroso.vopenal.al
-import duarteroso.vopenal.alc
+import duarteroso.openal.al
+import duarteroso.openal.alc
 ```
