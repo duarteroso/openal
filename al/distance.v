@@ -1,8 +1,8 @@
 module al
 
-fn C.alDistanceModel(value ALenum)
-fn C.alDopplerFactor(value ALfloat)
-fn C.alSpeedOfSound(value ALfloat)
+fn C.alDistanceModel(value int)
+fn C.alDopplerFactor(value f32)
+fn C.alSpeedOfSound(value f32)
 
 // Distance model formulae
 pub enum DistanceModel {

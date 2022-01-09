@@ -1,3 +1,3 @@
 module al
 
-fn C.alGetError() ALenum
+fn C.alGetError() int

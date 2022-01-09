@@ -1,20 +1,20 @@
 module al
 
-fn C.alGenBuffers(n ALsizei, buffers &ALuint)
-fn C.alDeleteBuffers(n ALsizei, buffers &ALuint)
-fn C.alIsBuffer(buffer ALuint) ALboolean
-fn C.alBufferData(buffer ALuint, format ALenum, data voidptr, size ALsizei, freq ALsizei)
+fn C.alGenBuffers(n int, buffers &u32)
+fn C.alDeleteBuffers(n int, buffers &u32)
+fn C.alIsBuffer(buffer u32) byte
+fn C.alBufferData(buffer u32, format int, data voidptr, size int, freq int)
 
-fn C.alBufferf(buffer ALuint, param ALenum, value ALfloat)
-fn C.alBuffer3f(buffer ALuint, param ALenum, value1 ALfloat, value2 ALfloat, value3 ALfloat)
-fn C.alBufferfv(buffer ALuint, param ALenum, values ALfloatptr)
-fn C.alBufferi(buffer ALuint, param ALenum, value ALint)
-fn C.alBuffer3i(buffer ALuint, param ALenum, value1 ALint, value2 ALint, value3 ALint)
-fn C.alBufferiv(buffer ALuint, param ALenum, values &ALint)
+fn C.alBufferf(buffer u32, param int, value f32)
+fn C.alBuffer3f(buffer u32, param int, value1 f32, value2 f32, value3 f32)
+fn C.alBufferfv(buffer u32, param int, values &f32)
+fn C.alBufferi(buffer u32, param int, value int)
+fn C.alBuffer3i(buffer u32, param int, value1 int, value2 int, value3 int)
+fn C.alBufferiv(buffer u32, param int, values &int)
 
-fn C.alGetBufferf(buffer ALuint, param ALenum, value &ALfloat)
-fn C.alGetBuffer3f(bufer ALuint, param ALenum, value1 &ALfloat, value2 &ALfloat, value3 &ALfloat)
-fn C.alGetBufferfv(buffer ALuint, param ALenum, values ALfloatptr)
-fn C.alGetBufferi(buffer ALuint, param ALenum, value &ALint)
-fn C.alGetBuffer3i(buffer ALuint, param ALenum, value1 &ALint, value2 &ALint, value3 &ALint)
-fn C.alGetBufferiv(buffer ALuint, param ALenum, values &ALint)
+fn C.alGetBufferf(buffer u32, param int, value &f32)
+fn C.alGetBuffer3f(bufer u32, param int, value1 &f32, value2 &f32, value3 &f32)
+fn C.alGetBufferfv(buffer u32, param int, values &f32)
+fn C.alGetBufferi(buffer u32, param int, value &int)
+fn C.alGetBuffer3i(buffer u32, param int, value1 &int, value2 &int, value3 &int)
+fn C.alGetBufferiv(buffer u32, param int, values &int)
