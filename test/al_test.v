@@ -1,7 +1,7 @@
 module test
 
 import duarteroso.semver
-import openal.al
+import al
 
 fn test_al_version() {
 	sv := al.version()
@@ -20,10 +20,10 @@ fn test_type_getter() ? {
 		]
 
 		for value in values {
-			al.get_boolean(value) ?
-			al.get_double(value) ?
-			al.get_float(value) ?
-			al.get_integer(value) ?
+			al.get_boolean(value)?
+			al.get_double(value)?
+			al.get_float(value)?
+			al.get_integer(value)?
 		}
 	}
 	//
@@ -43,10 +43,10 @@ fn test_type_getter_vector() ? {
 		mut farr := [3]f32{}
 		mut iarr := [3]int{}
 		for value in values {
-			al.get_booleanv(value, mut barr) ?
-			al.get_doublev(value, mut darr) ?
-			al.get_floatv(value, mut farr) ?
-			al.get_integerv(value, mut iarr) ?
+			al.get_booleanv(value, mut barr)?
+			al.get_doublev(value, mut darr)?
+			al.get_floatv(value, mut farr)?
+			al.get_integerv(value, mut iarr)?
 		}
 	}
 	//
@@ -55,7 +55,7 @@ fn test_type_getter_vector() ? {
 
 fn test_type_string() ? {
 	test := fn () ? {
-		al.get_string(al.al_version) ?
+		al.get_string(al.al_version)?
 	}
 	//
 	do_test(test)
@@ -63,7 +63,7 @@ fn test_type_string() ? {
 
 fn test_type_enum() ? {
 	test := fn () ? {
-		al.get_enum_value('AL_EAX_RAM_SIZE') ?
+		al.get_enum_value('AL_EAX_RAM_SIZE')?
 	}
 	//
 	do_test(test)

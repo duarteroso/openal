@@ -24,14 +24,14 @@ pub fn (mut c CaptureDevice) open(name string, frequency u32, format int, buffer
 	}
 	//
 	c.device = create_device_from_data(data)
-	c.check_error() ?
+	c.check_error()?
 	return true
 }
 
 // close closes capture devce
 pub fn (c &CaptureDevice) close() ?bool {
 	ok := C.alcCaptureCloseDevice(c.device.data)
-	c.check_error() ?
+	c.check_error()?
 	return ok == alc_true
 }
 
@@ -43,24 +43,24 @@ pub fn (c &CaptureDevice) get_device() &Device {
 // start capture
 pub fn (c &CaptureDevice) start() ? {
 	C.alcCaptureStart(c.device.data)
-	c.check_error() ?
+	c.check_error()?
 }
 
 // stop capture
 pub fn (c &CaptureDevice) stop() ? {
 	C.alcCaptureStop(c.device.data)
-	c.check_error() ?
+	c.check_error()?
 }
 
 // samples of the capture
 pub fn (c &CaptureDevice) samples(samples int) ?[]u8 {
 	mut buffer := []u8{len: samples, init: 0}
 	C.alcCaptureSamples(c.device.data, buffer.data, samples)
-	c.check_error() ?
+	c.check_error()?
 	return buffer
 }
 
 // check_error checks if device context has an error
 fn (c &CaptureDevice) check_error() ? {
-	check_error(c.device) ?
+	check_error(c.device)?
 }

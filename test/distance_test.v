@@ -1,6 +1,6 @@
 module test
 
-import openal.al
+import al
 
 fn test_distance_model() ? {
 	test := fn () ? {
@@ -13,7 +13,7 @@ fn test_distance_model() ? {
 			al.DistanceModel.exponent_distance_clamped,
 		]
 		for model in models {
-			al.distance_model(model) ?
+			al.distance_model(model)?
 		}
 	}
 	do_test(test)

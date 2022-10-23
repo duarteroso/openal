@@ -11,17 +11,17 @@ pub fn distance_model(model DistanceModel) ? {
 		.exponent_distance_clamped { al_exponent_distance_clamped }
 	}
 	C.alDistanceModel(value)
-	check_error() ?
+	check_error()?
 }
 
 // doppler_factor sets the doppler factor
 pub fn doppler_factor(value f32) ? {
 	C.alDopplerFactor(value)
-	check_error() ?
+	check_error()?
 }
 
 // speed_sound sets the speed of sound
 pub fn speed_sound(value f32) ? {
 	C.alSpeedOfSound(value)
-	check_error() ?
+	check_error()?
 }

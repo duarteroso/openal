@@ -8,7 +8,7 @@ mut:
 
 // create_device creates an instance of Device
 pub fn create_device() &Device {
-	return create_device_from_data(voidptr(0))
+	return create_device_from_data(unsafe { nil })
 }
 
 // create_device_from_data creates an instance of Device from data
@@ -29,7 +29,7 @@ pub fn (mut d Device) open(name string) ? {
 }
 
 pub fn (mut d Device) open_default() ? {
-	d.open(default_device) ?
+	d.open(default_device)?
 }
 
 // close device
@@ -48,28 +48,28 @@ pub fn (d &Device) get_data() &C.ALCdevice {
 // is_extension_present checks if a certain extension is present
 pub fn (d &Device) is_extension_present(name string) ?bool {
 	ok := C.alcIsExtensionPresent(d.data, name.str)
-	check_error(d) ?
+	check_error(d)?
 	return ok == alc_true
 }
 
 // get_proc_addr returns the process address
 pub fn (d &Device) get_proc_addr(name string) ?voidptr {
 	ptr := C.alcGetProcAddress(d.data, name.str)
-	check_error(d) ?
+	check_error(d)?
 	return ptr
 }
 
 // get_enum_value returns an enumeration value
 pub fn (d &Device) get_enum_value(name string) ?int {
 	value := C.alcGetEnumValue(d.data, name.str)
-	check_error(d) ?
+	check_error(d)?
 	return value
 }
 
 // get_string returns a device parameter as string
 pub fn (d &Device) get_string(param int) ?string {
 	s := C.alcGetString(d.data, param)
-	check_error(d) ?
+	check_error(d)?
 	return unsafe { cstring_to_vstring(s) }
 }
 
@@ -77,6 +77,6 @@ pub fn (d &Device) get_string(param int) ?string {
 pub fn (d &Device) get_integers(param int, size int) ?[]int {
 	values := []int{len: size, init: 0}
 	C.alcGetIntegerv(d.data, param, size, values.data)
-	check_error(d) ?
+	check_error(d)?
 	return values
 }

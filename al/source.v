@@ -18,7 +18,7 @@ pub fn create_sources(mut sources []Source) ? {
 	n := sources.len
 	mut values := []u32{len: n}
 	C.alGenSources(n, values.data)
-	check_error() ?
+	check_error()?
 	//
 	for i in 0 .. n {
 		sources[i] = Source{
@@ -31,7 +31,7 @@ pub fn create_sources(mut sources []Source) ? {
 pub fn release_sources(s []Source) ? {
 	values := convert_source_array(s)
 	C.alDeleteSources(s.len, values.data)
-	check_error() ?
+	check_error()?
 }
 
 // convert_source_array transforms a Source array into an u32 array
@@ -47,7 +47,7 @@ fn convert_source_array(s []Source) []u32 {
 pub fn (mut s Source) generate() ? {
 	mut values := []u32{len: 1}
 	C.alGenSources(values.len, values.data)
-	check_error() ?
+	check_error()?
 	s.id = values[0]
 }
 
@@ -55,7 +55,7 @@ pub fn (mut s Source) generate() ? {
 pub fn (s Source) release() ? {
 	values := [s.id]
 	C.alDeleteSources(values.len, values.data)
-	check_error() ?
+	check_error()?
 }
 
 // get_id returns the id of the source
@@ -75,41 +75,41 @@ pub fn (s Source) is_valid() bool {
 
 // link_to_buffer links the buffer to the source
 pub fn (s Source) link_to_buffer(b &Buffer) ? {
-	s.sourcei(al_buffer, int(b.get_id())) ?
+	s.sourcei(al_buffer, int(b.get_id()))?
 }
 
 // unlink_buffer detaches a buffer from the source
 pub fn (s Source) unlink_buffer() ? {
-	s.sourcei(al_buffer, 0) ?
+	s.sourcei(al_buffer, 0)?
 }
 
 // set_relative sets the source as relative to the listener
 pub fn (s Source) set_relative(rel bool) ? {
 	v := if rel { al_true } else { al_false }
-	s.sourcei(al_source_relative, v) ?
+	s.sourcei(al_source_relative, v)?
 }
 
 // is_relative returns true if source position is relative to listener
 pub fn (s Source) is_relative() ?bool {
-	ret := s.get_sourcei(al_source_relative) ?
+	ret := s.get_sourcei(al_source_relative)?
 	return ret == al_true
 }
 
 // loop sets source to a looping state
 pub fn (s Source) loop(loop bool) ? {
 	value := if loop { al_true } else { al_false }
-	s.sourcei(al_looping, value) ?
+	s.sourcei(al_looping, value)?
 }
 
 // is_looping returns true if source is set to loop
 pub fn (s Source) is_looping() ?bool {
-	ret := s.get_sourcei(al_looping) ?
+	ret := s.get_sourcei(al_looping)?
 	return ret == al_true
 }
 
 // get_type returns a source type
 pub fn (s Source) get_type() ?SourceType {
-	value := s.get_sourcei(al_source_type) ?
+	value := s.get_sourcei(al_source_type)?
 	return match value {
 		al_source_static { SourceType.fixed }
 		al_source_streaming { SourceType.streaming }
@@ -120,7 +120,7 @@ pub fn (s Source) get_type() ?SourceType {
 
 // get_state returns a source state
 pub fn (s Source) get_state() ?SourceState {
-	value := s.get_sourcei(al_source_state) ?
+	value := s.get_sourcei(al_source_state)?
 	return match value {
 		al_initial { SourceState.initial }
 		al_playing { SourceState.playing }
@@ -167,7 +167,7 @@ pub fn (s Source) get_pitch() ?f32 {
 
 // set_pitch sets the pitch of the source
 pub fn (s Source) set_pitch(value f32) ? {
-	s.sourcef(al_pitch, value) ?
+	s.sourcef(al_pitch, value)?
 }
 
 // get_gain returns the gain of the source
@@ -177,20 +177,20 @@ pub fn (s Source) get_gain() ?f32 {
 
 // set_gain sets the gain of the source
 pub fn (s Source) set_gain(value f32) ? {
-	s.sourcef(al_gain, value) ?
+	s.sourcef(al_gain, value)?
 }
 
 // get_gain_bounds returns the min/max gain of the source
 pub fn (s Source) get_gain_bounds() ?(f32, f32) {
-	min := s.get_sourcef(al_min_gain) ?
-	max := s.get_sourcef(al_max_gain) ?
+	min := s.get_sourcef(al_min_gain)?
+	max := s.get_sourcef(al_max_gain)?
 	return min, max
 }
 
 // set_gain_bounds sets the min/max gain of the source
 pub fn (s Source) set_gain_bounds(min f32, max f32) ? {
-	s.sourcef(al_min_gain, min) ?
-	s.sourcef(al_max_gain, max) ?
+	s.sourcef(al_min_gain, min)?
+	s.sourcef(al_max_gain, max)?
 }
 
 // get_max_distance returns max distance of the source
@@ -200,7 +200,7 @@ pub fn (s Source) get_max_distance() ?f32 {
 
 // set_max_distance sets the max distance of the source
 pub fn (s Source) set_max_distance(value f32) ? {
-	s.sourcef(al_max_distance, value) ?
+	s.sourcef(al_max_distance, value)?
 }
 
 // get_rolloff returns the rolloff factor of the source
@@ -210,7 +210,7 @@ pub fn (s Source) get_rolloff() ?f32 {
 
 // set_rolloff sets the rolloff factor of the source
 pub fn (s Source) set_rolloff(value f32) ? {
-	s.sourcef(al_rolloff_factor, value) ?
+	s.sourcef(al_rolloff_factor, value)?
 }
 
 // get_cone_outer_gain returns the cone outer gain of the source
@@ -220,7 +220,7 @@ pub fn (s Source) get_cone_outer_gain() ?f32 {
 
 // set_cone_outer_gain sets the cone outer gain of the source
 pub fn (s Source) set_cone_outer_gain(value f32) ? {
-	s.sourcef(al_cone_outer_gain, value) ?
+	s.sourcef(al_cone_outer_gain, value)?
 }
 
 // get_cone_inner_angle returns the cone inner angle of the source
@@ -230,7 +230,7 @@ pub fn (s Source) get_cone_inner_angle() ?f32 {
 
 // set_cone_inner_angle sets the cone inner angle of the source
 pub fn (s Source) set_cone_inner_angle(value f32) ? {
-	s.sourcef(al_cone_inner_angle, value) ?
+	s.sourcef(al_cone_inner_angle, value)?
 }
 
 // get_cone_outer_angle returns the cone outer angle of the source
@@ -240,7 +240,7 @@ pub fn (s Source) get_cone_outer_angle() ?f32 {
 
 // set_cone_outer_angle sets the cone outer angle of the source
 pub fn (s Source) set_cone_outer_angle(value f32) ? {
-	s.sourcef(al_cone_outer_angle, value) ?
+	s.sourcef(al_cone_outer_angle, value)?
 }
 
 // get_reference_distance Get source reference distance
@@ -250,7 +250,7 @@ pub fn (s Source) get_reference_distance() ?f32 {
 
 // set_reference_distance sets the reference distance of the source
 pub fn (s Source) set_reference_distance(value f32) ? {
-	s.sourcef(al_reference_distance, value) ?
+	s.sourcef(al_reference_distance, value)?
 }
 
 // get_position returns the position of the source
@@ -260,7 +260,7 @@ pub fn (s Source) get_position() ?(f32, f32, f32) {
 
 // set_position sets the position of the source
 pub fn (s Source) set_position(v1 f32, v2 f32, v3 f32) ? {
-	s.source3f(al_position, v1, v2, v3) ?
+	s.source3f(al_position, v1, v2, v3)?
 }
 
 // get_velocity returns the velocity of the source
@@ -270,7 +270,7 @@ pub fn (s Source) get_velocity() ?(f32, f32, f32) {
 
 // set_velocity sets the velocity of the source
 pub fn (s Source) set_velocity(v1 f32, v2 f32, v3 f32) ? {
-	s.source3f(al_velocity, v1, v2, v3) ?
+	s.source3f(al_velocity, v1, v2, v3)?
 }
 
 // get_direction returns the direction of the source
@@ -280,50 +280,50 @@ pub fn (s Source) get_direction() ?(f32, f32, f32) {
 
 // set_direction sets the direction of the source
 pub fn (s Source) set_direction(v1 f32, v2 f32, v3 f32) ? {
-	s.source3f(al_direction, v1, v2, v3) ?
+	s.source3f(al_direction, v1, v2, v3)?
 }
 
 // sourcef sets a source parameter value as float
 pub fn (s Source) sourcef(param int, value f32) ? {
 	C.alSourcef(s.id, param, value)
-	check_error() ?
+	check_error()?
 }
 
 // source3f sets a source parameter value as vector of floats
 pub fn (s Source) source3f(param int, v1 f32, v2 f32, v3 f32) ? {
 	C.alSource3f(s.id, param, v1, v2, v3)
-	check_error() ?
+	check_error()?
 }
 
 // sourcefv sets a source parameter value as vector of floats
 pub fn (s Source) sourcefv(param int, values []f32) ? {
 	C.alSourcefv(s.id, param, values.data)
-	check_error() ?
+	check_error()?
 }
 
 // sourcei sets a source parameter value as integer
 pub fn (s Source) sourcei(param int, value int) ? {
 	C.alSourcei(s.id, param, value)
-	check_error() ?
+	check_error()?
 }
 
 // source3i sets a source parameter value as vector of integers
 pub fn (s Source) source3i(param int, v1 int, v2 int, v3 int) ? {
 	C.alSource3i(s.id, param, v1, v2, v3)
-	check_error() ?
+	check_error()?
 }
 
 // sourceiv sets a source parameter value as vector of integers
 pub fn (s Source) sourceiv(param int, values []int) ? {
 	C.alSourceiv(s.id, param, values.data)
-	check_error() ?
+	check_error()?
 }
 
 // get_sourcef returns a source parameter value as float
 fn (s Source) get_sourcef(param int) ?f32 {
 	value := f32(0)
 	C.alGetSourcef(s.id, param, &value)
-	check_error() ?
+	check_error()?
 	return value
 }
 
@@ -333,7 +333,7 @@ fn (s Source) get_source3f(param int) ?(f32, f32, f32) {
 	v2 := f32(0)
 	v3 := f32(0)
 	C.alGetSource3f(s.id, param, &v1, &v2, &v3)
-	check_error() ?
+	check_error()?
 	return v1, v2, v3
 }
 
@@ -341,7 +341,7 @@ fn (s Source) get_source3f(param int) ?(f32, f32, f32) {
 fn (s Source) get_sourcefv(param int) ?[]f32 {
 	values := []f32{}
 	C.alGetSourcefv(s.id, param, values.data)
-	check_error() ?
+	check_error()?
 	return values
 }
 
@@ -349,7 +349,7 @@ fn (s Source) get_sourcefv(param int) ?[]f32 {
 fn (s Source) get_sourcei(param int) ?int {
 	value := int(0)
 	C.alGetSourcei(s.id, param, &value)
-	check_error() ?
+	check_error()?
 	return value
 }
 
@@ -359,7 +359,7 @@ fn (s Source) get_source3i(param int) ?(int, int, int) {
 	v2 := int(0)
 	v3 := int(0)
 	C.alGetSource3i(s.id, param, &v1, &v2, &v3)
-	check_error() ?
+	check_error()?
 	return v1, v2, v3
 }
 
@@ -367,94 +367,94 @@ fn (s Source) get_source3i(param int) ?(int, int, int) {
 fn (s Source) get_sourceiv(param int) ?[]int {
 	values := []int{}
 	C.alGetSourceiv(s.id, param, values.data)
-	check_error() ?
+	check_error()?
 	return values
 }
 
 // play the source
 pub fn (s Source) play() ? {
 	C.alSourcePlay(s.id)
-	check_error() ?
+	check_error()?
 }
 
 // pause the source
 pub fn (s Source) pause() ? {
 	C.alSourcePause(s.id)
-	check_error() ?
+	check_error()?
 }
 
 // stop the source
 pub fn (s Source) stop() ? {
 	C.alSourceStop(s.id)
-	check_error() ?
+	check_error()?
 }
 
 // rewind the source
 pub fn (s Source) rewind() ? {
 	C.alSourceRewind(s.id)
-	check_error() ?
+	check_error()?
 }
 
 // play_sources plays multiple sources at once
 pub fn play_sources(s []Source) ? {
 	values := convert_source_array(s)
 	C.alSourcePlayv(values.len, values.data)
-	check_error() ?
+	check_error()?
 }
 
 // pause_sources pauses multiple sources at once
 pub fn pause_sources(s []Source) ? {
 	values := convert_source_array(s)
 	C.alSourcePausev(values.len, values.data)
-	check_error() ?
+	check_error()?
 }
 
 // stop_sources stops multiple sources at once
 pub fn stop_sources(s []Source) ? {
 	values := convert_source_array(s)
 	C.alSourceStopv(values.len, values.data)
-	check_error() ?
+	check_error()?
 }
 
 // rewind_sources rewinds multiple sources at once
 pub fn rewind_sources(s []Source) ? {
 	values := convert_source_array(s)
 	C.alSourceRewindv(values.len, values.data)
-	check_error() ?
+	check_error()?
 }
 
 // queue_buffer adds a buffer into the source's queue
 pub fn (s Source) queue_buffer(b Buffer) ? {
 	C.alSourceQueueBuffers(s.id, 1, &b.id)
-	check_error() ?
+	check_error()?
 }
 
 // queue_buffers adds buffers into the source's queue
 pub fn (s Source) queue_buffers(b []Buffer) ? {
 	values := convert_buffer_array(b)
 	C.alSourceQueueBuffers(s.id, values.len, values.data)
-	check_error() ?
+	check_error()?
 }
 
 // unqueue_buffer removes a buffer fron the source's queue
 pub fn (s Source) unqueue_buffer(mut b Buffer) ? {
 	tmp := u32(0)
 	C.alSourceUnqueueBuffers(s.id, 1, &tmp)
-	check_error() ?
+	check_error()?
 	b.id = tmp
 }
 
 // unqueue_buffers removes buffers from the source's queue
 pub fn (s Source) unqueue_buffers(mut b []Buffer) ? {
 	for idx in 0 .. b.len {
-		s.unqueue_buffer(mut b[idx]) ?
+		s.unqueue_buffer(mut b[idx])?
 	}
 }
 
 pub fn (s Source) unqueue_all() ? {
-	nq := s.get_buffers_queued() ?
+	nq := s.get_buffers_queued()?
 	mut buffers := []Buffer{len: nq}
-	s.unqueue_buffers(mut buffers) ?
+	s.unqueue_buffers(mut buffers)?
 	//
-	release_buffers(buffers) ?
+	release_buffers(buffers)?
 }

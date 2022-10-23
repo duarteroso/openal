@@ -8,6 +8,6 @@ pub fn get_current_context() ?&Context {
 
 // remove_current_context removes the current context
 pub fn remove_current_context() bool {
-	ok := C.alcMakeContextCurrent(voidptr(0))
+	ok := C.alcMakeContextCurrent(unsafe { nil })
 	return ok == alc_true
 }

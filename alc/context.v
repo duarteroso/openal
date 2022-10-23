@@ -13,8 +13,8 @@ pub fn create_context_from_device(d &Device) ?&Context {
 	unsafe {
 		c.device = d
 	}
-	c.data = C.alcCreateContext(d.get_data(), voidptr(0))
-	c.check_error() ?
+	c.data = C.alcCreateContext(d.get_data(), unsafe { nil })
+	c.check_error()?
 	return c
 }
 
@@ -29,26 +29,26 @@ pub fn create_context_from_data(context &C.ALCcontext) ?&Context {
 // make_current marks a context as current
 pub fn (c &Context) make_current() ?bool {
 	ok := C.alcMakeContextCurrent(c.data)
-	c.check_error() ?
+	c.check_error()?
 	return ok == alc_true
 }
 
 // process context
 pub fn (c &Context) process() ? {
 	C.alcProcessContext(c.data)
-	c.check_error() ?
+	c.check_error()?
 }
 
 // suspend context
 pub fn (c &Context) suspend() ? {
 	C.alcSuspendContext(c.data)
-	c.check_error() ?
+	c.check_error()?
 }
 
 // destroy context
 pub fn (c &Context) destroy() ? {
 	C.alcDestroyContext(c.data)
-	c.check_error() ?
+	c.check_error()?
 }
 
 // get_device returns device linked to context
@@ -58,5 +58,5 @@ pub fn (c &Context) get_device() &Device {
 
 // check_error checks if device context has an error
 fn (c &Context) check_error() ? {
-	check_error(c.device) ?
+	check_error(c.device)?
 }

@@ -1,6 +1,6 @@
 module test
 
-import openal.alc
+import alc
 
 type AnonOptionalF = fn () ?
 
@@ -18,13 +18,13 @@ fn dummy_test() {
 
 fn concrete_test(cb AnonOptionalF) ? {
 	mut device := alc.create_device()
-	device.open(alc.default_device) ?
+	device.open(alc.default_device)?
 	//
-	mut context := alc.create_context_from_device(device) ?
-	context.make_current() ?
+	mut context := alc.create_context_from_device(device)?
+	context.make_current()?
 	//
-	cb() ?
+	cb()?
 	//
-	context.destroy() ?
-	device.close() ?
+	context.destroy()?
+	device.close()?
 }

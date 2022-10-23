@@ -16,7 +16,7 @@ pub fn (l Listener) get_gain() ?f32 {
 
 // set_gain sets the gain of the listener
 pub fn (l Listener) set_gain(value f32) ? {
-	l.listenerf(al_gain, value) ?
+	l.listenerf(al_gain, value)?
 }
 
 // get_position returns the position of the listener
@@ -26,7 +26,7 @@ pub fn (l Listener) get_position() ?(f32, f32, f32) {
 
 // set_position sets the position of the listener
 pub fn (l Listener) set_position(x f32, y f32, z f32) ? {
-	l.listener3f(al_position, x, y, z) ?
+	l.listener3f(al_position, x, y, z)?
 }
 
 // get_velocity returns the velocity of the listener
@@ -36,7 +36,7 @@ pub fn (l Listener) get_velocity() ?(f32, f32, f32) {
 
 // set_velocity sets the velocity of the listener
 pub fn (l Listener) set_velocity(x f32, y f32, z f32) ? {
-	l.listener3f(al_velocity, x, y, z) ?
+	l.listener3f(al_velocity, x, y, z)?
 }
 
 // get_orientation returns the orientation of the listener
@@ -46,50 +46,50 @@ pub fn (l Listener) get_orientation() ?[]f32 {
 
 // set_orientation sets the orientation of the listener
 pub fn (l Listener) set_orientation(value []f32) ? {
-	l.listenerfv(al_orientation, value) ?
+	l.listenerfv(al_orientation, value)?
 }
 
 // listenerf sets a listener parameter value as float
 pub fn (l Listener) listenerf(param int, value f32) ? {
 	C.alListenerf(param, value)
-	check_error() ?
+	check_error()?
 }
 
 // listener3f sets a listener parameter value as vector of floats
 pub fn (l Listener) listener3f(param int, v1 f32, v2 f32, v3 f32) ? {
 	C.alListener3f(param, v1, v2, v3)
-	check_error() ?
+	check_error()?
 }
 
 // listenefv sets a listener parameter value as vector of floats
 pub fn (l Listener) listenerfv(param int, values []f32) ? {
 	C.alListenerfv(param, values.data)
-	check_error() ?
+	check_error()?
 }
 
 // listeneri sets a listener parameter value as integer
 pub fn (l Listener) listeneri(param int, value int) ? {
 	C.alListeneri(param, value)
-	check_error() ?
+	check_error()?
 }
 
 // listener3i sets a listener parameter value as vector of integers
 pub fn (l Listener) listener3i(param int, v1 int, v2 int, v3 int) ? {
 	C.alListener3i(param, v1, v2, v3)
-	check_error() ?
+	check_error()?
 }
 
 // listeneriv sets a listener parameter value as vector of integers
 pub fn (l Listener) listeneriv(param int, values []int) ? {
 	C.alListeneriv(param, values.data)
-	check_error() ?
+	check_error()?
 }
 
 // get_listenerf returns a listener parameter value as float
 pub fn (l Listener) get_listenerf(param int) ?f32 {
 	value := f32(0)
 	C.alGetListenerf(param, &value)
-	check_error() ?
+	check_error()?
 	return value
 }
 
@@ -99,7 +99,7 @@ pub fn (l Listener) get_listener3f(param int) ?(f32, f32, f32) {
 	v2 := f32(0)
 	v3 := f32(0)
 	C.alGetListener3f(param, &v1, &v2, &v3)
-	check_error() ?
+	check_error()?
 	return v1, v2, v3
 }
 
@@ -107,7 +107,7 @@ pub fn (l Listener) get_listener3f(param int) ?(f32, f32, f32) {
 pub fn (l Listener) get_listenerfv(param int) ?[]f32 {
 	values := []f32{len: 3}
 	C.alGetListenerfv(param, values.data)
-	check_error() ?
+	check_error()?
 	return values
 }
 
@@ -115,7 +115,7 @@ pub fn (l Listener) get_listenerfv(param int) ?[]f32 {
 pub fn (l Listener) get_listeneri(param int) ?int {
 	value := int(0)
 	C.alGetListeneri(param, &value)
-	check_error() ?
+	check_error()?
 	return value
 }
 
@@ -125,7 +125,7 @@ pub fn (l Listener) get_listener3i(param int) ?(int, int, int) {
 	v2 := int(0)
 	v3 := int(0)
 	C.alGetListener3i(param, &v1, &v2, &v3)
-	check_error() ?
+	check_error()?
 	return v1, v2, v3
 }
 
@@ -133,6 +133,6 @@ pub fn (l Listener) get_listener3i(param int) ?(int, int, int) {
 pub fn (l Listener) get_listeneriv(param int) ?[]int {
 	values := []int{len: 3}
 	C.alGetListeneriv(param, values.data)
-	check_error() ?
+	check_error()?
 	return values
 }
