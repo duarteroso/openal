@@ -14,7 +14,7 @@ fn create_error(code int) Err {
 }
 
 // check_error checks and panics on errors
-pub fn check_error(d &Device) ? {
+pub fn check_error(d &Device) ! {
 	code := C.alcGetError(d.data)
 	if code == alc_no_error {
 		return

@@ -1,7 +1,7 @@
 module al
 
 // distance_model sets the distance model
-pub fn distance_model(model DistanceModel) ? {
+pub fn distance_model(model DistanceModel) ! {
 	value := match model {
 		.inverse_distance { al_inverse_distance }
 		.inverse_distance_clamped { al_inverse_distance_clamped }
@@ -11,17 +11,17 @@ pub fn distance_model(model DistanceModel) ? {
 		.exponent_distance_clamped { al_exponent_distance_clamped }
 	}
 	C.alDistanceModel(value)
-	check_error()?
+	check_error()!
 }
 
 // doppler_factor sets the doppler factor
-pub fn doppler_factor(value f32) ? {
+pub fn doppler_factor(value f32) ! {
 	C.alDopplerFactor(value)
-	check_error()?
+	check_error()!
 }
 
 // speed_sound sets the speed of sound
-pub fn speed_sound(value f32) ? {
+pub fn speed_sound(value f32) ! {
 	C.alSpeedOfSound(value)
-	check_error()?
+	check_error()!
 }

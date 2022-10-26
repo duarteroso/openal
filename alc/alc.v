@@ -1,7 +1,7 @@
 module alc
 
 // get_current_context returns the current context
-pub fn get_current_context() ?&Context {
+pub fn get_current_context() !&Context {
 	data := C.alcGetCurrentContext()
 	return create_context_from_data(data)
 }

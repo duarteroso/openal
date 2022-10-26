@@ -2,8 +2,8 @@ module test
 
 import al
 
-fn test_distance_model() ? {
-	test := fn () ? {
+fn test_distance_model() ! {
+	test := fn () ! {
 		models := [
 			al.DistanceModel.inverse_distance,
 			al.DistanceModel.inverse_distance_clamped,
@@ -13,7 +13,7 @@ fn test_distance_model() ? {
 			al.DistanceModel.exponent_distance_clamped,
 		]
 		for model in models {
-			al.distance_model(model)?
+			al.distance_model(model)!
 		}
 	}
 	do_test(test)

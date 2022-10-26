@@ -14,7 +14,7 @@ fn create_error(code int) Err {
 }
 
 // check_error checks and panics on error
-pub fn check_error() ? {
+pub fn check_error() ! {
 	code := C.alGetError()
 	if code == al_no_error {
 		return
