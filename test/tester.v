@@ -2,10 +2,10 @@ module test
 
 import alc
 
-type AnonOptionalF = fn () ?
+type AnonOptionalFun = fn () ?
 
 // do_test is used to test functionality
-pub fn do_test(cb AnonOptionalF) {
+pub fn do_test(cb AnonOptionalFun) {
 	$if test {
 		concrete_test(cb) or { panic(err) }
 	} $else {
@@ -16,7 +16,7 @@ pub fn do_test(cb AnonOptionalF) {
 fn dummy_test() {
 }
 
-fn concrete_test(cb AnonOptionalF) ? {
+fn concrete_test(cb AnonOptionalFun) ? {
 	mut device := alc.create_device()
 	device.open(alc.default_device)?
 	//
