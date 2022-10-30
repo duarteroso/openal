@@ -169,7 +169,7 @@ fn test_source_streaming_type() {
 		assert source.get_type()! == al.SourceType.source_streaming
 		//
 		source.play()!
-		time.sleep(500 * time.millisecond)
+		time.sleep(1 * time.second)
 		assert source.get_buffers_processed()! == 2
 		//
 		ub1 := source.unqueue_buffer()!
