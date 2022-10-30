@@ -26,7 +26,7 @@ pub fn (l Listener) get_position() !(f32, f32, f32) {
 
 // set_position sets the position of the listener
 pub fn (l Listener) set_position(x f32, y f32, z f32) ! {
-	l.listener3f(int(ListenerParameter.gain), x, y, z)!
+	l.listener3f(int(ListenerParameter.position), x, y, z)!
 }
 
 // get_velocity returns the velocity of the listener

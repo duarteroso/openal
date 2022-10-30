@@ -55,7 +55,7 @@ fn test_type_getter_vector() ! {
 
 fn test_type_string() ! {
 	test := fn () ! {
-		al.get_string(al.al_version)!
+		al.get_string(int(al.Al.version))!
 	}
 	//
 	do_test(test)
