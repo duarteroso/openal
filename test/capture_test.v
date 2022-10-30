@@ -43,8 +43,9 @@ fn test_capture() ! {
 	device.open_default(test.freq, al.BufferFormat.mono16, test.buffer_size)!
 	device.start()!
 	//
+	sample_target := 10
 	mut sample_count := 0
-	for sample_count == 0 {
+	for sample_count < sample_target {
 		time.sleep(60 * time.millisecond)
 		sample_count = device.get_sample_count()!
 	}
