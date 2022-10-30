@@ -2,7 +2,7 @@ module test
 
 import al
 
-fn test_buffer_creation() {
+fn test_buffer_create() {
 	test := fn () ! {
 		mut buffer := al.create_buffer()
 		buffer.generate()!
@@ -15,7 +15,7 @@ fn test_buffer_creation() {
 	do_test(test)
 }
 
-fn test_batch_buffer_creation() {
+fn test_buffer_create_multiple() {
 	test := fn () ! {
 		mut buffers := []al.Buffer{len: 3}
 		mut valid := false
@@ -34,15 +34,48 @@ fn test_batch_buffer_creation() {
 	do_test(test)
 }
 
-fn test_buffer_getters() {
+fn test_buffer_id() {
+	test := fn () ! {
+		mut buffer := al.create_buffer()
+		buffer.generate()!
+		assert buffer.get_id() == 1
+		buffer.release()!
+		//
+		buffer.generate()!
+		assert buffer.get_id() == 1
+		buffer.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_multiple_buffer_id() {
+	test := fn () ! {
+		mut buffer := al.create_buffer()
+		mut buffer2 := al.create_buffer()
+		//
+		buffer.generate()!
+		buffer2.generate()!
+		//
+		assert buffer.get_id() == 1
+		assert buffer2.get_id() == 2
+		//
+		buffer.release()!
+		buffer2.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_buffer_frequency() {
 	test := fn () ! {
 		mut buffer := al.create_buffer()
 		buffer.generate()!
 		//
-		buffer.get_frequency()!
-		buffer.get_bits()!
-		buffer.get_channels()!
-		buffer.get_size()!
+		freq := int(60)
+		mono := []u8{len: 10, init: -1}
+		buffer.set_unsigned_data(al.UnsignedBufferFormat.mono, mono, freq)!
+		assert buffer.get_frequency()! == freq
 		//
 		buffer.release()!
 	}
@@ -50,15 +83,14 @@ fn test_buffer_getters() {
 	do_test(test)
 }
 
-fn test_buffer_attributes() {
+fn test_buffer_8bit_depth() {
 	test := fn () ! {
 		mut buffer := al.create_buffer()
 		buffer.generate()!
 		//
-		buffer.get_bufferi(al.al_frequency)!
-		buffer.get_bufferi(al.al_bits)!
-		buffer.get_bufferi(al.al_channels)!
-		buffer.get_bufferi(al.al_size)!
+		mono := []u8{len: 10, init: -1}
+		buffer.set_unsigned_data(al.UnsignedBufferFormat.mono, mono, 60)!
+		assert buffer.get_bits()! == 8
 		//
 		buffer.release()!
 	}
@@ -66,18 +98,90 @@ fn test_buffer_attributes() {
 	do_test(test)
 }
 
-fn test_buffer_data() ! {
+fn test_buffer_16bit_depth() {
 	test := fn () ! {
 		mut buffer := al.create_buffer()
 		buffer.generate()!
 		//
-		mono_data := []u32{len: 10, init: -1}
-		buffer.set_data(.mono8, mono_data.data, mono_data.len, 60.0)!
-		buffer.set_data(.mono16, mono_data.data, mono_data.len, 60.0)!
+		mono := []u16{len: 10, init: -1}
+		buffer.set_signed_data(al.SignedBufferFormat.mono, mono, 60)!
+		assert buffer.get_bits()! == 16
 		//
-		stereo_data := []int{len: 20, init: 10}
-		buffer.set_data(.stereo8, stereo_data.data, stereo_data.len, 60.0)!
-		buffer.set_data(.stereo16, stereo_data.data, stereo_data.len, 60.0)!
+		buffer.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_buffer_mono_channel() {
+	test := fn () ! {
+		mut buffer := al.create_buffer()
+		buffer.generate()!
+		//
+		mono := []u8{len: 10, init: -1}
+		buffer.set_unsigned_data(al.UnsignedBufferFormat.mono, mono, 60)!
+		assert buffer.get_channels()! == 1
+		//
+		buffer.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_buffer_stereo_channel() {
+	test := fn () ! {
+		mut buffer := al.create_buffer()
+		buffer.generate()!
+		//
+		mono := []u8{len: 10, init: -1}
+		buffer.set_unsigned_data(al.UnsignedBufferFormat.stereo, mono, 60)!
+		assert buffer.get_channels()! == 2
+		//
+		buffer.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_buffer_size() {
+	test := fn () ! {
+		mut buffer := al.create_buffer()
+		buffer.generate()!
+		//
+		size := 10
+		mono := []u8{len: size, init: -1}
+		buffer.set_unsigned_data(al.UnsignedBufferFormat.mono, mono, 60)!
+		assert buffer.get_size()! == size
+		//
+		buffer.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_buffer_unsigned_data() {
+	test := fn () ! {
+		mut buffer := al.create_buffer()
+		buffer.generate()!
+		//		
+		mono := []u8{len: 10, init: -1}
+		buffer.set_unsigned_data(al.UnsignedBufferFormat.mono, mono, 60)!
+		buffer.set_unsigned_data(al.UnsignedBufferFormat.stereo, mono, 60)!
+		//
+		buffer.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_buffer_signed_data() {
+	test := fn () ! {
+		mut buffer := al.create_buffer()
+		buffer.generate()!
+		//		
+		mono := []u16{len: 20, init: -1}
+		buffer.set_signed_data(al.SignedBufferFormat.mono, mono, 60)!
+		buffer.set_signed_data(al.SignedBufferFormat.stereo, mono, 60)!
 		//
 		buffer.release()!
 	}

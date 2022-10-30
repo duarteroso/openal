@@ -2,7 +2,7 @@ module alc
 
 // Context wraps functionality around OpenALC context
 pub struct Context {
-mut:
+pub mut:
 	data   &C.ALCcontext = &C.ALCcontext(0)
 	device &Device       = &Device(0)
 }

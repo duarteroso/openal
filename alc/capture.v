@@ -1,5 +1,7 @@
 module alc
 
+import al
+
 // CaptureDevice wraps functionality around OpenALC capture device
 pub struct CaptureDevice {
 mut:
@@ -12,20 +14,18 @@ pub fn create_capture_device() &CaptureDevice {
 }
 
 // open_default opens the default audio device
-pub fn (mut c CaptureDevice) open_default(frequency u32, format int, buffer_size int) !bool {
-	return c.open('', frequency, format, buffer_size)
+pub fn (mut c CaptureDevice) open_default(frequency u32, format al.BufferFormat, size int) ! {
+	c.open(default_device, frequency, format, size)!
 }
 
 // open_device opens the capture device
-pub fn (mut c CaptureDevice) open(name string, frequency u32, format int, buffer_size int) !bool {
-	data := C.alcCaptureOpenDevice(name.str, frequency, format, buffer_size)
+pub fn (mut c CaptureDevice) open(name string, frequency u32, format al.BufferFormat, size int) ! {
+	data := C.alcCaptureOpenDevice(name.str, frequency, int(format), size)
 	if isnil(data) {
-		return false
+		return error('Failed to open capture device')
 	}
 	//
 	c.device = create_device_from_data(data)
-	c.check_error()!
-	return true
 }
 
 // close closes capture devce
@@ -52,6 +52,12 @@ pub fn (c &CaptureDevice) stop() ! {
 	c.check_error()!
 }
 
+pub fn (c &CaptureDevice) get_sample_count() !int {
+	count := c.device.get_integers(alc_capture_samples, 1)!
+	c.check_error()!
+	return count[0]
+}
+
 // samples of the capture
 pub fn (c &CaptureDevice) samples(samples int) ![]u8 {
 	mut buffer := []u8{len: samples, init: 0}
@@ -63,4 +69,11 @@ pub fn (c &CaptureDevice) samples(samples int) ![]u8 {
 // check_error checks if device context has an error
 fn (c &CaptureDevice) check_error() ! {
 	check_error(c.device)!
+}
+
+// get_string returns a device parameter as string
+pub fn (c &CaptureDevice) get_string(param int) !string {
+	s := c.device.get_string(param)!
+	c.check_error()!
+	return s
 }

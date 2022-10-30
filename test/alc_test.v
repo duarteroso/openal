@@ -11,27 +11,32 @@ fn test_alc_version() {
 	assert sv.stage == semver.Stage.release
 }
 
-fn test_alc() ! {
+fn test_alc_context() {
 	mut device := alc.create_device()
-	device.open(alc.default_device)!
+	device.open_default()!
 	//
-	mut context := alc.create_context_from_device(device)!
-	mut other_context := alc.create_context_from_device(device)!
-	//
-	assert other_context.make_current()!
-	assert alc.remove_current_context()
-	//
+	context := alc.create_context_from_device(device)!
 	assert context.make_current()!
-	other_context.destroy()!
+	current := alc.get_current_context()!
 	//
-	_ := alc.get_current_context()!
-	//
-	context.process()!
-	context.suspend()!
-	//
-	used_device := context.get_device()
-	assert voidptr(device) == voidptr(used_device)
-	//
+	assert alc.remove_current_context()
+	current.destroy()!
 	context.destroy()!
+	//
 	device.close()!
+}
+
+fn test_extensions_list() {
+	exts := alc.get_all_extensions()!
+	assert exts.len != 0
+}
+
+fn test_device_list() {
+	list := alc.get_all_devices()!
+	assert list.len != 0
+}
+
+fn test_capture_device_list() ! {
+	list := alc.get_all_capture_devices()!
+	assert list.len != 0
 }

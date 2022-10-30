@@ -3,14 +3,14 @@ module al
 // distance_model sets the distance model
 pub fn distance_model(model DistanceModel) ! {
 	value := match model {
-		.inverse_distance { al_inverse_distance }
-		.inverse_distance_clamped { al_inverse_distance_clamped }
-		.linear_distance { al_linear_distance }
-		.linear_ditance_clamped { al_linear_distance_clamped }
-		.exponent_distance { al_exponent_distance }
-		.exponent_distance_clamped { al_exponent_distance_clamped }
+		.inverse_distance { DistanceParameter.inverse }
+		.inverse_distance_clamped { DistanceParameter.inverse_clamped }
+		.linear_distance { DistanceParameter.linear }
+		.linear_ditance_clamped { DistanceParameter.linear_clamped }
+		.exponent_distance { DistanceParameter.exponent }
+		.exponent_distance_clamped { DistanceParameter.exponent_clamped }
 	}
-	C.alDistanceModel(value)
+	C.alDistanceModel(int(value))
 	check_error()!
 }
 

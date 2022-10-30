@@ -14,9 +14,9 @@ fn test_al_version() {
 fn test_type_getter() ! {
 	test := fn () ! {
 		values := [
-			al.al_distance_model,
-			al.al_speed_of_sound,
-			al.al_doppler_factor,
+			int(al.DistanceParameter.model),
+			int(al.DopplerParameter.speed_of_sound),
+			int(al.DopplerParameter.factor),
 		]
 
 		for value in values {
@@ -33,9 +33,9 @@ fn test_type_getter() ! {
 fn test_type_getter_vector() ! {
 	test := fn () ! {
 		values := [
-			al.al_distance_model,
-			al.al_speed_of_sound,
-			al.al_doppler_factor,
+			int(al.DistanceParameter.model),
+			int(al.DopplerParameter.speed_of_sound),
+			int(al.DopplerParameter.factor),
 		]
 
 		mut barr := [3]bool{}

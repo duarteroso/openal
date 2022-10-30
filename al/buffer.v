@@ -1,5 +1,7 @@
 module al
 
+type BufferDataType = []u8 | []u16
+
 // Buffer wraps the functionality of an OpenAL buffer
 pub struct Buffer {
 mut:
@@ -11,6 +13,7 @@ pub fn create_buffer() Buffer {
 	return Buffer{}
 }
 
+// create_buffer_from_id creates a Buffer with a specified id
 pub fn create_buffer_from_id(id u32) Buffer {
 	return Buffer{
 		id: id
@@ -82,26 +85,36 @@ pub fn (b Buffer) get_id() u32 {
 
 // get_frequency returns the frequency of the buffer
 pub fn (b Buffer) get_frequency() !int {
-	return b.get_bufferi(al_frequency)
+	return b.get_bufferi(int(BufferParameter.frequency))
 }
 
 // get_bits returns the bits of the buffer
 pub fn (b Buffer) get_bits() !int {
-	return b.get_bufferi(al_bits)
+	return b.get_bufferi(int(BufferParameter.bits))
 }
 
 // get_channels returns the number channels of the buffer
 pub fn (b Buffer) get_channels() !int {
-	return b.get_bufferi(al_channels)
+	return b.get_bufferi(int(BufferParameter.channels))
 }
 
 // get_size returns the size of the buffer
 pub fn (b Buffer) get_size() !int {
-	return b.get_bufferi(al_size)
+	return b.get_bufferi(int(BufferParameter.size))
+}
+
+// set_unsigned_data sets the buffer with unsigned raw data
+pub fn (b Buffer) set_unsigned_data(format UnsignedBufferFormat, data []u8, frequency int) ! {
+	b.set_data(BufferFormat(format), data, data.len, frequency) !
+}
+
+// set_signed_data sets the buffer with signed raw data
+pub fn (b Buffer) set_signed_data(format SignedBufferFormat, data []u16, frequency int) ! {
+	b.set_data(BufferFormat(format), data, data.len, frequency) !
 }
 
 // set_data sets the data on the buffer
-pub fn (b Buffer) set_data(format BufferFormat, data voidptr, size int, frequency f32) ! {
+fn (b Buffer) set_data(format BufferFormat, data voidptr, size int, frequency int) ! {
 	C.alBufferData(b.id, int(format), data, size, frequency)
 	check_error()!
 }
@@ -161,8 +174,8 @@ pub fn (b Buffer) get_buffer3f(param int) !(f32, f32, f32) {
 }
 
 // get_bufferfv returns a buffer parameter value as vector of floats
-pub fn (b Buffer) get_bufferfv(param int) ![]f32 {
-	mut values := []f32{}
+pub fn (b Buffer) get_bufferfv(param int, size int) ![]f32 {
+	mut values := []f32{len: size}
 	C.alGetBufferfv(b.id, param, values.data)
 	check_error()!
 	return values
@@ -187,8 +200,8 @@ pub fn (b Buffer) get_buffer3i(param int) !(int, int, int) {
 }
 
 // get_bufferiv returns a buffer parameter value as vector of integers
-pub fn (b Buffer) get_bufferiv(param int) ![]int {
-	mut values := []int{}
+pub fn (b Buffer) get_bufferiv(param int, size int) ![]int {
+	mut values := []int{len: size}
 	C.alGetBufferiv(b.id, param, values.data)
 	check_error()!
 	return values

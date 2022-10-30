@@ -3,7 +3,7 @@ module openal
 import v.vmod
 
 $if !linux {
-	$compile_error('Only Linux is currently supported') 
+	$compile_error('Only Linux is currently supported')
 }
 
 // manifest of module

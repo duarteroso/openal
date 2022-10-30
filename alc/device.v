@@ -33,11 +33,12 @@ pub fn (mut d Device) open_default() ! {
 }
 
 // close device
-pub fn (d &Device) close() ! {
+pub fn (d &Device) close() !bool {
 	ok := C.alcCloseDevice(d.data)
 	if ok == alc_false {
 		return error('failed to close ALC device: contexts or buffer attached')
 	}
+	return ok == alc_true
 }
 
 // get_data returns data from the device

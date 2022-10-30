@@ -1,8 +1,10 @@
 module test
 
 import al
+import rand
+import time
 
-fn test_source_creation() {
+fn test_source_create() {
 	test := fn () ! {
 		mut source := al.create_source()
 		source.generate()!
@@ -15,7 +17,7 @@ fn test_source_creation() {
 	do_test(test)
 }
 
-fn test_batch_source_creation() {
+fn test_source_create_multiple() {
 	test := fn () ! {
 		mut sources := []al.Source{len: 3}
 		mut valid := false
@@ -34,88 +36,37 @@ fn test_batch_source_creation() {
 	do_test(test)
 }
 
-fn test_source_properties() {
+fn test_source_id() {
 	test := fn () ! {
 		mut source := al.create_source()
 		source.generate()!
-		//
-		source.set_relative(true)!
-		mut rel := source.is_relative()!
-		assert rel
-		source.set_relative(false)!
-		rel = source.is_relative()!
-		assert rel == false
-		//
-		source.loop(true)!
-		mut looping := source.is_looping()!
-		assert looping
-		source.loop(false)!
-		looping = source.is_looping()!
-		assert looping == false
-		//
-		tp := source.get_type()!
-		assert tp == al.SourceType.undetermined
-		st := source.get_state()!
-		assert st == al.SourceState.initial
-		//
-		source.get_offset_time()!
-		source.get_offset_sample()!
-		source.get_offset_byte()!
-		//
-		value := f32(0.123)
-		//
-		source.set_pitch(value)!
-		pitch := source.get_pitch()!
-		assert pitch == value
-		//
-		source.set_gain(value)!
-		gain := source.get_gain()!
-		assert gain == value
-		//
-		source.set_gain_bounds(value, value + 1)!
-		bmin, bmax := source.get_gain_bounds()!
-		assert bmin == value && bmax == value + 1
-		//
-		source.set_max_distance(value)!
-		md := source.get_max_distance()!
-		assert md == value
-		//
-		source.set_rolloff(value)!
-		ro := source.get_rolloff()!
-		assert ro == value
-		//
-		source.set_cone_outer_gain(value)!
-		source.set_cone_outer_angle(value)!
-		source.set_cone_inner_angle(value)!
-		og := source.get_cone_outer_gain()!
-		assert og == value
-		oa := source.get_cone_outer_angle()!
-		assert oa == value
-		ia := source.get_cone_inner_angle()!
-		assert ia == value
-		//
-		source.set_reference_distance(value)!
-		rd := source.get_reference_distance()!
-		assert rd == value
-		//
-		p := [f32(1), 2, 3]
-		v := [f32(3), 2, 1]
-		d := [f32(1), 0, 0]
-		mut t := [f32(0), 0, 0]
-		//
-		source.set_position(p[0], p[1], p[2])!
-		t[0], t[1], t[2] = source.get_position()!
-		assert p == t
-		//
-		source.set_velocity(v[0], v[1], v[2])!
-		t[0], t[1], t[2] = source.get_velocity()!
-		assert v == t
-		//
-		source.set_direction(d[0], d[1], d[2])!
-		t[0], t[1], t[2] = source.get_direction()!
-		assert d == t
+		assert source.is_valid()
+		assert source.get_id() == 1
 		//
 		source.release()!
+		source.generate()!
+		assert source.is_valid()
+		assert source.get_id() == 1
+		//
+		source.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_source_multiple_id() {
+	test := fn () ! {
+		mut s1 := al.create_source()
+		mut s2 := al.create_source()
+		//
+		s1.generate()!
+		s2.generate()!
+		//
+		assert s1.get_id() == 1
+		assert s2.get_id() == 2
+		//
+		s1.release()!
+		s2.release()!
 	}
 	//
 	do_test(test)
@@ -129,15 +80,13 @@ fn test_source_buffer() {
 		mut source := al.create_source()
 		source.generate()!
 		//
-		id := int(buffer.get_id())
-		source.link_to_buffer(buffer)!
-		buffer_id := source.get_sourcei(al.al_buffer)!
-		assert buffer_id == id
+		source.attach_buffer(buffer)!
+		assert source.get_attached_buffer()! == int(buffer.get_id())
 		//
-		source.get_buffer_id()!
 		source.get_buffers_queued()!
 		source.get_buffers_processed()!
 		//
+		source.detach_buffer()!
 		source.release()!
 		buffer.release()!
 	}
@@ -145,51 +94,350 @@ fn test_source_buffer() {
 	do_test(test)
 }
 
-fn test_source_playback() {
+fn test_source_relative() {
+	test := fn () ! {
+		mut source := al.create_source()
+		source.generate()!
+		//
+		source.set_relative(true)!
+		assert source.is_relative()! == true
+		//
+		source.set_relative(false)!
+		assert source.is_relative()! == false
+		//
+		source.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_source_undertermined_type() {
+	test := fn () ! {
+		mut source := al.create_source()
+		source.generate()!
+		//
+		assert source.get_type()! == al.SourceType.source_undetermined
+		//
+		source.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_source_static_type() {
 	test := fn () ! {
 		mut buffer := al.create_buffer()
 		buffer.generate()!
 		//
+		data := []u8{len: 10, init: -1}
+		buffer.set_unsigned_data(al.UnsignedBufferFormat.mono, data, 60)!
+		//
 		mut source := al.create_source()
 		source.generate()!
-		source.link_to_buffer(buffer)!
-		source.play()!
-		source.pause()!
-		source.play()!
-		source.rewind()!
-		source.stop()!
-		source.release()!
+		source.attach_buffer(buffer)!
 		//
+		assert source.get_type()! == al.SourceType.source_static
+		//
+		source.release()!
 		buffer.release()!
 	}
 	//
 	do_test(test)
 }
 
-fn test_multiple_source_playback() {
+fn test_source_streaming_type() {
+	test := fn () ! {
+		create_buffer := fn () !al.Buffer {
+			mut buffer := al.create_buffer()
+			buffer.generate()!
+			//
+			data := []u8{len: 10, init: -1}
+			buffer.set_unsigned_data(al.UnsignedBufferFormat.mono, data, 60)!
+			return buffer
+		}
+		//
+		b1 := create_buffer()!
+		b2 := create_buffer()!
+		//
+		mut source := al.create_source()
+		source.generate()!
+		//
+		source.queue_buffer(b1)!
+		source.queue_buffer(b2)!
+		assert source.get_buffers_queued()! == 2
+		//
+		assert source.get_type()! == al.SourceType.source_streaming
+		//
+		source.play()!
+		time.sleep(500 * time.millisecond)
+		assert source.get_buffers_processed()! == 2
+		//
+		ub1 := source.unqueue_buffer()!
+		assert ub1.get_id() == b1.get_id()
+		//
+		ub2 := source.unqueue_buffer()!
+		assert ub2.get_id() == b2.get_id()
+		//
+		source.release()!
+		b2.release()!
+		b1.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_source_state() {
+	test := fn () ! {
+		mut buffer := al.create_buffer()
+		buffer.generate()!
+		data := []u8{len: 10, init: -1}
+		buffer.set_unsigned_data(al.UnsignedBufferFormat.mono, data, 60)!
+		//
+		mut source := al.create_source()
+		source.generate()!
+		source.attach_buffer(buffer)!
+		assert source.get_state()! == al.SourceState.initial
+		//
+		source.loop(false)!
+		assert source.is_looping()! == false
+		source.loop(true)!
+		assert source.is_looping()! == true
+		//
+		source.play()!
+		assert source.get_state()! == al.SourceState.playing
+		//
+		source.pause()!
+		assert source.get_state()! == al.SourceState.paused
+		//
+		source.play()!
+		assert source.get_state()! == al.SourceState.playing
+		//
+		source.stop()!
+		assert source.get_state()! == al.SourceState.stopped
+		//
+		source.rewind()!
+		assert source.get_state()! == al.SourceState.initial
+		//
+		source.detach_buffer()!
+		source.release()!
+		buffer.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_source_pitch() {
+	test := fn () ! {
+		mut source := al.create_source()
+		source.generate()!
+		//
+		pitch := rand.f32()
+		source.set_pitch(pitch)!
+		assert source.get_pitch()! == pitch
+		//
+		source.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_source_gain() {
+	test := fn () ! {
+		mut source := al.create_source()
+		source.generate()!
+		//
+		gain := rand.f32()
+		source.set_gain(gain)!
+		assert source.get_gain()! ==gain
+		//
+		source.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_source_gain_bounds() {
+	test := fn () ! {
+		mut source := al.create_source()
+		source.generate()!
+		//
+		min1 := rand.f32()
+		max1 := rand.f32()
+		source.set_gain_bounds(min1, max1)!
+		min2, max2 := source.get_gain_bounds()!
+		assert min1 == min2
+		assert max1 == max2
+		//
+		source.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_source_max_distance() {
+	test := fn () ! {
+		mut source := al.create_source()
+		source.generate()!
+		//
+		max := rand.f32()
+		source.set_max_distance(max)!
+		assert source.get_max_distance()! == max
+		//
+		source.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_source_rolloff() {
+	test := fn () ! {
+		mut source := al.create_source()
+		source.generate()!
+		//
+		factor := rand.f32()
+		source.set_rolloff(factor)!
+		assert source.get_rolloff()! == factor
+		//
+		source.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_source_cone_outer_gain() {
+	test := fn () ! {
+		mut source := al.create_source()
+		source.generate()!
+		//
+		gain := rand.f32()
+		source.set_cone_outer_gain(gain)!
+		assert source.get_cone_outer_gain()! == gain
+		//
+		source.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_source_cone_inner_angle() {
+	test := fn () ! {
+		mut source := al.create_source()
+		source.generate()!
+		//
+		angle := rand.f32n(360)!
+		source.set_cone_inner_angle(angle)!
+		assert source.get_cone_inner_angle()! == angle
+		//
+		source.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_source_cone_outer_angle() {
+	test := fn () ! {
+		mut source := al.create_source()
+		source.generate()!
+		//
+		angle := rand.f32n(360)!
+		source.set_cone_outer_angle(angle)!
+		assert source.get_cone_outer_angle()! == angle
+		//
+		source.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_source_reference_distance() {
+	test := fn () ! {
+		mut source := al.create_source()
+		source.generate()!
+		//
+		dist := rand.f32()
+		source.set_reference_distance(dist)!
+		assert source.get_reference_distance()! == dist
+		//
+		source.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_source_position() {
+	test := fn () ! {
+		mut source := al.create_source()
+		source.generate()!
+		//
+		x1, y1, z1 := 11, 22, 33
+		source.set_position(x1, y1, z1)!
+		x2, y2, z2 := source.get_position()!
+		assert x1 == x2
+		assert y1 == y2
+		assert z1 == z2
+		//
+		source.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_source_velocity() {
+	test := fn () ! {
+		mut source := al.create_source()
+		source.generate()!
+		//
+		x1, y1, z1 := 11, 22, 33
+		source.set_velocity(x1, y1, z1)!
+		x2, y2, z2 := source.get_velocity()!
+		assert x1 == x2
+		assert y1 == y2
+		assert z1 == z2
+		//
+		source.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_source_direction() {
+	test := fn () ! {
+		mut source := al.create_source()
+		source.generate()!
+		//
+		x1, y1, z1 := 11, 22, 33
+		source.set_direction(x1, y1, z1)!
+		x2, y2, z2 := source.get_direction()!
+		assert x1 == x2
+		assert y1 == y2
+		assert z1 == z2
+		//
+		source.release()!
+	}
+	//
+	do_test(test)
+}
+
+fn test_source_multiple_playback() {
 	test := fn () ! {
 		amount := 5
 		mut buffers := []al.Buffer{len: amount}
 		al.generate_buffers(mut buffers)!
-		for mut buffer in buffers {
-			buffer.generate()!
-		}
 		//
 		mut sources := []al.Source{len: amount}
 		al.create_sources(mut sources)!
-		for mut source in sources {
-			source.generate()!
-		}
 		//
-		for i in 0 .. amount {
-			sources[i].link_to_buffer(buffers[i])!
+		for idx in 0 .. amount {
+			buffers[idx].generate()!
+			sources[idx].generate()!
+			sources[idx].attach_buffer(buffers[idx])!
 		}
 		//
 		al.play_sources(sources)!
 		al.pause_sources(sources)!
 		al.play_sources(sources)!
-		al.rewind_sources(sources)!
 		al.stop_sources(sources)!
+		al.rewind_sources(sources)!
 		//
 		al.release_sources(sources)!
 		al.release_buffers(buffers)!

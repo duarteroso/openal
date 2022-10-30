@@ -11,42 +11,42 @@ pub fn create_listener() Listener {
 
 // get_gain returns the gain of the listener
 pub fn (l Listener) get_gain() !f32 {
-	return l.get_listenerf(al_gain)
+	return l.get_listenerf(int(ListenerParameter.gain))
 }
 
 // set_gain sets the gain of the listener
 pub fn (l Listener) set_gain(value f32) ! {
-	l.listenerf(al_gain, value)!
+	l.listenerf(int(ListenerParameter.gain), value)!
 }
 
 // get_position returns the position of the listener
 pub fn (l Listener) get_position() !(f32, f32, f32) {
-	return l.get_listener3f(al_position)
+	return l.get_listener3f(int(ListenerParameter.position))
 }
 
 // set_position sets the position of the listener
 pub fn (l Listener) set_position(x f32, y f32, z f32) ! {
-	l.listener3f(al_position, x, y, z)!
+	l.listener3f(int(ListenerParameter.gain), x, y, z)!
 }
 
 // get_velocity returns the velocity of the listener
 pub fn (l Listener) get_velocity() !(f32, f32, f32) {
-	return l.get_listener3f(al_velocity)
+	return l.get_listener3f(int(ListenerParameter.velocity))
 }
 
 // set_velocity sets the velocity of the listener
 pub fn (l Listener) set_velocity(x f32, y f32, z f32) ! {
-	l.listener3f(al_velocity, x, y, z)!
+	l.listener3f(int(ListenerParameter.velocity), x, y, z)!
 }
 
 // get_orientation returns the orientation of the listener
 pub fn (l Listener) get_orientation() ![]f32 {
-	return l.get_listenerfv(al_orientation)
+	return l.get_listenerfv(int(ListenerParameter.orientation), 6)
 }
 
 // set_orientation sets the orientation of the listener
 pub fn (l Listener) set_orientation(value []f32) ! {
-	l.listenerfv(al_orientation, value)!
+	l.listenerfv(int(ListenerParameter.orientation), value)!
 }
 
 // listenerf sets a listener parameter value as float
@@ -104,8 +104,8 @@ pub fn (l Listener) get_listener3f(param int) !(f32, f32, f32) {
 }
 
 // get_listenerfv returns a listener parameter value as vector of floats
-pub fn (l Listener) get_listenerfv(param int) ![]f32 {
-	values := []f32{len: 3}
+pub fn (l Listener) get_listenerfv(param int, size int) ![]f32 {
+	values := []f32{len: size}
 	C.alGetListenerfv(param, values.data)
 	check_error()!
 	return values
@@ -130,8 +130,8 @@ pub fn (l Listener) get_listener3i(param int) !(int, int, int) {
 }
 
 // get_listeneriv returns a listener parameter value as vector of integers
-pub fn (l Listener) get_listeneriv(param int) ![]int {
-	values := []int{len: 3}
+pub fn (l Listener) get_listeneriv(param int, size int) ![]int {
+	values := []int{len: size}
 	C.alGetListeneriv(param, values.data)
 	check_error()!
 	return values

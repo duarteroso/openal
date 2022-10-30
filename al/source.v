@@ -1,5 +1,7 @@
 module al
 
+import math
+
 // Source wraps functionality around an OpenAL source
 pub struct Source {
 mut:
@@ -73,214 +75,206 @@ pub fn (s Source) is_valid() bool {
 	return ok == al_true
 }
 
-// link_to_buffer links the buffer to the source
-pub fn (s Source) link_to_buffer(b &Buffer) ! {
-	s.sourcei(al_buffer, int(b.get_id()))!
+// attach_buffer attaches the buffer to the source
+pub fn (s Source) attach_buffer(b &Buffer) ! {
+	s.sourcei(int(SourceParameter.buffer), int(b.get_id()))!
 }
 
-// unlink_buffer detaches a buffer from the source
-pub fn (s Source) unlink_buffer() ! {
-	s.sourcei(al_buffer, 0)!
+// detach_buffer detaches a buffer from the source
+pub fn (s Source) detach_buffer() ! {
+	s.sourcei(int(SourceParameter.buffer), 0)!
+}
+
+// get_attached_buffer returns the attached buffer
+pub fn (s Source) get_attached_buffer() !int {
+	return s.get_sourcei(int(al.SourceParameter.buffer))!
+}
+
+// get_buffer_id returns the buffer id linked to the source
+pub fn (s Source) get_buffer_id() !int {
+	return s.get_sourcei(int(SourceParameter.buffer))
 }
 
 // set_relative sets the source as relative to the listener
 pub fn (s Source) set_relative(rel bool) ! {
 	v := if rel { al_true } else { al_false }
-	s.sourcei(al_source_relative, v)!
+	s.sourcei(int(SourceParameter.source_relative), v)!
 }
 
 // is_relative returns true if source position is relative to listener
 pub fn (s Source) is_relative() !bool {
-	ret := s.get_sourcei(al_source_relative)!
-	return ret == al_true
-}
-
-// loop sets source to a looping state
-pub fn (s Source) loop(loop bool) ! {
-	value := if loop { al_true } else { al_false }
-	s.sourcei(al_looping, value)!
-}
-
-// is_looping returns true if source is set to loop
-pub fn (s Source) is_looping() !bool {
-	ret := s.get_sourcei(al_looping)!
+	ret := s.get_sourcei(int(SourceParameter.source_relative))!
 	return ret == al_true
 }
 
 // get_type returns a source type
 pub fn (s Source) get_type() !SourceType {
-	value := s.get_sourcei(al_source_type)!
+	value := s.get_sourcei(int(SourceType.source_type))!
 	return match value {
-		al_source_static { SourceType.fixed }
-		al_source_streaming { SourceType.streaming }
-		al_source_undetermined { SourceType.undetermined }
-		else { SourceType.undetermined }
+		int(SourceType.source_static), int(SourceType.source_streaming) { unsafe {SourceType(value) } }
+		int(SourceType.source_undetermined) { SourceType.source_undetermined }
+		else { SourceType.source_undetermined }
 	}
 }
 
 // get_state returns a source state
 pub fn (s Source) get_state() !SourceState {
-	value := s.get_sourcei(al_source_state)!
+	value := s.get_sourcei(int(SourceParameter.source_state))!
 	return match value {
-		al_initial { SourceState.initial }
-		al_playing { SourceState.playing }
-		al_paused { SourceState.paused }
-		al_stopped { SourceState.stopped }
+		int(SourceState.initial) { SourceState.initial }
+		int(SourceState.playing) { SourceState.playing }
+		int(SourceState.paused) { SourceState.paused }
+		int(SourceState.stopped) { SourceState.stopped }
 		else { SourceState.undetermined }
 	}
 }
 
 // get_offset_time returns the playback position offset in seconds
 pub fn (s Source) get_offset_time() !f32 {
-	return s.get_sourcef(al_sec_offset)
+	return s.get_sourcef(int(SourceProperty.sec_offset))
 }
 
 // get_offset_sample returns the playback position offset in samples
 pub fn (s Source) get_offset_sample() !f32 {
-	return s.get_sourcef(al_sample_offset)
+	return s.get_sourcef(int(SourceProperty.sample_offset))
 }
 
 // get_offset_byte returns the playback position offset in byte
 pub fn (s Source) get_offset_byte() !f32 {
-	return s.get_sourcef(al_byte_offset)
-}
-
-// get_buffer_id returns the buffer id linked to the source
-pub fn (s Source) get_buffer_id() !int {
-	return s.get_sourcei(al_buffer)
+	return s.get_sourcef(int(SourceProperty.byte_offset))
 }
 
 // get_buffers_queued returns the number of buffers queued in the source
 pub fn (s Source) get_buffers_queued() !int {
-	return s.get_sourcei(al_buffers_queued)
+	return s.get_sourcei(int(BuffersQueryParameter.queued))
 }
 
 // get_buffers_processed returns the number of buffers in the queue that have been processed
 pub fn (s Source) get_buffers_processed() !int {
-	return s.get_sourcei(al_buffers_processed)
+	return s.get_sourcei(int(BuffersQueryParameter.processed))
 }
 
 // get_pitch retuns the pitch of the source
 pub fn (s Source) get_pitch() !f32 {
-	return s.get_sourcef(al_pitch)
+	return s.get_sourcef(int(SourceParameter.pitch))
 }
 
 // set_pitch sets the pitch of the source
 pub fn (s Source) set_pitch(value f32) ! {
-	s.sourcef(al_pitch, value)!
+	s.sourcef(int(SourceParameter.pitch), value)!
 }
 
 // get_gain returns the gain of the source
 pub fn (s Source) get_gain() !f32 {
-	return s.get_sourcef(al_gain)
+	return s.get_sourcef(int(SourceParameter.gain))
 }
 
 // set_gain sets the gain of the source
 pub fn (s Source) set_gain(value f32) ! {
-	s.sourcef(al_gain, value)!
+	s.sourcef(int(SourceParameter.gain), value)!
 }
 
 // get_gain_bounds returns the min/max gain of the source
 pub fn (s Source) get_gain_bounds() !(f32, f32) {
-	min := s.get_sourcef(al_min_gain)!
-	max := s.get_sourcef(al_max_gain)!
+	min := s.get_sourcef(int(SourceParameter.min_gain))!
+	max := s.get_sourcef(int(SourceParameter.max_gain))!
 	return min, max
 }
 
 // set_gain_bounds sets the min/max gain of the source
 pub fn (s Source) set_gain_bounds(min f32, max f32) ! {
-	s.sourcef(al_min_gain, min)!
-	s.sourcef(al_max_gain, max)!
+	s.sourcef(int(SourceParameter.min_gain), min)!
+	s.sourcef(int(SourceParameter.max_gain), max)!
 }
 
 // get_max_distance returns max distance of the source
 pub fn (s Source) get_max_distance() !f32 {
-	return s.get_sourcef(al_max_distance)
+	return s.get_sourcef(int(SourceProperty.max_distance))
 }
 
 // set_max_distance sets the max distance of the source
 pub fn (s Source) set_max_distance(value f32) ! {
-	s.sourcef(al_max_distance, value)!
+	s.sourcef(int(SourceProperty.max_distance), value)!
 }
 
 // get_rolloff returns the rolloff factor of the source
 pub fn (s Source) get_rolloff() !f32 {
-	return s.get_sourcef(al_rolloff_factor)
+	return s.get_sourcef(int(SourceProperty.rolloff_factor))
 }
 
 // set_rolloff sets the rolloff factor of the source
 pub fn (s Source) set_rolloff(value f32) ! {
-	s.sourcef(al_rolloff_factor, value)!
+	s.sourcef(int(SourceProperty.rolloff_factor), value)!
 }
 
 // get_cone_outer_gain returns the cone outer gain of the source
 pub fn (s Source) get_cone_outer_gain() !f32 {
-	return s.get_sourcef(al_cone_outer_gain)
+	return s.get_sourcef(int(SourceProperty.cone_outer_gain))
 }
 
 // set_cone_outer_gain sets the cone outer gain of the source
 pub fn (s Source) set_cone_outer_gain(value f32) ! {
-	s.sourcef(al_cone_outer_gain, value)!
+	s.sourcef(int(SourceProperty.cone_outer_gain), value)!
 }
 
 // get_cone_inner_angle returns the cone inner angle of the source
 pub fn (s Source) get_cone_inner_angle() !f32 {
-	return s.get_sourcef(al_cone_inner_angle)
+	return s.get_sourcef(int(SourceParameter.cone_inner_angle))
 }
 
 // set_cone_inner_angle sets the cone inner angle of the source
 pub fn (s Source) set_cone_inner_angle(value f32) ! {
-	s.sourcef(al_cone_inner_angle, value)!
+	s.sourcef(int(SourceParameter.cone_inner_angle), value)!
 }
 
 // get_cone_outer_angle returns the cone outer angle of the source
 pub fn (s Source) get_cone_outer_angle() !f32 {
-	return s.get_sourcef(al_cone_outer_angle)
+	return s.get_sourcef(int(SourceParameter.cone_outer_angle))
 }
 
 // set_cone_outer_angle sets the cone outer angle of the source
 pub fn (s Source) set_cone_outer_angle(value f32) ! {
-	s.sourcef(al_cone_outer_angle, value)!
+	s.sourcef(int(SourceParameter.cone_outer_angle), value)!
 }
 
 // get_reference_distance Get source reference distance
 pub fn (s Source) get_reference_distance() !f32 {
-	return s.get_sourcef(al_reference_distance)
+	return s.get_sourcef(int(SourceProperty.reference_distance))
 }
 
 // set_reference_distance sets the reference distance of the source
 pub fn (s Source) set_reference_distance(value f32) ! {
-	s.sourcef(al_reference_distance, value)!
+	s.sourcef(int(SourceProperty.reference_distance), value)!
 }
 
 // get_position returns the position of the source
 pub fn (s Source) get_position() !(f32, f32, f32) {
-	return s.get_source3f(al_position)
+	return s.get_source3f(int(SourceParameter.position))
 }
 
 // set_position sets the position of the source
 pub fn (s Source) set_position(v1 f32, v2 f32, v3 f32) ! {
-	s.source3f(al_position, v1, v2, v3)!
+	s.source3f(int(SourceParameter.position), v1, v2, v3)!
 }
 
 // get_velocity returns the velocity of the source
 pub fn (s Source) get_velocity() !(f32, f32, f32) {
-	return s.get_source3f(al_velocity)
+	return s.get_source3f(int(SourceParameter.velocity))
 }
 
 // set_velocity sets the velocity of the source
 pub fn (s Source) set_velocity(v1 f32, v2 f32, v3 f32) ! {
-	s.source3f(al_velocity, v1, v2, v3)!
+	s.source3f(int(SourceParameter.velocity), v1, v2, v3)!
 }
 
 // get_direction returns the direction of the source
 pub fn (s Source) get_direction() !(f32, f32, f32) {
-	return s.get_source3f(al_direction)
+	return s.get_source3f(int(SourceParameter.direction))
 }
 
 // set_direction sets the direction of the source
 pub fn (s Source) set_direction(v1 f32, v2 f32, v3 f32) ! {
-	s.source3f(al_direction, v1, v2, v3)!
+	s.source3f(int(SourceParameter.direction), v1, v2, v3)!
 }
 
 // sourcef sets a source parameter value as float
@@ -389,6 +383,18 @@ pub fn (s Source) stop() ! {
 	check_error()!
 }
 
+// loop sets source to a looping state
+pub fn (s Source) loop(loop bool) ! {
+	value := if loop { al_true } else { al_false }
+	s.sourcei(int(SourceParameter.looping), value)!
+}
+
+// is_looping returns true if source is set to loop
+pub fn (s Source) is_looping() !bool {
+	ret := s.get_sourcei(int(SourceParameter.looping))!
+	return ret == al_true
+}
+
 // rewind the source
 pub fn (s Source) rewind() ! {
 	C.alSourceRewind(s.id)
@@ -437,24 +443,32 @@ pub fn (s Source) queue_buffers(b []Buffer) ! {
 }
 
 // unqueue_buffer removes a buffer fron the source's queue
-pub fn (s Source) unqueue_buffer(mut b Buffer) ! {
-	tmp := u32(0)
-	C.alSourceUnqueueBuffers(s.id, 1, &tmp)
+pub fn (s Source) unqueue_buffer() !Buffer {
+	tmp := []u32{len: 1}
+	C.alSourceUnqueueBuffers(s.id, 1, &tmp[0])
 	check_error()!
-	b.id = tmp
+	return create_buffer_from_id(tmp[0])
 }
 
 // unqueue_buffers removes buffers from the source's queue
-pub fn (s Source) unqueue_buffers(mut b []Buffer) ! {
-	for idx in 0 .. b.len {
-		s.unqueue_buffer(mut b[idx])!
+pub fn (s Source) unqueue_buffers(size int) ![]Buffer {
+	total_queued := s.get_buffers_queued()!
+	to_unqueue := math.min(size, total_queued)
+	//
+	tmp := []u32{len: to_unqueue}
+	C.alSourceUnqueueBuffers(s.id, to_unqueue, tmp.data)
+	check_error()!
+	//
+	mut buffers := []Buffer{len: tmp.len}
+	for idx in 0 .. tmp.len {
+		buffers[idx] = create_buffer_from_id(tmp[idx])
 	}
+	//
+	return buffers
 }
 
 pub fn (s Source) unqueue_all() ! {
-	nq := s.get_buffers_queued()!
-	mut buffers := []Buffer{len: nq}
-	s.unqueue_buffers(mut buffers)!
-	//
+	total := s.get_buffers_queued()!
+	buffers := s.unqueue_buffers(total)!
 	release_buffers(buffers)!
 }

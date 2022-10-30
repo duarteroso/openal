@@ -18,13 +18,13 @@ fn dummy_test() {
 
 fn concrete_test(cb AnonOptionalFun) ! {
 	mut device := alc.create_device()
-	device.open(alc.default_device)!
-	//
+	device.open_default()!
 	mut context := alc.create_context_from_device(device)!
 	context.make_current()!
 	//
 	cb()!
 	//
+	assert alc.remove_current_context()
 	context.destroy()!
-	device.close()!
+	assert device.close()!
 }

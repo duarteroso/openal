@@ -1,6 +1,6 @@
 Module {
 	name: 'openal'
-	version: '1.0.0'
+	version: '1.1.0'
 	description: 'OpenAL V wrapper'
 	dependencies: [duarteroso.semver]
 	license: 'MIT'
