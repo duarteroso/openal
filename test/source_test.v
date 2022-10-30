@@ -248,7 +248,7 @@ fn test_source_gain() {
 		//
 		gain := rand.f32()
 		source.set_gain(gain)!
-		assert source.get_gain()! ==gain
+		assert source.get_gain()! == gain
 		//
 		source.release()!
 	}

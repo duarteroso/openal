@@ -87,7 +87,7 @@ pub fn (s Source) detach_buffer() ! {
 
 // get_attached_buffer returns the attached buffer
 pub fn (s Source) get_attached_buffer() !int {
-	return s.get_sourcei(int(al.SourceParameter.buffer))!
+	return s.get_sourcei(int(SourceParameter.buffer))!
 }
 
 // get_buffer_id returns the buffer id linked to the source
@@ -111,7 +111,7 @@ pub fn (s Source) is_relative() !bool {
 pub fn (s Source) get_type() !SourceType {
 	value := s.get_sourcei(int(SourceType.source_type))!
 	return match value {
-		int(SourceType.source_static), int(SourceType.source_streaming) { unsafe {SourceType(value) } }
+		int(SourceType.source_static), int(SourceType.source_streaming) { unsafe { SourceType(value) } }
 		int(SourceType.source_undetermined) { SourceType.source_undetermined }
 		else { SourceType.source_undetermined }
 	}

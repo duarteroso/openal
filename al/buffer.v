@@ -1,6 +1,6 @@
 module al
 
-type BufferDataType = []u8 | []u16
+type BufferDataType = []u16 | []u8
 
 // Buffer wraps the functionality of an OpenAL buffer
 pub struct Buffer {
@@ -105,12 +105,12 @@ pub fn (b Buffer) get_size() !int {
 
 // set_unsigned_data sets the buffer with unsigned raw data
 pub fn (b Buffer) set_unsigned_data(format UnsignedBufferFormat, data []u8, frequency int) ! {
-	b.set_data(BufferFormat(format), data, data.len, frequency) !
+	b.set_data(BufferFormat(format), data, data.len, frequency)!
 }
 
 // set_signed_data sets the buffer with signed raw data
 pub fn (b Buffer) set_signed_data(format SignedBufferFormat, data []u16, frequency int) ! {
-	b.set_data(BufferFormat(format), data, data.len, frequency) !
+	b.set_data(BufferFormat(format), data, data.len, frequency)!
 }
 
 // set_data sets the data on the buffer

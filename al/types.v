@@ -1,25 +1,25 @@
 module al
 
 // Context values
-pub enum Al {	
-	vendor     = 0xB001
-	version    = 0xB002
-	renderer   = 0xB003
+pub enum Al {
+	vendor = 0xB001
+	version = 0xB002
+	renderer = 0xB003
 	extensions = 0xB004
 }
 
 // AL error codes
 pub enum AlError {
 	no_error = 0
-	invalid_name      = 0xA001
-	invalid_enum      = 0xA002
-	invalid_value     = 0xA003
+	invalid_name = 0xA001
+	invalid_enum = 0xA002
+	invalid_value = 0xA003
 	invalid_operation = 0xA004
-	out_of_memory     = 0xA005
+	out_of_memory = 0xA005
 }
 
 // Buffer format specifier
-pub enum BufferFormat as int {
+pub enum BufferFormat {
 	mono8 = 0x1100
 	mono16 = 0x1101
 	stereo8 = 0x1102
