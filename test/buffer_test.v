@@ -103,7 +103,7 @@ fn test_buffer_16bit_depth() {
 		mut buffer := al.create_buffer()
 		buffer.generate()!
 		//
-		mono := []u16{len: 10, init: -1}
+		mono := []i16{len: 10, init: -1}
 		buffer.set_signed_data(al.SignedBufferFormat.mono, mono, 60)!
 		assert buffer.get_bits()! == 16
 		//
@@ -179,7 +179,7 @@ fn test_buffer_signed_data() {
 		mut buffer := al.create_buffer()
 		buffer.generate()!
 		//		
-		mono := []u16{len: 20, init: -1}
+		mono := []i16{len: 20, init: -1}
 		buffer.set_signed_data(al.SignedBufferFormat.mono, mono, 60)!
 		buffer.set_signed_data(al.SignedBufferFormat.stereo, mono, 60)!
 		//
