@@ -5,17 +5,7 @@
 
 ## Contents
 - [Constants](#Constants)
-- [check_error](#check_error)
-- [create_buffer](#create_buffer)
-- [create_buffer_from_id](#create_buffer_from_id)
-- [create_listener](#create_listener)
-- [create_source](#create_source)
-- [create_sources](#create_sources)
-- [disable](#disable)
-- [distance_model](#distance_model)
-- [doppler_factor](#doppler_factor)
-- [enable](#enable)
-- [generate_buffers](#generate_buffers)
+- [release_buffers](#release_buffers)
 - [get_boolean](#get_boolean)
 - [get_booleanv](#get_booleanv)
 - [get_double](#get_double)
@@ -31,74 +21,40 @@
 - [is_extension_present](#is_extension_present)
 - [pause_sources](#pause_sources)
 - [play_sources](#play_sources)
-- [release_buffers](#release_buffers)
 - [release_sources](#release_sources)
 - [rewind_sources](#rewind_sources)
 - [speed_sound](#speed_sound)
 - [stop_sources](#stop_sources)
 - [version](#version)
-- [Al](#Al)
-- [AlError](#AlError)
-- [BufferFormat](#BufferFormat)
-- [BufferParameter](#BufferParameter)
-- [BuffersQueryParameter](#BuffersQueryParameter)
-- [BufferState](#BufferState)
-- [DistanceModel](#DistanceModel)
+- [check_error](#check_error)
+- [create_buffer](#create_buffer)
+- [create_buffer_from_id](#create_buffer_from_id)
+- [create_listener](#create_listener)
+- [create_source](#create_source)
+- [create_sources](#create_sources)
+- [disable](#disable)
+- [distance_model](#distance_model)
+- [doppler_factor](#doppler_factor)
+- [enable](#enable)
+- [generate_buffers](#generate_buffers)
 - [DistanceParameter](#DistanceParameter)
 - [DopplerParameter](#DopplerParameter)
-- [ListenerParameter](#ListenerParameter)
+- [SourceType](#SourceType)
+- [BuffersQueryParameter](#BuffersQueryParameter)
+- [BufferState](#BufferState)
+- [UnsignedBufferFormat](#UnsignedBufferFormat)
+- [AlError](#AlError)
 - [SignedBufferFormat](#SignedBufferFormat)
+- [BufferFormat](#BufferFormat)
 - [SourceParameter](#SourceParameter)
+- [BufferParameter](#BufferParameter)
+- [ListenerParameter](#ListenerParameter)
 - [SourceProperty](#SourceProperty)
 - [SourceState](#SourceState)
-- [SourceType](#SourceType)
-- [UnsignedBufferFormat](#UnsignedBufferFormat)
-- [Buffer](#Buffer)
-  - [generate](#generate)
-  - [release](#release)
-  - [is_valid](#is_valid)
-  - [get_id](#get_id)
-  - [get_frequency](#get_frequency)
-  - [get_bits](#get_bits)
-  - [get_channels](#get_channels)
-  - [get_size](#get_size)
-  - [set_unsigned_data](#set_unsigned_data)
-  - [set_signed_data](#set_signed_data)
-  - [bufferf](#bufferf)
-  - [buffer3f](#buffer3f)
-  - [bufferfv](#bufferfv)
-  - [bufferi](#bufferi)
-  - [buffer3i](#buffer3i)
-  - [bufferiv](#bufferiv)
-  - [get_bufferf](#get_bufferf)
-  - [get_buffer3f](#get_buffer3f)
-  - [get_bufferfv](#get_bufferfv)
-  - [get_bufferi](#get_bufferi)
-  - [get_buffer3i](#get_buffer3i)
-  - [get_bufferiv](#get_bufferiv)
+- [DistanceModel](#DistanceModel)
+- [Al](#Al)
 - [Err](#Err)
   - [str](#str)
-- [Listener](#Listener)
-  - [get_gain](#get_gain)
-  - [set_gain](#set_gain)
-  - [get_position](#get_position)
-  - [set_position](#set_position)
-  - [get_velocity](#get_velocity)
-  - [set_velocity](#set_velocity)
-  - [get_orientation](#get_orientation)
-  - [set_orientation](#set_orientation)
-  - [listenerf](#listenerf)
-  - [listener3f](#listener3f)
-  - [listenerfv](#listenerfv)
-  - [listeneri](#listeneri)
-  - [listener3i](#listener3i)
-  - [listeneriv](#listeneriv)
-  - [get_listenerf](#get_listenerf)
-  - [get_listener3f](#get_listener3f)
-  - [get_listenerfv](#get_listenerfv)
-  - [get_listeneri](#get_listeneri)
-  - [get_listener3i](#get_listener3i)
-  - [get_listeneriv](#get_listeneriv)
 - [Source](#Source)
   - [generate](#generate)
   - [release](#release)
@@ -158,6 +114,50 @@
   - [unqueue_buffer](#unqueue_buffer)
   - [unqueue_buffers](#unqueue_buffers)
   - [unqueue_all](#unqueue_all)
+- [Listener](#Listener)
+  - [get_gain](#get_gain)
+  - [set_gain](#set_gain)
+  - [get_position](#get_position)
+  - [set_position](#set_position)
+  - [get_velocity](#get_velocity)
+  - [set_velocity](#set_velocity)
+  - [get_orientation](#get_orientation)
+  - [set_orientation](#set_orientation)
+  - [listenerf](#listenerf)
+  - [listener3f](#listener3f)
+  - [listenerfv](#listenerfv)
+  - [listeneri](#listeneri)
+  - [listener3i](#listener3i)
+  - [listeneriv](#listeneriv)
+  - [get_listenerf](#get_listenerf)
+  - [get_listener3f](#get_listener3f)
+  - [get_listenerfv](#get_listenerfv)
+  - [get_listeneri](#get_listeneri)
+  - [get_listener3i](#get_listener3i)
+  - [get_listeneriv](#get_listeneriv)
+- [Buffer](#Buffer)
+  - [generate](#generate)
+  - [release](#release)
+  - [is_valid](#is_valid)
+  - [get_id](#get_id)
+  - [get_frequency](#get_frequency)
+  - [get_bits](#get_bits)
+  - [get_channels](#get_channels)
+  - [get_size](#get_size)
+  - [set_unsigned_data](#set_unsigned_data)
+  - [set_signed_data](#set_signed_data)
+  - [bufferf](#bufferf)
+  - [buffer3f](#buffer3f)
+  - [bufferfv](#bufferfv)
+  - [bufferi](#bufferi)
+  - [buffer3i](#buffer3i)
+  - [bufferiv](#bufferiv)
+  - [get_bufferf](#get_bufferf)
+  - [get_buffer3f](#get_buffer3f)
+  - [get_bufferfv](#get_bufferfv)
+  - [get_bufferi](#get_bufferi)
+  - [get_buffer3i](#get_buffer3i)
+  - [get_bufferiv](#get_bufferiv)
 
 ## Constants
 ```v
@@ -182,102 +182,12 @@ const (
 
 [[Return to contents]](#Contents)
 
-## check_error
+## release_buffers
 ```v
-fn check_error() !
+fn release_buffers(b []Buffer) !
 ```
 
-check_error checks and panics on error
-
-[[Return to contents]](#Contents)
-
-## create_buffer
-```v
-fn create_buffer() Buffer
-```
-
-create_buffer returns an instance of Buffer
-
-[[Return to contents]](#Contents)
-
-## create_buffer_from_id
-```v
-fn create_buffer_from_id(id u32) Buffer
-```
-
-create_buffer_from_id creates a Buffer with a specified id
-
-[[Return to contents]](#Contents)
-
-## create_listener
-```v
-fn create_listener() Listener
-```
-
-create_listener returns an instance of Listener
-
-[[Return to contents]](#Contents)
-
-## create_source
-```v
-fn create_source() Source
-```
-
-create_source returns a new instance of Source
-
-[[Return to contents]](#Contents)
-
-## create_sources
-```v
-fn create_sources(mut sources []Source) !
-```
-
-create_sources generates multiple instances of Source
-
-[[Return to contents]](#Contents)
-
-## disable
-```v
-fn disable(capability int) !
-```
-
-disable an OpenAL capability
-
-[[Return to contents]](#Contents)
-
-## distance_model
-```v
-fn distance_model(model DistanceModel) !
-```
-
-distance_model sets the distance model
-
-[[Return to contents]](#Contents)
-
-## doppler_factor
-```v
-fn doppler_factor(value f32) !
-```
-
-doppler_factor sets the doppler factor
-
-[[Return to contents]](#Contents)
-
-## enable
-```v
-fn enable(capability int) !
-```
-
-enable an OpenAL capability
-
-[[Return to contents]](#Contents)
-
-## generate_buffers
-```v
-fn generate_buffers(mut buffers []Buffer) !
-```
-
-generate_buffers creates multiple instances of Buffer
+release_buffers deletes multiple instances of Buffer
 
 [[Return to contents]](#Contents)
 
@@ -416,15 +326,6 @@ play_sources plays multiple sources at once
 
 [[Return to contents]](#Contents)
 
-## release_buffers
-```v
-fn release_buffers(b []Buffer) !
-```
-
-release_buffers deletes multiple instances of Buffer
-
-[[Return to contents]](#Contents)
-
 ## release_sources
 ```v
 fn release_sources(s []Source) !
@@ -470,101 +371,102 @@ version returns the AL semantic version
 
 [[Return to contents]](#Contents)
 
-## Al
+## check_error
 ```v
-enum Al {
-	vendor = 0xB001
-	version = 0xB002
-	renderer = 0xB003
-	extensions = 0xB004
-}
+fn check_error() !
 ```
 
-Context values
+check_error checks and panics on error
 
 [[Return to contents]](#Contents)
 
-## AlError
+## create_buffer
 ```v
-enum AlError {
-	no_error = 0
-	invalid_name = 0xA001
-	invalid_enum = 0xA002
-	invalid_value = 0xA003
-	invalid_operation = 0xA004
-	out_of_memory = 0xA005
-}
+fn create_buffer() Buffer
 ```
 
-AL error codes
+create_buffer returns an instance of Buffer
 
 [[Return to contents]](#Contents)
 
-## BufferFormat
+## create_buffer_from_id
 ```v
-enum BufferFormat {
-	mono8 = 0x1100
-	mono16 = 0x1101
-	stereo8 = 0x1102
-	stereo16 = 0x1103
-}
+fn create_buffer_from_id(id u32) Buffer
 ```
 
-Buffer format specifier
+create_buffer_from_id creates a Buffer with a specified id
 
 [[Return to contents]](#Contents)
 
-## BufferParameter
+## create_listener
 ```v
-enum BufferParameter {
-	frequency = 0x2001
-	bits = 0x2002
-	channels = 0x2003
-	size = 0x2004
-}
+fn create_listener() Listener
 ```
 
-Buffer parameter values
+create_listener returns an instance of Listener
 
 [[Return to contents]](#Contents)
 
-## BuffersQueryParameter
+## create_source
 ```v
-enum BuffersQueryParameter {
-	queued = 0x1015
-	processed = 0x1016
-}
+fn create_source() Source
 ```
 
+create_source returns a new instance of Source
 
 [[Return to contents]](#Contents)
 
-## BufferState
+## create_sources
 ```v
-enum BufferState {
-	unused = 0x2010
-	pending = 0x2011
-	processed = 0x2012
-}
+fn create_sources(mut sources []Source) !
 ```
 
-Buffer states
+create_sources generates multiple instances of Source
 
 [[Return to contents]](#Contents)
 
-## DistanceModel
+## disable
 ```v
-enum DistanceModel {
-	inverse_distance
-	inverse_distance_clamped
-	linear_distance
-	linear_ditance_clamped
-	exponent_distance
-	exponent_distance_clamped
-}
+fn disable(capability int) !
 ```
 
-Distance model formulae
+disable an OpenAL capability
+
+[[Return to contents]](#Contents)
+
+## distance_model
+```v
+fn distance_model(model DistanceModel) !
+```
+
+distance_model sets the distance model
+
+[[Return to contents]](#Contents)
+
+## doppler_factor
+```v
+fn doppler_factor(value f32) !
+```
+
+doppler_factor sets the doppler factor
+
+[[Return to contents]](#Contents)
+
+## enable
+```v
+fn enable(capability int) !
+```
+
+enable an OpenAL capability
+
+[[Return to contents]](#Contents)
+
+## generate_buffers
+```v
+fn generate_buffers(mut buffers []Buffer) !
+```
+
+generate_buffers creates multiple instances of Buffer
 
 [[Return to contents]](#Contents)
 
@@ -598,17 +500,69 @@ Doppler values
 
 [[Return to contents]](#Contents)
 
-## ListenerParameter
+## SourceType
 ```v
-enum ListenerParameter {
-	gain = 0x100A
-	position = 0x1004
-	velocity = 0x1006
-	orientation = 0x100F
+enum SourceType {
+	source_type = 0x1027
+	source_static = 0x1028
+	source_streaming = 0x1029
+	source_undetermined = 0x1030
 }
 ```
 
-Listener parameter values
+Source type values
+
+[[Return to contents]](#Contents)
+
+## BuffersQueryParameter
+```v
+enum BuffersQueryParameter {
+	queued = 0x1015
+	processed = 0x1016
+}
+```
+
+
+[[Return to contents]](#Contents)
+
+## BufferState
+```v
+enum BufferState {
+	unused = 0x2010
+	pending = 0x2011
+	processed = 0x2012
+}
+```
+
+Buffer states
+
+[[Return to contents]](#Contents)
+
+## UnsignedBufferFormat
+```v
+enum UnsignedBufferFormat {
+	mono = 0x1100
+	stereo = 0x1102
+}
+```
+
+Unsinged buffer formats
+
+[[Return to contents]](#Contents)
+
+## AlError
+```v
+enum AlError {
+	no_error = 0
+	invalid_name = 0xA001
+	invalid_enum = 0xA002
+	invalid_value = 0xA003
+	invalid_operation = 0xA004
+	out_of_memory = 0xA005
+}
+```
+
+AL error codes
 
 [[Return to contents]](#Contents)
 
@@ -621,6 +575,20 @@ enum SignedBufferFormat {
 ```
 
 Signed buffer formats
+
+[[Return to contents]](#Contents)
+
+## BufferFormat
+```v
+enum BufferFormat {
+	mono8 = 0x1100
+	mono16 = 0x1101
+	stereo8 = 0x1102
+	stereo16 = 0x1103
+}
+```
+
+Buffer format specifier
 
 [[Return to contents]](#Contents)
 
@@ -645,6 +613,34 @@ enum SourceParameter {
 ```
 
 Source parameter values
+
+[[Return to contents]](#Contents)
+
+## BufferParameter
+```v
+enum BufferParameter {
+	frequency = 0x2001
+	bits = 0x2002
+	channels = 0x2003
+	size = 0x2004
+}
+```
+
+Buffer parameter values
+
+[[Return to contents]](#Contents)
+
+## ListenerParameter
+```v
+enum ListenerParameter {
+	gain = 0x100A
+	position = 0x1004
+	velocity = 0x1006
+	orientation = 0x100F
+}
+```
+
+Listener parameter values
 
 [[Return to contents]](#Contents)
 
@@ -680,239 +676,33 @@ Source state values
 
 [[Return to contents]](#Contents)
 
-## SourceType
+## DistanceModel
 ```v
-enum SourceType {
-	source_type = 0x1027
-	source_static = 0x1028
-	source_streaming = 0x1029
-	source_undetermined = 0x1030
+enum DistanceModel {
+	inverse_distance
+	inverse_distance_clamped
+	linear_distance
+	linear_ditance_clamped
+	exponent_distance
+	exponent_distance_clamped
 }
 ```
 
-Source type values
+Distance model formulae
 
 [[Return to contents]](#Contents)
 
-## UnsignedBufferFormat
+## Al
 ```v
-enum UnsignedBufferFormat {
-	mono = 0x1100
-	stereo = 0x1102
+enum Al {
+	vendor = 0xB001
+	version = 0xB002
+	renderer = 0xB003
+	extensions = 0xB004
 }
 ```
 
-Unsinged buffer formats
-
-[[Return to contents]](#Contents)
-
-## Buffer
-```v
-struct Buffer {
-mut:
-	id u32
-}
-```
-
-Buffer wraps the functionality of an OpenAL buffer
-
-[[Return to contents]](#Contents)
-
-## generate
-```v
-fn (mut b Buffer) generate() !
-```
-
-generate a buffer
-
-[[Return to contents]](#Contents)
-
-## release
-```v
-fn (b Buffer) release() !
-```
-
-release buffer
-
-[[Return to contents]](#Contents)
-
-## is_valid
-```v
-fn (b Buffer) is_valid() bool
-```
-
-is_valid validates Buffer
-
-[[Return to contents]](#Contents)
-
-## get_id
-```v
-fn (b Buffer) get_id() u32
-```
-
-get_id returns the id of the buffer
-
-[[Return to contents]](#Contents)
-
-## get_frequency
-```v
-fn (b Buffer) get_frequency() !int
-```
-
-get_frequency returns the frequency of the buffer
-
-[[Return to contents]](#Contents)
-
-## get_bits
-```v
-fn (b Buffer) get_bits() !int
-```
-
-get_bits returns the bits of the buffer
-
-[[Return to contents]](#Contents)
-
-## get_channels
-```v
-fn (b Buffer) get_channels() !int
-```
-
-get_channels returns the number channels of the buffer
-
-[[Return to contents]](#Contents)
-
-## get_size
-```v
-fn (b Buffer) get_size() !int
-```
-
-get_size returns the size of the buffer
-
-[[Return to contents]](#Contents)
-
-## set_unsigned_data
-```v
-fn (b Buffer) set_unsigned_data(format UnsignedBufferFormat, data []u8, frequency int) !
-```
-
-set_unsigned_data sets the buffer with unsigned raw data
-
-[[Return to contents]](#Contents)
-
-## set_signed_data
-```v
-fn (b Buffer) set_signed_data(format SignedBufferFormat, data []i16, frequency int) !
-```
-
-set_signed_data sets the buffer with signed raw data
-
-[[Return to contents]](#Contents)
-
-## bufferf
-```v
-fn (b Buffer) bufferf(param int, value f32) !
-```
-
-bufferf sets a buffer parameter value as float
-
-[[Return to contents]](#Contents)
-
-## buffer3f
-```v
-fn (b Buffer) buffer3f(param int, value1 f32, value2 f32, value3 f32) !
-```
-
-buffer3f sets a buffer parameter value as a tuple of floats
-
-[[Return to contents]](#Contents)
-
-## bufferfv
-```v
-fn (b Buffer) bufferfv(param int, values []f32) !
-```
-
-bufferfv sets a buffer parameter value as a vector of floats
-
-[[Return to contents]](#Contents)
-
-## bufferi
-```v
-fn (b Buffer) bufferi(param int, value int) !
-```
-
-bufferi sets a buffer parameter value as integer
-
-[[Return to contents]](#Contents)
-
-## buffer3i
-```v
-fn (b Buffer) buffer3i(param int, v1 int, v2 int, v3 int) !
-```
-
-buffer3i sets a buffer parameter value as a tuple of integers
-
-[[Return to contents]](#Contents)
-
-## bufferiv
-```v
-fn (b Buffer) bufferiv(param int, values []int) !
-```
-
-bufferiv sets a buffer parameter value as vector of integers
-
-[[Return to contents]](#Contents)
-
-## get_bufferf
-```v
-fn (b Buffer) get_bufferf(param int) !f32
-```
-
-get_bufferf returns a buffer parameter value as float
-
-[[Return to contents]](#Contents)
-
-## get_buffer3f
-```v
-fn (b Buffer) get_buffer3f(param int) !(f32, f32, f32)
-```
-
-get_buffer3f returns a buffer parameter value as a tuple of floats
-
-[[Return to contents]](#Contents)
-
-## get_bufferfv
-```v
-fn (b Buffer) get_bufferfv(param int, size int) ![]f32
-```
-
-get_bufferfv returns a buffer parameter value as vector of floats
-
-[[Return to contents]](#Contents)
-
-## get_bufferi
-```v
-fn (b Buffer) get_bufferi(param int) !int
-```
-
-get_bufferi returns a buffer parameter value as integer
-
-[[Return to contents]](#Contents)
-
-## get_buffer3i
-```v
-fn (b Buffer) get_buffer3i(param int) !(int, int, int)
-```
-
-get_buffer3i returns a buffer parameter value as a tuple of integers
-
-[[Return to contents]](#Contents)
-
-## get_bufferiv
-```v
-fn (b Buffer) get_bufferiv(param int, size int) ![]int
-```
-
-get_bufferiv returns a buffer parameter value as vector of integers
+Context values
 
 [[Return to contents]](#Contents)
 
@@ -934,196 +724,6 @@ fn (err &Err) str() string
 ```
 
 str formats the error into a string
-
-[[Return to contents]](#Contents)
-
-## Listener
-```v
-struct Listener {
-}
-```
-
-Listener wraps functionality around an OpenAL listener
-
-[[Return to contents]](#Contents)
-
-## get_gain
-```v
-fn (l Listener) get_gain() !f32
-```
-
-get_gain returns the gain of the listener
-
-[[Return to contents]](#Contents)
-
-## set_gain
-```v
-fn (l Listener) set_gain(value f32) !
-```
-
-set_gain sets the gain of the listener
-
-[[Return to contents]](#Contents)
-
-## get_position
-```v
-fn (l Listener) get_position() !(f32, f32, f32)
-```
-
-get_position returns the position of the listener
-
-[[Return to contents]](#Contents)
-
-## set_position
-```v
-fn (l Listener) set_position(x f32, y f32, z f32) !
-```
-
-set_position sets the position of the listener
-
-[[Return to contents]](#Contents)
-
-## get_velocity
-```v
-fn (l Listener) get_velocity() !(f32, f32, f32)
-```
-
-get_velocity returns the velocity of the listener
-
-[[Return to contents]](#Contents)
-
-## set_velocity
-```v
-fn (l Listener) set_velocity(x f32, y f32, z f32) !
-```
-
-set_velocity sets the velocity of the listener
-
-[[Return to contents]](#Contents)
-
-## get_orientation
-```v
-fn (l Listener) get_orientation() ![]f32
-```
-
-get_orientation returns the orientation of the listener
-
-[[Return to contents]](#Contents)
-
-## set_orientation
-```v
-fn (l Listener) set_orientation(value []f32) !
-```
-
-set_orientation sets the orientation of the listener
-
-[[Return to contents]](#Contents)
-
-## listenerf
-```v
-fn (l Listener) listenerf(param int, value f32) !
-```
-
-listenerf sets a listener parameter value as float
-
-[[Return to contents]](#Contents)
-
-## listener3f
-```v
-fn (l Listener) listener3f(param int, v1 f32, v2 f32, v3 f32) !
-```
-
-listener3f sets a listener parameter value as vector of floats
-
-[[Return to contents]](#Contents)
-
-## listenerfv
-```v
-fn (l Listener) listenerfv(param int, values []f32) !
-```
-
-listenefv sets a listener parameter value as vector of floats
-
-[[Return to contents]](#Contents)
-
-## listeneri
-```v
-fn (l Listener) listeneri(param int, value int) !
-```
-
-listeneri sets a listener parameter value as integer
-
-[[Return to contents]](#Contents)
-
-## listener3i
-```v
-fn (l Listener) listener3i(param int, v1 int, v2 int, v3 int) !
-```
-
-listener3i sets a listener parameter value as vector of integers
-
-[[Return to contents]](#Contents)
-
-## listeneriv
-```v
-fn (l Listener) listeneriv(param int, values []int) !
-```
-
-listeneriv sets a listener parameter value as vector of integers
-
-[[Return to contents]](#Contents)
-
-## get_listenerf
-```v
-fn (l Listener) get_listenerf(param int) !f32
-```
-
-get_listenerf returns a listener parameter value as float
-
-[[Return to contents]](#Contents)
-
-## get_listener3f
-```v
-fn (l Listener) get_listener3f(param int) !(f32, f32, f32)
-```
-
-get_listener3f returns a listener parameter value as vector of floats
-
-[[Return to contents]](#Contents)
-
-## get_listenerfv
-```v
-fn (l Listener) get_listenerfv(param int, size int) ![]f32
-```
-
-get_listenerfv returns a listener parameter value as vector of floats
-
-[[Return to contents]](#Contents)
-
-## get_listeneri
-```v
-fn (l Listener) get_listeneri(param int) !int
-```
-
-get_listeneri returns a listener parameter value as integer
-
-[[Return to contents]](#Contents)
-
-## get_listener3i
-```v
-fn (l Listener) get_listener3i(param int) !(int, int, int)
-```
-
-get_listener3i returns a listener parameter value as vector of integers
-
-[[Return to contents]](#Contents)
-
-## get_listeneriv
-```v
-fn (l Listener) get_listeneriv(param int, size int) ![]int
-```
-
-get_listeneriv returns a listener parameter value as vector of integers
 
 [[Return to contents]](#Contents)
 
@@ -1660,4 +1260,404 @@ fn (s Source) unqueue_all() !
 
 [[Return to contents]](#Contents)
 
-#### Powered by vdoc. Generated on: 4 Nov 2022 09:11:03
+## Listener
+```v
+struct Listener {
+}
+```
+
+Listener wraps functionality around an OpenAL listener
+
+[[Return to contents]](#Contents)
+
+## get_gain
+```v
+fn (l Listener) get_gain() !f32
+```
+
+get_gain returns the gain of the listener
+
+[[Return to contents]](#Contents)
+
+## set_gain
+```v
+fn (l Listener) set_gain(value f32) !
+```
+
+set_gain sets the gain of the listener
+
+[[Return to contents]](#Contents)
+
+## get_position
+```v
+fn (l Listener) get_position() !(f32, f32, f32)
+```
+
+get_position returns the position of the listener
+
+[[Return to contents]](#Contents)
+
+## set_position
+```v
+fn (l Listener) set_position(x f32, y f32, z f32) !
+```
+
+set_position sets the position of the listener
+
+[[Return to contents]](#Contents)
+
+## get_velocity
+```v
+fn (l Listener) get_velocity() !(f32, f32, f32)
+```
+
+get_velocity returns the velocity of the listener
+
+[[Return to contents]](#Contents)
+
+## set_velocity
+```v
+fn (l Listener) set_velocity(x f32, y f32, z f32) !
+```
+
+set_velocity sets the velocity of the listener
+
+[[Return to contents]](#Contents)
+
+## get_orientation
+```v
+fn (l Listener) get_orientation() ![]f32
+```
+
+get_orientation returns the orientation of the listener
+
+[[Return to contents]](#Contents)
+
+## set_orientation
+```v
+fn (l Listener) set_orientation(value []f32) !
+```
+
+set_orientation sets the orientation of the listener
+
+[[Return to contents]](#Contents)
+
+## listenerf
+```v
+fn (l Listener) listenerf(param int, value f32) !
+```
+
+listenerf sets a listener parameter value as float
+
+[[Return to contents]](#Contents)
+
+## listener3f
+```v
+fn (l Listener) listener3f(param int, v1 f32, v2 f32, v3 f32) !
+```
+
+listener3f sets a listener parameter value as vector of floats
+
+[[Return to contents]](#Contents)
+
+## listenerfv
+```v
+fn (l Listener) listenerfv(param int, values []f32) !
+```
+
+listenefv sets a listener parameter value as vector of floats
+
+[[Return to contents]](#Contents)
+
+## listeneri
+```v
+fn (l Listener) listeneri(param int, value int) !
+```
+
+listeneri sets a listener parameter value as integer
+
+[[Return to contents]](#Contents)
+
+## listener3i
+```v
+fn (l Listener) listener3i(param int, v1 int, v2 int, v3 int) !
+```
+
+listener3i sets a listener parameter value as vector of integers
+
+[[Return to contents]](#Contents)
+
+## listeneriv
+```v
+fn (l Listener) listeneriv(param int, values []int) !
+```
+
+listeneriv sets a listener parameter value as vector of integers
+
+[[Return to contents]](#Contents)
+
+## get_listenerf
+```v
+fn (l Listener) get_listenerf(param int) !f32
+```
+
+get_listenerf returns a listener parameter value as float
+
+[[Return to contents]](#Contents)
+
+## get_listener3f
+```v
+fn (l Listener) get_listener3f(param int) !(f32, f32, f32)
+```
+
+get_listener3f returns a listener parameter value as vector of floats
+
+[[Return to contents]](#Contents)
+
+## get_listenerfv
+```v
+fn (l Listener) get_listenerfv(param int, size int) ![]f32
+```
+
+get_listenerfv returns a listener parameter value as vector of floats
+
+[[Return to contents]](#Contents)
+
+## get_listeneri
+```v
+fn (l Listener) get_listeneri(param int) !int
+```
+
+get_listeneri returns a listener parameter value as integer
+
+[[Return to contents]](#Contents)
+
+## get_listener3i
+```v
+fn (l Listener) get_listener3i(param int) !(int, int, int)
+```
+
+get_listener3i returns a listener parameter value as vector of integers
+
+[[Return to contents]](#Contents)
+
+## get_listeneriv
+```v
+fn (l Listener) get_listeneriv(param int, size int) ![]int
+```
+
+get_listeneriv returns a listener parameter value as vector of integers
+
+[[Return to contents]](#Contents)
+
+## Buffer
+```v
+struct Buffer {
+mut:
+	id u32
+}
+```
+
+Buffer wraps the functionality of an OpenAL buffer
+
+[[Return to contents]](#Contents)
+
+## generate
+```v
+fn (mut b Buffer) generate() !
+```
+
+generate a buffer
+
+[[Return to contents]](#Contents)
+
+## release
+```v
+fn (b Buffer) release() !
+```
+
+release buffer
+
+[[Return to contents]](#Contents)
+
+## is_valid
+```v
+fn (b Buffer) is_valid() bool
+```
+
+is_valid validates Buffer
+
+[[Return to contents]](#Contents)
+
+## get_id
+```v
+fn (b Buffer) get_id() u32
+```
+
+get_id returns the id of the buffer
+
+[[Return to contents]](#Contents)
+
+## get_frequency
+```v
+fn (b Buffer) get_frequency() !int
+```
+
+get_frequency returns the frequency of the buffer
+
+[[Return to contents]](#Contents)
+
+## get_bits
+```v
+fn (b Buffer) get_bits() !int
+```
+
+get_bits returns the bits of the buffer
+
+[[Return to contents]](#Contents)
+
+## get_channels
+```v
+fn (b Buffer) get_channels() !int
+```
+
+get_channels returns the number channels of the buffer
+
+[[Return to contents]](#Contents)
+
+## get_size
+```v
+fn (b Buffer) get_size() !int
+```
+
+get_size returns the size of the buffer
+
+[[Return to contents]](#Contents)
+
+## set_unsigned_data
+```v
+fn (b Buffer) set_unsigned_data(format UnsignedBufferFormat, data []u8, frequency int) !
+```
+
+set_unsigned_data sets the buffer with unsigned raw data
+
+[[Return to contents]](#Contents)
+
+## set_signed_data
+```v
+fn (b Buffer) set_signed_data(format SignedBufferFormat, data []i16, frequency int) !
+```
+
+set_signed_data sets the buffer with signed raw data
+
+[[Return to contents]](#Contents)
+
+## bufferf
+```v
+fn (b Buffer) bufferf(param int, value f32) !
+```
+
+bufferf sets a buffer parameter value as float
+
+[[Return to contents]](#Contents)
+
+## buffer3f
+```v
+fn (b Buffer) buffer3f(param int, value1 f32, value2 f32, value3 f32) !
+```
+
+buffer3f sets a buffer parameter value as a tuple of floats
+
+[[Return to contents]](#Contents)
+
+## bufferfv
+```v
+fn (b Buffer) bufferfv(param int, values []f32) !
+```
+
+bufferfv sets a buffer parameter value as a vector of floats
+
+[[Return to contents]](#Contents)
+
+## bufferi
+```v
+fn (b Buffer) bufferi(param int, value int) !
+```
+
+bufferi sets a buffer parameter value as integer
+
+[[Return to contents]](#Contents)
+
+## buffer3i
+```v
+fn (b Buffer) buffer3i(param int, v1 int, v2 int, v3 int) !
+```
+
+buffer3i sets a buffer parameter value as a tuple of integers
+
+[[Return to contents]](#Contents)
+
+## bufferiv
+```v
+fn (b Buffer) bufferiv(param int, values []int) !
+```
+
+bufferiv sets a buffer parameter value as vector of integers
+
+[[Return to contents]](#Contents)
+
+## get_bufferf
+```v
+fn (b Buffer) get_bufferf(param int) !f32
+```
+
+get_bufferf returns a buffer parameter value as float
+
+[[Return to contents]](#Contents)
+
+## get_buffer3f
+```v
+fn (b Buffer) get_buffer3f(param int) !(f32, f32, f32)
+```
+
+get_buffer3f returns a buffer parameter value as a tuple of floats
+
+[[Return to contents]](#Contents)
+
+## get_bufferfv
+```v
+fn (b Buffer) get_bufferfv(param int, size int) ![]f32
+```
+
+get_bufferfv returns a buffer parameter value as vector of floats
+
+[[Return to contents]](#Contents)
+
+## get_bufferi
+```v
+fn (b Buffer) get_bufferi(param int) !int
+```
+
+get_bufferi returns a buffer parameter value as integer
+
+[[Return to contents]](#Contents)
+
+## get_buffer3i
+```v
+fn (b Buffer) get_buffer3i(param int) !(int, int, int)
+```
+
+get_buffer3i returns a buffer parameter value as a tuple of integers
+
+[[Return to contents]](#Contents)
+
+## get_bufferiv
+```v
+fn (b Buffer) get_bufferiv(param int, size int) ![]int
+```
+
+get_bufferiv returns a buffer parameter value as vector of integers
+
+[[Return to contents]](#Contents)
+
+#### Powered by vdoc. Generated on: 5 Nov 2022 15:17:13

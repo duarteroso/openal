@@ -6,17 +6,25 @@
 ## Contents
 - [Constants](#Constants)
 - [check_error](#check_error)
+- [version](#version)
+- [get_all_devices](#get_all_devices)
+- [get_all_extensions](#get_all_extensions)
+- [get_current_context](#get_current_context)
+- [remove_current_context](#remove_current_context)
 - [create_capture_device](#create_capture_device)
 - [create_context_from_data](#create_context_from_data)
 - [create_context_from_device](#create_context_from_device)
 - [create_device](#create_device)
 - [create_device_from_data](#create_device_from_data)
 - [get_all_capture_devices](#get_all_capture_devices)
-- [get_all_devices](#get_all_devices)
-- [get_all_extensions](#get_all_extensions)
-- [get_current_context](#get_current_context)
-- [remove_current_context](#remove_current_context)
-- [version](#version)
+- [Context](#Context)
+  - [make_current](#make_current)
+  - [process](#process)
+  - [suspend](#suspend)
+  - [destroy](#destroy)
+  - [get_device](#get_device)
+- [Err](#Err)
+  - [str](#str)
 - [CaptureDevice](#CaptureDevice)
   - [open_default](#open_default)
   - [open](#open)
@@ -27,12 +35,6 @@
   - [get_sample_count](#get_sample_count)
   - [samples](#samples)
   - [get_string](#get_string)
-- [Context](#Context)
-  - [make_current](#make_current)
-  - [process](#process)
-  - [suspend](#suspend)
-  - [destroy](#destroy)
-  - [get_device](#get_device)
 - [Device](#Device)
   - [open](#open)
   - [open_default](#open_default)
@@ -43,8 +45,6 @@
   - [get_enum_value](#get_enum_value)
   - [get_string](#get_string)
   - [get_integers](#get_integers)
-- [Err](#Err)
-  - [str](#str)
 
 ## Constants
 ```v
@@ -162,6 +162,49 @@ check_error checks and panics on errors
 
 [[Return to contents]](#Contents)
 
+## version
+```v
+fn version() semver.SemVer
+```
+
+version returns the ALC semantic version
+
+[[Return to contents]](#Contents)
+
+## get_all_devices
+```v
+fn get_all_devices() ![]string
+```
+
+
+[[Return to contents]](#Contents)
+
+## get_all_extensions
+```v
+fn get_all_extensions() ![]string
+```
+
+
+[[Return to contents]](#Contents)
+
+## get_current_context
+```v
+fn get_current_context() !&Context
+```
+
+get_current_context returns the current context
+
+[[Return to contents]](#Contents)
+
+## remove_current_context
+```v
+fn remove_current_context() bool
+```
+
+remove_current_context removes the current context
+
+[[Return to contents]](#Contents)
+
 ## create_capture_device
 ```v
 fn create_capture_device() &CaptureDevice
@@ -215,46 +258,82 @@ fn get_all_capture_devices() ![]string
 
 [[Return to contents]](#Contents)
 
-## get_all_devices
+## Context
 ```v
-fn get_all_devices() ![]string
+struct Context {
+pub mut:
+	data   &C.ALCcontext = &C.ALCcontext(0)
+	device &Device       = &Device(0)
+}
 ```
 
+Context wraps functionality around OpenALC context
 
 [[Return to contents]](#Contents)
 
-## get_all_extensions
+## make_current
 ```v
-fn get_all_extensions() ![]string
+fn (c &Context) make_current() !bool
 ```
 
+make_current marks a context as current
 
 [[Return to contents]](#Contents)
 
-## get_current_context
+## process
 ```v
-fn get_current_context() !&Context
+fn (c &Context) process() !
 ```
 
-get_current_context returns the current context
+process context
 
 [[Return to contents]](#Contents)
 
-## remove_current_context
+## suspend
 ```v
-fn remove_current_context() bool
+fn (c &Context) suspend() !
 ```
 
-remove_current_context removes the current context
+suspend context
 
 [[Return to contents]](#Contents)
 
-## version
+## destroy
 ```v
-fn version() semver.SemVer
+fn (c &Context) destroy() !
 ```
 
-version returns the ALC semantic version
+destroy context
+
+[[Return to contents]](#Contents)
+
+## get_device
+```v
+fn (c &Context) get_device() &Device
+```
+
+get_device returns device linked to context
+
+[[Return to contents]](#Contents)
+
+## Err
+```v
+struct Err {
+pub mut:
+	code int
+}
+```
+
+Err defines a code for a particular error
+
+[[Return to contents]](#Contents)
+
+## str
+```v
+fn (err &Err) str() string
+```
+
+str formats the error into a string
 
 [[Return to contents]](#Contents)
 
@@ -350,64 +429,6 @@ get_string returns a device parameter as string
 
 [[Return to contents]](#Contents)
 
-## Context
-```v
-struct Context {
-pub mut:
-	data   &C.ALCcontext = &C.ALCcontext(0)
-	device &Device       = &Device(0)
-}
-```
-
-Context wraps functionality around OpenALC context
-
-[[Return to contents]](#Contents)
-
-## make_current
-```v
-fn (c &Context) make_current() !bool
-```
-
-make_current marks a context as current
-
-[[Return to contents]](#Contents)
-
-## process
-```v
-fn (c &Context) process() !
-```
-
-process context
-
-[[Return to contents]](#Contents)
-
-## suspend
-```v
-fn (c &Context) suspend() !
-```
-
-suspend context
-
-[[Return to contents]](#Contents)
-
-## destroy
-```v
-fn (c &Context) destroy() !
-```
-
-destroy context
-
-[[Return to contents]](#Contents)
-
-## get_device
-```v
-fn (c &Context) get_device() &Device
-```
-
-get_device returns device linked to context
-
-[[Return to contents]](#Contents)
-
 ## Device
 ```v
 struct Device {
@@ -500,25 +521,4 @@ get_integers returns a device parameters as vector of strings
 
 [[Return to contents]](#Contents)
 
-## Err
-```v
-struct Err {
-pub mut:
-	code int
-}
-```
-
-Err defines a code for a particular error
-
-[[Return to contents]](#Contents)
-
-## str
-```v
-fn (err &Err) str() string
-```
-
-str formats the error into a string
-
-[[Return to contents]](#Contents)
-
-#### Powered by vdoc. Generated on: 4 Nov 2022 09:11:12
+#### Powered by vdoc. Generated on: 5 Nov 2022 15:17:13
