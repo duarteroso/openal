@@ -11,17 +11,13 @@ import os
 
 #include "AL/al.h"
 
-$if !linux && !darwin {
-	$compile_error('Platform currently not supported')
-}
-
 fn init() {
 	$if debug {
-		os.setenv('ALSOFT_LOGLEVEL', '3', true)
+		os.setenv('ALSOFT_LOGLEVEL', '2', true)
 	} $else $if prod {
 		os.setenv('ALSOFT_LOGLEVEL', '0', true)
 	} $else {
-		os.setenv('ALSOFT_LOGLEVEL', '2', true)
+		os.setenv('ALSOFT_LOGLEVEL', '1', true)
 	}
 }
 
