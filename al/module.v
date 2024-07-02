@@ -1,7 +1,7 @@
 module al
 
-import duarteroso.semver
 import os
+import semver
 
 #flag linux -lopenal
 
@@ -22,11 +22,9 @@ fn init() {
 }
 
 // version returns the AL semantic version
-pub fn version() semver.SemVer {
-	return semver.SemVer{
-		major: al_major_version
-		minor: al_minor_version
-		patch: 0
-		stage: semver.Stage.release
-	}
+pub fn version() semver.Version {
+	major := al_major_version
+	minor := al_minor_version
+	patch := 0
+	return semver.from('${major}.${minor}.${patch}') or { panic(err) }
 }

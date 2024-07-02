@@ -3,7 +3,7 @@ module alc
 // Device wraps functionality around ALCdevice
 pub struct Device {
 mut:
-	data &C.ALCdevice = &C.ALCdevice(0)
+	data &C.ALCdevice = &C.ALCdevice(unsafe { nil })
 }
 
 // create_device creates an instance of Device

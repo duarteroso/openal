@@ -3,8 +3,8 @@ module alc
 // Context wraps functionality around OpenALC context
 pub struct Context {
 pub mut:
-	data   &C.ALCcontext = &C.ALCcontext(0)
-	device &Device       = &Device(0)
+	data   &C.ALCcontext = &C.ALCcontext(unsafe { nil })
+	device &Device       = &Device(unsafe { nil })
 }
 
 // create_context creates an instance of Context

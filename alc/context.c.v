@@ -1,6 +1,6 @@
 module alc
 
-[typedef]
+@[typedef]
 struct C.ALCcontext {
 }
 

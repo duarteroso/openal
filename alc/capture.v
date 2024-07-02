@@ -5,7 +5,7 @@ import al
 // CaptureDevice wraps functionality around OpenALC capture device
 pub struct CaptureDevice {
 mut:
-	device &Device = &Device(0)
+	device &Device = &Device(unsafe { nil })
 }
 
 // create_capture_device creates a new instance of CaptureDevice
